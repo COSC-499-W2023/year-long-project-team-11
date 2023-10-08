@@ -5,3 +5,11 @@ Regarding the case of the project plan, I contributed to completing it as I wrot
 In addition, on the 26th of September, our team decided to start working on the project plan, and a meeting was held to help decide the general tasks required for the capstone project, which had a slow start, but as we communicated with each other, we were able to get a better grip on the project and our understanding.
 By 30th September we had completed the project plan and spent the time reviewing and working on our logs.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/2acadadb-6c12-49d9-a24d-a469e58c023c)
+
+
+Week 5 
+This week we had a meeting regarding the layout and design of the web application being coded
+I helped with deciding the layout while also going through resources to learn to react and docker 
+On Oct 4th I was learning new docker skills to help me set the environment for our team
+We did encounter a few issues regarding as to how the coding of the documents would be gone about but was resolved quickly after communicating with the team
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/0dfe6aa9-edbc-4a58-bf4d-4ade06c3e757)
