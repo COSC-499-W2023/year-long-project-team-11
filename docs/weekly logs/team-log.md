@@ -15,11 +15,12 @@ Note: There is only one branch in the network as all the work for the project pl
 
 <b>*</b> <i>There were no issues with this week of the project. All members collaborated well and managed to solve any issues that came up.</i>
 
-
+----------------------------------------------------
 <h1>Week 5</h1>
 <b>List of Tasks</b>
 <img width="1373" alt="Screenshot 2023-10-08 at 11 17 14 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/ec917f61-fc0b-4468-9b09-f8d925502656">
 All members contributed to the design of the template on Thursday. The Thursday was our only working day this week as the group decided it was best to prioritize the midterms people are having both this week, and in the coming week. Planned to be finalized by next Thursday where we will break into groups to tackle the remaining 2 tasks.
+
 <b>Kanban Board</b>
 <img width="1080" alt="Screenshot 2023-10-08 at 11 20 06 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/d8d335ba-f392-4220-ab0a-3bbe9c6ad8da">
 * _No Burnup chart as the only task this week was not meant to be completed._
