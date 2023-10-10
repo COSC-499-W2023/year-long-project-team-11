@@ -1,3 +1,11 @@
+RyBowler - Ryan Bowler
+Aryamanp12 - Aryaman Patil
+lotusbro - Depar Hlawn
+7ito - Justin Tom
+lancecrouton - Lance Corton
+
+
+
 <h1>Week 4</h1>
 <b>List of Tasks</b>
 <img width="1109" alt="Screenshot 2023-10-01 at 9 38 36 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/d28d40bd-0c75-4a0b-b74b-74e0a04444f2">
