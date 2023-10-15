@@ -7,3 +7,11 @@ This week, we spent writing our project plan. We discussed the Project Plan and 
 
 This week we had a meeting about the layout and design of the web application that we are going to code. Most of my work is making the template and doing nice visuals so that is what I did. I did the layout template page of Login, Logout, and Signup.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/6f5a8acd-4e39-475a-b55b-dafc5e1a53f9)
+
+# Week 6 (October 8-15)
+
+- This week, we completed the rough draft of the user interface for pages in the web application.
+- We split up work for the group to complete certain tasks for our first major milestone.
+- To achieve this, I'm working on the CSS of the Login Page and if possible, help others with their work
+- We had a few issues trying to figure out which pages were important and which were not as important for the presentation.
+  ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/387cf2a2-82eb-40f9-811e-159e6ac930a2)
