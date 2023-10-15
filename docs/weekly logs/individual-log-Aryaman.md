@@ -13,3 +13,12 @@ I helped with deciding the layout while also going through resources to learn to
 On Oct 4th I was learning new docker skills to help me set the environment for our team
 We did encounter a few issues regarding as to how the coding of the documents would be gone about but was resolved quickly after communicating with the team
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/0dfe6aa9-edbc-4a58-bf4d-4ade06c3e757)
+
+
+Week 6 (Oct 8 - Oct 15) 
+
+This week we completed the rough sketches of the user interface for the pages being made for the web application.
+Additionally, we split up work for the group to complete certain tasks and be able to work towards our first major milestone of Mini presentation
+To achieve this goal I started to work on using and setting a docker environment while coding using react for the required pages
+We did have a few issues regarding which pages would be priority but decided to use the essential pages as the goal to display for the presentation
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/5840dc21-0a4a-4a29-9797-b924a011b3b0)
