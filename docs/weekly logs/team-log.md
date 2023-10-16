@@ -33,3 +33,15 @@ All members contributed to the design of the template on Thursday. The Thursday 
 <img width="1080" alt="Screenshot 2023-10-08 at 11 20 06 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/d8d335ba-f392-4220-ab0a-3bbe9c6ad8da">
 * _No Burnup chart as the only task this week was not meant to be completed._
 * _There are once again no code nor commits pushed this week as we focused solely on perfecting our template. This way the group will be all on the same page when implementing the design._
+
+----------------------------------------------------
+<h1>Week 6</h1>
+<b>List of Tasks</b>
+<img width="1105" alt="Screenshot 2023-10-15 at 10 25 37 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/43b38c60-dea0-4863-997c-f6ca7fcbfed4">
+The team this week all collectivly collaborated on finalizing the design of our template, and preparing to start work on our first two features for the mini-presentation (by planning out who does what).
+
+<b>Kanban Board</b>
+<img width="1082" alt="Screenshot 2023-10-15 at 10 27 18 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/07bc5ab5-a2f9-438b-93dc-1e336ef45a7b">
+
+<b>Burn Up Chart</b>
+<img width="991" alt="Screenshot 2023-10-15 at 10 26 05 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/706a2cf2-6f71-446b-a57a-b8b18abedd0d">
