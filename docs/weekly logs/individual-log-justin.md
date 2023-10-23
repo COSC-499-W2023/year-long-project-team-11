@@ -1,5 +1,7 @@
-# Week 6 (Oct 9 - Oct 15)
+# Weeks 6 & 7 (Oct 9 - Oct 15, Oct 16 - Oct 22)
 We continued working on creating our webapp template on Canva this week, we ended up finishing our designs on Thursday. We then started to think about and distribute the tasks for this week, so for next week my goals are to set up the docker environment, and work on the log out page. 
+
+This week I worked with Arya on setting up the docker environment for our frontend, and working on the log out page html. We are meeting once again on Monday to finish up these tasks. 
 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/dc74192c-2336-4421-8679-8eeeaaa9f89f)
 
