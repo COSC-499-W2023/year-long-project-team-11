@@ -1,4 +1,6 @@
 import React from 'react'
+import './css/reset.css'
+import './css/login.css'
 
 function Login() {
 
@@ -36,23 +38,24 @@ function Login() {
                         Sign In
                     </button>
                     {/* Remember me */}
-                    <div>
+                    <div id="rememberForget">
                         <input
                             type="checkbox"
                             id="rememberme"
                             name="rememberme"
                         />
                         Remember Me
-                    </div>
+                    
                     {/* Forgot password */}
                     <p>
                         <a href="">Forgot Your Password?</a>
                     </p>
+                    </div>
                 </form>
             </div>
 
             {/* Create account */}
-            <p>
+            <p id="createAccount">
                 Don't have an account?
                 <a href="">Create an account</a>
             </p>
