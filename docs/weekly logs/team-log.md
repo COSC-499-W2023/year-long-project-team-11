@@ -45,15 +45,3 @@ The team this week all collectivly collaborated on finalizing the design of our 
 
 <b>Burn Up Chart</b>
 <img width="991" alt="Screenshot 2023-10-15 at 10 26 05 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/706a2cf2-6f71-446b-a57a-b8b18abedd0d">
-
-----------------------------------------------------
-<h1>Week 7</h1>
-<b>List of Tasks</b>
-<img width="1106" alt="Screenshot 2023-10-22 at 9 12 01 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/70780bf8-b972-4420-bded-09492bdfa169">
-The milestones for this week were to complete our individually assigned features. Some members, however, were unable to achieve these milestones however, some due to midterm prep, and others from waiting on other group members. The team has decided on a strict deadline of this upcoming Thursday (October 26), by which all assigned tasks must be completed.
-
-<b>Kanban Board</b>
-<img width="1080" alt="Screenshot 2023-10-22 at 9 12 40 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/7d332905-cf1b-490b-a2a2-047c26f7cf1d">
-
-<b>Burn Up Chart</b>
-<img width="980" alt="Screenshot 2023-10-22 at 9 12 21 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f8fcf36a-7f58-4cb9-a86e-6da23f2e5712">

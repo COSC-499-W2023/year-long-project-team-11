@@ -20,9 +20,3 @@ Additionally, we split up work for the group to complete certain tasks and be ab
 To achieve this goal I started to work on using and setting a docker environment while coding using react for the required pages
 We did have a few issues regarding which pages would be priority but decided to use the essential pages as the goal to display for the presentation
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/5840dc21-0a4a-4a29-9797-b924a011b3b0)
-
-Week 7 (Oct 16th - Oct 22nd)
-This week I helped with the docker environment 
-Then proceeded to study more about node.js to start learning how to make the HTML for the logout page
-I did run into issues with learning how to setup docker but learnt after how to create the file for it
-![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/581a2c19-a3b0-48a8-9742-3a512df7eb98)
