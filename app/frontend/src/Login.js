@@ -1,14 +1,6 @@
 import React from 'react'
 
 function Login() {
-    // ALWAYS START SESSION!!!
-    session_start();
-    window.addEventListener('submit', function checkPasswordMatch(event) {
-        if (!isset($_SESSION['sessionuser'])) {
-            alert("User does not exist");
-            event.preventDefault();
-        }
-    });
 
     return (
         <div>
@@ -16,7 +8,7 @@ function Login() {
                 <h2>Sign In</h2>
 
                 {/* Form (email, password, remember me, and forgot password) */}
-                <form method="post" action="login.php">
+                <form method="post">
                     {/* Email */}
                     <div>
                         <input
@@ -54,7 +46,7 @@ function Login() {
                     </div>
                     {/* Forgot password */}
                     <p>
-                        <a href="recover-account.html">Forgot Your Password?</a>
+                        <a href="">Forgot Your Password?</a>
                     </p>
                 </form>
             </div>
@@ -62,7 +54,7 @@ function Login() {
             {/* Create account */}
             <p>
                 Don't have an account?
-                <a href="signup.html">Create an account</a>
+                <a href="">Create an account</a>
             </p>
         </div>
     )
