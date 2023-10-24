@@ -8,9 +8,7 @@ This week we worked on creating the design of our website. We started working on
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/519b3a55-fd3e-4687-85ea-af1e7f3df14f)
 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/a2a0f0ba-9011-42b7-8481-bc20eb6aac6f)
-
-
-
-
-
-
+# Individual Log Week 6-7
+During Week 6 our main goal was page design creation. On Oct 17th I formated the user AI input and output pages and on Oct 19th we finished our milestone of Canva project creation. With all the pages finalized we began on assigning tasks of page creation and I was tasked to create css files. 
+During Week 7 we are creating web pages using ReactJS. I am waiting on my teammates to finish their creation of login/logout pages so I can begin the CSS process. During our discussion last week we determined CSS formatting to be on the lower priority so we are currently aiming to finish the form of the pages and setting up the docker environment and then move onto CSS.  
+![Capture](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/288ffac8-790c-47fd-9737-a3e2bc8121f3)
