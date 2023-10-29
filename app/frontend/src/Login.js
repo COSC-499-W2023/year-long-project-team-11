@@ -1,31 +1,63 @@
-import React from 'react'
-import './css/reset.css'
+import React, { useState } from 'react'
 import './css/login.css'
+import users from './tests/loginTest.json'
 
-function Login() {
+export default function Login() {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
+
+    const validateEmail = (email) => {
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return regex.test(email);
+    }
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+
+        if(!validateEmail(email)) {
+            setEmailError("Invalid email address")
+            setPassword('')
+            return;
+        }
+
+        setEmailError('')
+        const user = users.find(user => user.email === email)
+        if (user && user.password === password) {
+            // successful login
+            console.log("Logged in as " + user.email)
+            setPasswordError('')
+        } else {
+            setPasswordError("Invalid email or password. Please try again.")
+        }
+        setPassword('')
+    }
 
     return (
-        <div class="h-screen grid place-items-center">
+        <div className="h-screen grid place-items-center">
             <div className='grid place-items-center'>
                 <div className="grid place-items-center rounded-lg w-500 h-500 px-[100px] py-[30px]" id="main-signin-box">
                     <img className="py-[10px]" src={require("./img/symbol-user.png")} height={100} width={70} />
                     <h2 className="font-bold text-2xl pb-[10px]">Sign In</h2>
 
                     {/* Form (email, password, remember me, and forgot password) */}
-                    <form method="post">
+                    <form onSubmit={handleLogin}>
                         {/* Email */}
-                        
+
                         <div className="py-[5px]">
                             <input className="bg-white text-center rounded-lg"
-                                type="email"
+                                type="text"
                                 id="email"
                                 name="email"
                                 placeholder="Email"
-                                maxlength="100"
+                                maxLength="100"
                                 required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div >
-                        <a className="text-red-500 text-sm">Email is incorrect</a>
+                        <p className="text-sm text-red-500">&nbsp;{emailError}</p>
                         {/* Password */}
                         <div className="py-[5px]">
                             <input className="bg-white text-center rounded-lg"
@@ -33,11 +65,13 @@ function Login() {
                                 id="password"
                                 name="password"
                                 placeholder="Password"
-                                maxlength="100"
+                                maxLength="100"
                                 required
-                                />
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
-                        <a className="text-red-500 text-sm">Password is incorrect</a>
+                        <p className="text-sm text-red-500">&nbsp;{passwordError}</p>
                         {/* Submission of form */}
                         <div className="py-[5px]">
                             <input
@@ -59,12 +93,10 @@ function Login() {
 
                 {/* Create account */}
                 <p>
-                    Don't have an account? &#160;
+                    Don't have an account?&#160;
                     <a className="text-[#44566B] underline" href="#">Create an account</a>
                 </p>
             </div>
         </div>
     )
 }
-
-export default Login
