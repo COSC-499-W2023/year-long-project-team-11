@@ -16,8 +16,8 @@ export default function Login() {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        if(!validateEmail(email)) {
-            setEmailError("Invalid email address")
+        if (!validateEmail(email)) {
+            setEmailError("Invalid email format")
             setPassword('')
             return;
         }

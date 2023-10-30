@@ -5,7 +5,7 @@ import Login from './Login';
 
 describe('Login Component', () => {
 
-    test('Invalid email inputted shows error message', () => {
+    test('Invalid email format inputted shows error message', () => {
         render(<Login />);
 
         const emailInput = screen.getByPlaceholderText('Email');
@@ -17,7 +17,7 @@ describe('Login Component', () => {
         fireEvent.change(passwordInput, { target: { value: 'Pa$$word1' } });
         fireEvent.click(submitButton);
 
-        expect(screen.getByText('Invalid email address')).toBeInTheDocument();
+        expect(screen.getByText('Invalid email format')).toBeInTheDocument();
     });
 
     test('Invalid login credentials show error message', () => {
