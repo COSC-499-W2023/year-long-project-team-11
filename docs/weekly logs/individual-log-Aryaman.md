@@ -11,7 +11,7 @@ Week 5
 This week we had a meeting regarding the layout and design of the web application being coded
 I helped with deciding the layout while also going through resources to learn to react and docker 
 On Oct 4th I was learning new docker skills to help me set the environment for our team
-We did encounter a few issues regarding as to how the coding of the documents would be gone about but was resolved quickly after communicating with the team
+We did encounter a few issues regarding how the coding of the documents would be gone about but were resolved quickly after communicating with the team
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/0dfe6aa9-edbc-4a58-bf4d-4ade06c3e757)
 
 Week 6 (Oct 8 - Oct 15)
@@ -24,5 +24,12 @@ We did have a few issues regarding which pages would be priority but decided to 
 Week 7 (Oct 16th - Oct 22nd)
 This week I helped with the docker environment 
 Then proceeded to study more about node.js to start learning how to make the HTML for the logout page
-I did run into issues with learning how to setup docker but learnt after how to create the file for it
+I did run into issues with learning how to set docker but learned after how to create the file for it
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/581a2c19-a3b0-48a8-9742-3a512df7eb98)
+
+Week 8 (Oct 23rd - Oct 29th)
+This week was a difficult process regarding the need to rework the objectives, targets, and deliverables needed for the mini-presentation coming up in the week.
+This week was utilized to rework the design for the website and change color schemes to follow during the CSS formatting for the pages as well as to use reference
+I struggled a lot to set up the Javascript tests and understand how to run them but after brainstorming and working with a group member we managed to be able to run the tests and pass them
+This helped me learn a lot more about JEST and Mocha as a testing framework and would help make further testing easier in the long run.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/c36de39e-42e9-441b-a53c-7c0ce7d275eb)
