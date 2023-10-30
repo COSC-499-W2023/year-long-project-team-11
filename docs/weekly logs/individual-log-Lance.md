@@ -24,4 +24,10 @@ This week we had a meeting about the layout and design of the web application th
 - The issues I encountered were reading and understanding code from different members and trying to use it for my code
 - ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/d2b23239-213f-47d8-aa5a-6b638b0245f8)
 
-  
+# Week 8 (October 22-29)
+
+- This week we worked more on the css of the login page and also started setting up a form validation and 
+- We split up the work where everyone does a different part of the Login.
+- I worked on the CSS of the Login Page as well as copying what the visuals looked like from the Canva page
+- The issues I encountered is using Tailwind and implementing HTML and CSS code into ReactJS
+- ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/26d8cb56-2c5f-4cac-9c76-ecadb8b3cfef)
