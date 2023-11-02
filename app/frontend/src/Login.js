@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './css/login.css'
 import users from './tests/loginTest.json'
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -37,7 +38,7 @@ export default function Login() {
     return (
         <div className="h-screen grid place-items-center">
             <div className='grid place-items-center'>
-                <div className="grid place-items-center rounded-lg w-500 h-500 px-[100px] py-[30px]" id="main-signin-box">
+                <div className="grid place-items-center rounded-lg w-500 h-500 px-[100px] py-[30px] text-center bg-[#E2E2E2] border-[3px] border-black" id="main-signin-box">
                     <img className="py-[10px]" src={require("./img/symbol-user.png")} height={100} width={70} />
                     <h2 className="font-bold text-2xl pb-[10px]">Sign In</h2>
 
@@ -94,7 +95,9 @@ export default function Login() {
                 {/* Create account */}
                 <p>
                     Don't have an account?&#160;
-                    <a className="text-[#44566B] underline" href="#">Create an account</a>
+                    <Link to={"/SignUp"}>
+                        <a className="text-[#44566B] underline" href="#">Create an account</a>
+                    </Link>
                 </p>
             </div>
         </div>

@@ -4,17 +4,3 @@ body {
     inline-size: 100%; 
     font-family: 'Lato', sans-serif;
 }
-
-#main-signin-box {
-    /* margin: auto; */
-    text-align: center;
-    /* width:50%; */
-    /* padding:10px; */
-    background-color: #E2E2E2;
-    border: 3px solid black;
-}
-
-#createAccount{
-    margin:auto;
-    text-align: center;
-}   
