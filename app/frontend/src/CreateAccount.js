@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function CreateAccount() {
     const [firstName, setFirstName] = useState('')
@@ -172,7 +173,12 @@ export default function CreateAccount() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
 
-                    <p className='text-sm pt-[2px] pb-[20px]'>Already have an account?&#160;<a href="#" className="text-[#44566B] underline">Sign In</a></p>
+                    <p className='text-sm pt-[2px] pb-[20px]'>
+                        Already have an account?&#160;
+                        <Link to={"/Login"}>
+                            <a href="#" className="text-[#44566B] underline">Sign In</a>
+                        </Link>
+                    </p>
 
                     <button className='bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]' type="submit">Sign Up</button>
                 </form>

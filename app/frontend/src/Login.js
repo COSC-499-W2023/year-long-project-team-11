@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './css/login.css'
 import users from './tests/loginTest.json'
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -94,7 +95,9 @@ export default function Login() {
                 {/* Create account */}
                 <p>
                     Don't have an account?&#160;
-                    <a className="text-[#44566B] underline" href="#">Create an account</a>
+                    <Link to={"/SignUp"}>
+                        <a className="text-[#44566B] underline" href="#">Create an account</a>
+                    </Link>
                 </p>
             </div>
         </div>
