@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export default function Logout() {
   return (
     <div className="logout-background text-5xl flex justify-center items-center h-screen " >

@@ -1,3 +1,9 @@
+# Week 8 (Oct 23 - Oct 29)
+This week I completed my task of form validation and testing for our login page. I implemented the testing using Jest for our React front-end, and used useState to complete the form validation. I also helped my teammates with the CSS/styling of our Login page. 
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/469673bd-fbb3-4699-8028-c741575e3e5c)
+
+
 # Weeks 6 & 7 (Oct 9 - Oct 15, Oct 16 - Oct 22)
 We continued working on creating our webapp template on Canva this week, we ended up finishing our designs on Thursday. We then started to think about and distribute the tasks for this week, so for next week my goals are to set up the docker environment, and work on the log out page. 
 
