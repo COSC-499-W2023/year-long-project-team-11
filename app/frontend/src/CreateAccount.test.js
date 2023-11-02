@@ -1,11 +1,16 @@
 import React from "react";
 import { render, fireEvent, screen } from '@testing-library/react'
+import { MemoryRouter } from "react-router-dom";
 import '@testing-library/jest-dom/extend-expect';
 import CreateAccount from "./CreateAccount";
 
 describe('<CreateAccount />', () => {
     beforeEach(() => {
-        render(<CreateAccount />)
+        render(
+            <MemoryRouter>
+                <CreateAccount />
+            </MemoryRouter>
+        )
         spyLog = jest.spyOn(console, 'log').mockImplementation(() => { });
         spyAlert = jest.spyOn(window, 'alert').mockImplementation(() => { });
     })
