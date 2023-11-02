@@ -1,14 +1,20 @@
 import './App.css';
-import Logout from './Logout'
+import Logout from './Logout';
 import Login from './Login'
-import CreateAccount from './CreateAccount';
+import Landing from './Landing';
+import {Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      {/* <CreateAccount /> */}
-      <Login></Login>
-      {/* <Logout></Logout> */}
+    <div className='App'>
+      <Routes>
+      <Route path="/" element={<Landing/>}/>
+      <Route path="/Landing" element={<Landing/>}/>
+      <Route path="/Login" element={<Login/>}/>
+      <Route path='/Logout' element={<Logout/>}/>
+      </Routes>
+      {/* <Login></Login> */}
+       {/* <Logout/> */}
     </div>
   );
 }
