@@ -1,13 +1,20 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import { MemoryRouter } from 'react-router-dom';
 import Login from './Login';
 
 describe('Login Component', () => {
 
-    test('Invalid email format inputted shows error message', () => {
-        render(<Login />);
+    beforeEach(() => {
+        render(
+            <MemoryRouter>
+                <Login />
+            </MemoryRouter>
+        );
+    })
 
+    test('Invalid email format inputted shows error message', () => {
         const emailInput = screen.getByPlaceholderText('Email');
         const passwordInput = screen.getByPlaceholderText('Password');
         const submitButton = screen.getByRole('button', { name: /sign in/i });
@@ -21,8 +28,6 @@ describe('Login Component', () => {
     });
 
     test('Invalid login credentials show error message', () => {
-        render(<Login />);
-
         const emailInput = screen.getByPlaceholderText('Email');
         const passwordInput = screen.getByPlaceholderText('Password');
         const submitButton = screen.getByRole('button', { name: /sign in/i });
@@ -36,8 +41,6 @@ describe('Login Component', () => {
     });
 
     test('Successful login does not show error messages', () => {
-        render(<Login />);
-
         const emailInput = screen.getByPlaceholderText('Email');
         const passwordInput = screen.getByPlaceholderText('Password');
         const submitButton = screen.getByRole('button', { name: /sign in/i });
