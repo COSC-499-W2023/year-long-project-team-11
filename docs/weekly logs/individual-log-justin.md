@@ -1,3 +1,9 @@
+# Week 9 (Oct 30 - Nov 5)
+This week I did some last minute feature completions for the mini presentation. This included log in form client side form validation + testing, as well as creating the sign up page with client side form validation + testing. I also used Depar's routing branch to set up routing between our pages for the presentation. For the presentation, I talked about our stack choices. 
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/cbdaf37f-7669-4707-8ac7-a4f40ebc4691)
+
+
 # Week 8 (Oct 23 - Oct 29)
 This week I completed my task of form validation and testing for our login page. I implemented the testing using Jest for our React front-end, and used useState to complete the form validation. I also helped my teammates with the CSS/styling of our Login page. 
 

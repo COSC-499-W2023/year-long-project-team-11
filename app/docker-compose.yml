@@ -11,3 +11,36 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      mysql-server:
+        condition: service_healthy
+
+  mysql-server:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ./backend/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.1
+    restart: always
+    environment:
+      PMA_HOST: mysql-server
+      PMA_USER: root
+      PMA_PASSWORD: secret
+    ports:
+      - "5050:80"
+    depends_on:
+      mysql-server:
+        condition: service_healthy
+
+volumes:
+  mysql-data:
