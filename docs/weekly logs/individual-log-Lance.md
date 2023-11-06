@@ -31,3 +31,10 @@ This week we had a meeting about the layout and design of the web application th
 - I worked on the CSS of the Login Page as well as copying what the visuals looked like from the Canva page
 - The issues I encountered is using Tailwind and implementing HTML and CSS code into ReactJS
 - ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/26d8cb56-2c5f-4cac-9c76-ecadb8b3cfef)
+
+# Week 9 (October 29-November 5) Mini Presentation Day
+- This week we had the Mini Presentation
+- We went over our order of presenting and also did last minute changes
+- I worked on making and finalizing the powerpoint presentation
+- The issues I encountered were going over the things I needed to say and trying to put all the important thing in 1 minute of my part
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/ddef838d-c2f6-42b9-b230-de860c2505b6)

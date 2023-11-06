@@ -15,3 +15,7 @@ During Week 7 we are creating web pages using ReactJS. I am waiting on my teamma
 # Individual Log Week 8 
 During Week 8 we are preparing for the mini presenation and dividing the work between group memebers. On October 28th I finished the login css page and commited it on logout.css branch and continuing my work on finishing the landing page for both html and css. On Oct 29th I finished creating a basic landing page. On 29th till the presentation this upcoming Thursday I will work on setting features such as Routers and Links between pages and work on creating some more barebone pages.  
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/49afb129-2af6-476a-9d0c-f4b5aeb21cf8)
+# Individual Log Week 9
+During Week 9 we created our presentation for November 2nd. During this week I focus on finishing the creation of pages and setting up router links for the project. We also practiced our parts and prepared for the presenation. I focused on presenting potential issues and issues that have occured. On November 2nd we presented our current progress to the class. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/c0ab57e3-c9be-43fd-a6c9-ab79e7b4a6d1)
+
