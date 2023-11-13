@@ -38,3 +38,10 @@ This week we had a meeting about the layout and design of the web application th
 - I worked on making and finalizing the powerpoint presentation
 - The issues I encountered were going over the things I needed to say and trying to put all the important thing in 1 minute of my part
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/ddef838d-c2f6-42b9-b230-de860c2505b6)
+
+# Week 10 (November 5-November 12)
+- This week we had a big meeting to work on our Design Submission
+- We went over with which tasks were needed to be done as we need everyone each to do 2 features
+- For the month of November, I will be doing the A.I Input page for front end, backend, and testing and I will be also working on the User Profile Page.
+- The issues we encountered were deciding which task will be better suited for which person.
+- ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/99e18f0f-ee42-4e8e-bdbe-ffb6b1ad9646)
