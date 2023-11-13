@@ -40,3 +40,10 @@ In order for the presentation to be ready we all started working on a small scri
 So for this week, I helped make the presentation and work on my script while also ensuring our canvas designs were ready to be presented as we had to rework upon scheme.
 Finally, I worked on the automated testing to help and ran a certain condition for our login page to pass to be functional.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/5eb1eccf-c5b9-41ed-9085-7e63621511ef)
+
+Week 10 (Nov 6th–Nov 12th)
+This week, we were assigned new tasks to finish for the upcoming milestone.
+I have been assigned to work on making a tutorial page for our users who will be using the website for the first time or would like to have a better understanding of how the website would function.
+This week I took the newest pull and started making a react file for the tutorial page with a barebones layout.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/3ebcf966-f470-4d84-b036-91b06f8ca6ee)
+
