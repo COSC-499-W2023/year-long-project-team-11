@@ -19,3 +19,6 @@ During Week 8 we are preparing for the mini presenation and dividing the work be
 During Week 9 we created our presentation for November 2nd. During this week I focus on finishing the creation of pages and setting up router links for the project. We also practiced our parts and prepared for the presenation. I focused on presenting potential issues and issues that have occured. On November 2nd we presented our current progress to the class. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/c0ab57e3-c9be-43fd-a6c9-ab79e7b4a6d1)
 
+# Individual Log Week 10
+During Week 10 there wasn't much progress on the code due to catching up assigments and midterms in other classes. To compensate for not making progress this week the group has planned to finish one of their main tasks over the reading break to make sure we do not lag behind. Currently I did manage to have a rudimentary coding and setup for the ER diagram but as both of it are still work in progress it cannot be implemented nor pushed to the development. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/aa74e76c-2f33-4b7e-9012-e37dcc8ffdce)
