@@ -69,3 +69,15 @@ The milestones for this week were originally to have our HTML and CSS files done
 
 <b>Burn Up Chart</b>
 <img width="993" alt="Screenshot 2023-10-29 at 8 39 24 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/9993697d-9eae-46ad-9f89-11f075ad6a84">
+
+----------------------------------------------------
+<h1>Week 9</h1>
+<b>List of Tasks</b>
+<img width="1380" alt="Screenshot 2023-11-05 at 10 26 43 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f9623857-bb1c-454f-8b0c-4597f0af03d5">
+This week, the team completed many milestones on short order while also finalizing and presenting the project. The project now has a functioning database, form validation and error handling for "create user" and "sign in", a proper landing page, refined CSS styling, and various test cases for all the input fields to ensure that only valid entries are allowed through. This week the team also refined our script and powerpoint for the mini-presentation, which we also performed this week.
+
+<b>Kanban Board</b>
+<img width="1080" alt="Screenshot 2023-11-05 at 10 24 46 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f42e2794-e227-4dc5-a1c7-eae6dd999623">
+
+<b>Burn Up Chart</b>
+<img width="988" alt="Screenshot 2023-11-05 at 10 14 19 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/9b59dcb2-8332-4186-9100-67412779c9c5">
