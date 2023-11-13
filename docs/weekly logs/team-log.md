@@ -81,3 +81,15 @@ This week, the team completed many milestones on short order while also finalizi
 
 <b>Burn Up Chart</b>
 <img width="988" alt="Screenshot 2023-11-05 at 10 14 19 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/9b59dcb2-8332-4186-9100-67412779c9c5">
+
+----------------------------------------------------
+<h1>Week 10</h1>
+<b>List of Tasks</b>
+<img width="1097" alt="Screenshot 2023-11-12 at 10 21 34 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/8d38639a-81f2-4db8-b6bb-dc34a1bb92da">
+This week, the team mainly focused on work in other courses, such as midterms and assignments, and decided to begin a deep dive into work a few days into the break once everyone has had a chance to refresh themselves. The work we did do this week consisted of reworking and reorganizing some of our pre-planned future tasks. A number of previously planned future tasks had to be reworked/shuffled around due to the confusion with our previous TA. Once everything was re-worked, the group decided on who will be completing which tasks, while also setting a firm date of having at least one task done by the Friday of the break. The tasks we have assigned ourselves can be seen in our task list (above image) and Kanban Board (below image).
+
+<b>Kanban Board</b>
+<img width="1077" alt="Screenshot 2023-11-12 at 10 21 07 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/6fea289e-bab0-47aa-98e1-df463fd0e246">
+
+<b>Burn Up Chart</b>
+<img width="996" alt="Screenshot 2023-11-12 at 10 22 00 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f737fd65-e416-4bb5-9ef6-383b09088cb6">
