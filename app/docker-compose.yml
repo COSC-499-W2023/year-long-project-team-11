@@ -32,7 +32,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
     volumes:
-      - ./backend/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./backend/edusynth.sql:/docker-entrypoint-initdb.d/edusynth.sql
       - mysql-data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]

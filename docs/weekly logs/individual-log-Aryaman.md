@@ -14,22 +14,36 @@ On Oct 4th I was learning new docker skills to help me set the environment for o
 We did encounter a few issues regarding how the coding of the documents would be gone about but were resolved quickly after communicating with the team
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/0dfe6aa9-edbc-4a58-bf4d-4ade06c3e757)
 
-Week 6 (Oct 8 - Oct 15)
+Week 6 (Oct 8–Oct 15)
 This week we completed the rough sketches of the user interface for the pages being made for the web application.
 Additionally, we split up work for the group to complete certain tasks and be able to work towards our first major milestone of Mini presentation
 To achieve this goal I started to work on using and setting a docker environment while coding using react for the required pages
 We did have a few issues regarding which pages would be priority but decided to use the essential pages as the goal to display for the presentation
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/5840dc21-0a4a-4a29-9797-b924a011b3b0)
 
-Week 7 (Oct 16th - Oct 22nd)
+Week 7 (Oct 16th–Oct 22nd)
 This week I helped with the docker environment 
 Then proceeded to study more about node.js to start learning how to make the HTML for the logout page
 I did run into issues with learning how to set docker but learned after how to create the file for it
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/581a2c19-a3b0-48a8-9742-3a512df7eb98)
 
-Week 8 (Oct 23rd - Oct 29th)
+Week 8 (Oct 23rd–Oct 29th)
 This week was a difficult process regarding the need to rework the objectives, targets, and deliverables needed for the mini-presentation coming up in the week.
 This week was utilized to rework the design for the website and change color schemes to follow during the CSS formatting for the pages as well as to use reference
 I struggled a lot to set up the Javascript tests and understand how to run them but after brainstorming and working with a group member we managed to be able to run the tests and pass them
 This helped me learn a lot more about JEST and Mocha as a testing framework and would help make further testing easier in the long run.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/c36de39e-42e9-441b-a53c-7c0ce7d275eb)
+
+Week 9 (Oct 30th–Nov 5th)
+This week consisted of group presentations where we spent time making our presentations and completing tasks to meet expectations.
+In order for the presentation to be ready we all started working on a small script and prepared a presentation regarding it.
+So for this week, I helped make the presentation and work on my script while also ensuring our canvas designs were ready to be presented as we had to rework upon scheme.
+Finally, I worked on the automated testing to help and ran a certain condition for our login page to pass to be functional.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/5eb1eccf-c5b9-41ed-9085-7e63621511ef)
+
+Week 10 (Nov 6th–Nov 12th)
+This week, we were assigned new tasks to finish for the upcoming milestone.
+I have been assigned to work on making a tutorial page for our users who will be using the website for the first time or would like to have a better understanding of how the website would function.
+This week I took the newest pull and started making a react file for the tutorial page with a barebones layout.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/3ebcf966-f470-4d84-b036-91b06f8ca6ee)
+
