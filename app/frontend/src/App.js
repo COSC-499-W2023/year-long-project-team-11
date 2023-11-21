@@ -1,5 +1,6 @@
 import './App.css';
 import Logout from './Logout';
+import Tutorial from './Tutorial';
 import Login from './Login'
 import Landing from './Landing';
 import { Routes, Route } from "react-router-dom";
@@ -14,6 +15,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path='/Logout' element={<Logout />} />
         <Route path='/SignUp' element={<CreateAccount />} />
+        <Route path='/Tutorial' element={<Tutorial />} />
       </Routes>
       {/* <Login></Login> */}
       {/* <Logout/> */}
