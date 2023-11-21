@@ -23,3 +23,8 @@ This week, I spent the majority of my time focused on my leadership duties, help
 **Week 9**
 This week I completed my assigned features of creating a database for the project, and overseeing the formulation of our presentation script, as well as refining it. In addition to achiveing my milestones, I also assisted other members of the group in the coding and debugging of our project dockerfiles and css files.
 <img width="1064" alt="Screenshot 2023-11-05 at 10 06 46 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/70a4cc22-7cad-45c6-8f6b-f3b220ca873c">
+
+**Week 10**
+This week, not a lot of coding was completed due to the group deciding that it was wiser to spend time on other courses (such as midterms and assignments) and then begin the bulk of our project partway into the break once people are feeling a bit more mentally revitalized. Despite this however, I did manage to make some alterations to the sql and docker files this week (on the database branch) to include all required fields we need for the project, as well as an update to utilize the name of our app in the database instead of a placeholder. My biggest contribution of work this week however was running our weekly team meeting to plan out and assign the tasks that needed to get done this month. These tasks, as well as who is working on what, have been added to the project board on Github.
+<img width="1070" alt="Screenshot 2023-11-12 at 9 15 32 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/cd65bc0a-af37-4315-ab1b-a7b94dd84e5b">
+

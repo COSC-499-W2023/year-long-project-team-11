@@ -7,7 +7,6 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-      - /app/node_modules
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
@@ -15,13 +14,25 @@ services:
       mysql-server:
         condition: service_healthy
 
+  django:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mysql-server
+
   mysql-server:
     image: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: secret
     volumes:
-      - ./backend/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./backend/edusynth.sql:/docker-entrypoint-initdb.d/edusynth.sql
       - mysql-data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]
