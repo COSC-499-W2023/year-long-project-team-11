@@ -6,7 +6,7 @@ import openai
 
 # Create your views here.
 
-api_key = "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"
+api_key = ""
 openai.api_key = api_key
 
 def prompt_openai(prompt):
