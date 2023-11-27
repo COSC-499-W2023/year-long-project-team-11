@@ -1,3 +1,15 @@
+# Week 11/12 (Nov 13 - 19/Nov 20 - 26)
+During week 11 I completed my task of setting up our Django project, and during week 12 I completed my task of setting up a basic integration of the API with our backend.
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/606c770b-e46f-4ccb-9926-c623f6ca7999)
+
+
+# Week 10 (Nov 6 - Nov 12)
+This week we decided which tasks we were going to work on. I mainly worked on the OpenAI API integration this week, although have yet to push any commits. Setting up our Django backend, and getting a base level API integration are my tasks for the reading week. 
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/b7f3f320-b9bd-4ec6-b831-3bb8bafd44a9)
+
+
 # Week 9 (Oct 30 - Nov 5)
 This week I did some last minute feature completions for the mini presentation. This included log in form client side form validation + testing, as well as creating the sign up page with client side form validation + testing. I also used Depar's routing branch to set up routing between our pages for the presentation. For the presentation, I talked about our stack choices. 
 
