@@ -47,3 +47,18 @@ I have been assigned to work on making a tutorial page for our users who will be
 This week I took the newest pull and started making a react file for the tutorial page with a barebones layout.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/3ebcf966-f470-4d84-b036-91b06f8ca6ee)
 
+Week 11-12 (Nov 13th-Nov 26th)
+These 2 weeks the tasks are focused on finishing the features before the deadline and ensuring that they function with the other features.
+
+This week I completed making the tutorial feature for the web application and now have begun focusing on the other feature that needs to be completed.
+
+I did encounter a few issues trying to set up a page to start coding upon but after some brainstorming and asking for help from my team I was able to finish it and have made a branch and pushed that.
+
+Now have moved on to the next feature, which would require coding a search bar for the pages to use and filter material.
+
+Just need to make a few tweaks and so for the tutorial and will be finally pushed.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/cd286a92-f802-4db6-b7db-97a976cad0ee)
+
+
+
+
