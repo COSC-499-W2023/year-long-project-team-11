@@ -1,4 +1,4 @@
-RyBowler - Ryan Bowler <br />
+<img width="1079" alt="Screenshot 2023-11-26 at 11 16 28 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/461a4d61-d314-4dc9-86ca-ac54319883b5">RyBowler - Ryan Bowler <br />
 Aryamanp12 - Aryaman Patil <br />
 lotusbro - Depar Hlawn <br />
 7ito - Justin Tom <br />
@@ -93,3 +93,15 @@ This week, the team mainly focused on work in other courses, such as midterms an
 
 <b>Burn Up Chart</b>
 <img width="996" alt="Screenshot 2023-11-12 at 10 22 00 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f737fd65-e416-4bb5-9ef6-383b09088cb6">
+
+----------------------------------------------------
+<h1>Week 11 and 12</h1>
+<b>List of Tasks</b>
+<img width="1107" alt="Screenshot 2023-11-26 at 11 16 55 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/417160e5-ff72-47b9-9923-04fe0bcec901">
+These past 2 weeks, the team aimed to complete 1 feature by the end of the break, but we unfortunatly failed. Despite this however, progress is being made, and team members are working extra hard this week to meet the project milestone of 2 features per member, fully completed by December 3rd.
+
+<b>Kanban Board</b>
+<img width="1079" alt="Screenshot 2023-11-26 at 11 16 28 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/6d85f989-e8bf-44d8-9e9e-6b2492683dde">
+
+<b>Burn Up Chart</b>
+<img width="920" alt="Screenshot 2023-11-26 at 11 17 15 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/2ecd732b-04a6-4258-b272-8f7700fb498f">
