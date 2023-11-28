@@ -19,4 +19,6 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.stderr.write("===================================")
+    sys.stderr.write(os.environ['DB_HOST'])
     main()
