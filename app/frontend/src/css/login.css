@@ -18,3 +18,18 @@ body {
     margin:auto;
     text-align: center;
 }   
+
+#user-profile-box{
+    text-align: center;
+    border: 3px solid black;
+}
+
+#left-box{
+    border-right:3px solid black;
+}
+#title{
+    border:3px solid black;
+}
+#tag{
+    border:3px solid black;
+}
