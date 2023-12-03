@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import './css/login.css'
-import users from './tests/loginTest.json'
+import React, { useState, useEffect } from 'react';
+import './css/login.css';
+import users from './tests/loginTest.json';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default function Login() {
@@ -8,15 +9,19 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    
+    // const cors = require('cors');
+    // app.use(cors());
 
     const validateEmail = (email) => {
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         return regex.test(email);
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
 
+        // Frontend check if valid email
         if (!validateEmail(email)) {
             setEmailError("Invalid email format")
             setPassword('')
@@ -24,15 +29,88 @@ export default function Login() {
         }
 
         setEmailError('')
-        const user = users.find(user => user.email === email)
-        if (user && user.password === password) {
-            // successful login
-            console.log("Logged in as " + user.email)
-            setPasswordError('')
+        // const user = users.find(user => user.email === email)
+
+        // Frontend check if valid password
+        // if (user && user.password === password) {
+        //     setPasswordError('')
+        // } else {
+        //     setPasswordError("Invalid email or password. Please try again.")
+        // }
+        // setPassword('')
+
+        // ==========================================================================================
+
+        const user = {
+            email: email,
+            password: password
+        };
+        // Create the POST requuest
+        console.log("Stuck on post!");
+        var responseCode = 200
+        const {data} = await axios.post(
+            'http://localhost:8000/token/', 
+            {email: email, password: password}, 
+            {headers: {
+                'Content-Type': 'application/json'},
+                'Access-Control-Allow-Credentials': true
+            }
+        ).catch((err) => {
+            responseCode = err.response.status
+            return err;
+        });
+        console.log("Response Code: " + responseCode);
+
+        if (responseCode != 200) {
+            alert("Username or password is incorrect!");
+            return;
         } else {
-            setPasswordError("Invalid email or password. Please try again.")
+            alert("Success!");
         }
-        setPassword('')
+
+        // Initialize the access & refresh token in localstorage.      
+        localStorage.clear();
+        localStorage.setItem('access_token', data.access);
+        localStorage.setItem('refresh_token', data.refresh);
+        axios.defaults.headers.common['Authorization'] = "Bearer ${data['access']}";
+
+        window.open("http://localhost:3000");
+        // window.open("/");
+
+        // ==========================================================================================
+
+        // Create the POST request
+        // const login = "http://localhost:8000";
+
+        // fetch(login, {
+        //     method: "POST",
+        //     headers: {
+        //         Accept: "application/json, text/plain, */*",
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         email: email,
+        //         password: password
+        //     })
+        // })
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     console.log("===========================");
+        //     console.log(data);
+        //     console.log("+++++++++++++++++++++++++++");
+        //     if (data.error) {
+        //         // setPasswordError("Invalid email or password. Please try again.")
+        //         alert("Error Password or Username"); /*displays error message*/
+        //     } else {
+        //         // Successful login
+        //         console.log("Logged in as " + email);
+        //         window.open("http://localhost:3000");
+        //         // window.location.href = "http://localhost:3000";
+        //     }
+        // })
+        // .catch((err) => {
+        //     console.log(err);
+        // });
     }
 
     return (
@@ -55,6 +133,7 @@ export default function Login() {
                                 maxLength="100"
                                 required
                                 value={email}
+                                // Set email here
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div >
@@ -69,6 +148,7 @@ export default function Login() {
                                 maxLength="100"
                                 required
                                 value={password}
+                                // Set password here
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
