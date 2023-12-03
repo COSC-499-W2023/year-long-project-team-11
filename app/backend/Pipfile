@@ -13,8 +13,6 @@ pypdf2 = "*"
 langchain = "*"
 tiktoken = "*"
 faiss-cpu = "*"
-mysqlclient = {version="2.2.0"}
-djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
