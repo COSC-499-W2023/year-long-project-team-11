@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function CreateAccount() {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({
-        firstName: '',
-        lastName: '',
+        username: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -21,8 +20,7 @@ export default function CreateAccount() {
 
         // SQL Injection dummy check
         const maliciousPatterns = ["SELECT", "DROP", ";--", "INSERT", "DELETE"];
-        if (maliciousPatterns.some(pattern => firstName.toUpperCase().includes(pattern) ||
-            lastName.toUpperCase().includes(pattern) || email.toUpperCase().includes(pattern))) {
+        if (maliciousPatterns.some(pattern => username.toUpperCase().includes(pattern) || email.toUpperCase().includes(pattern))) {
             alert('Potential SQL injection detected!');
             return;
         }
@@ -100,6 +98,30 @@ export default function CreateAccount() {
             confirmPassword: ''
         }))
 
+        // ====================== ADD FUNCTIONALITY HERE ======================
+        const user = {
+            email: email,
+            username: username,
+            password: password
+        };
+
+        // Create the POST requuest
+        console.log("Stuck on post!");
+        var responseCode = 200
+        axios.post(
+            'http://localhost:8000/add/', 
+            {email: email, username: username, password: password}
+        ).catch((err) => {
+            responseCode = err.response.status
+            return err;
+        });
+
+        if (responseCode != 200) {
+            alert("Field is invalid!");
+            return;
+        } else {
+            alert("Success!");
+        }
         console.log("Successfully created an account: " + email)
     }
 
@@ -108,30 +130,17 @@ export default function CreateAccount() {
             <div className="px-[100px] py-[30px] grid place-items-center rounded-lg border-[3px] border-black bg-[#E2E2E2] text-center">
                 <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
                 <form onSubmit={handleSubmit}>
-                    {/* First Name */}
+                    {/* Username */}
                     <p className="text-sm text-red-500">&nbsp;{errors.firstName}</p>
                     <input
                         className="py-[5px] bg-white text-center rounded-lg w-[100%]"
                         type="text"
-                        name="firstName"
-                        placeholder="First Name"
+                        name="username"
+                        placeholder="Username"
                         maxLength={100}
                         required
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-
-                    {/* Last Name */}
-                    <p className="text-sm text-red-500">&nbsp;{errors.lastName}</p>
-                    <input
-                        className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        maxLength={100}
-                        required
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
 
                     {/* Email */}
