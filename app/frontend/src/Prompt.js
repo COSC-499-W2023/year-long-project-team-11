@@ -3,13 +3,12 @@ import Cookies from "js-cookie";
 
 export default function Prompt() {
   const [prompt, setPrompt] = useState("");
-  const [file, setFile] = useState(null);
-  const [targetGrade, setTargetGrade] = useState("");
   const [output, setOutput] = useState("");
   const csrfToken = Cookies.get("csrftoken");
 
-  const handleSubmit = (e) => {
+  const handlePrompt = (e) => {
     e.preventDefault();
+    console.log(prompt);
 
     if (prompt.length === 0) {
       return;
@@ -23,17 +22,20 @@ export default function Prompt() {
     fetch("http://localhost:8000/api", {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         "X-CSRFToken": csrfToken,
       },
-      body: formData,
+      body: JSON.stringify({
+        prompt: prompt,
+      }),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(data => {
         setOutput(data.response);
       })
-      .catch((error) => {
-        console.error("Error: ", error);
-      });
+      .catch(error => {
+        console.error('Error: ', error)
+      })
   };
 
   return (
@@ -44,42 +46,15 @@ export default function Prompt() {
             <p>{output}</p>
           </div>
         )}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handlePrompt}>
           <div>
-            <div className="py-2">
-              <label htmlFor="targetGrade" className="px-2">Target Grade Level:</label>
-              <select
-                id="targetGrade"
-                value={targetGrade}
-                onChange={(e) => setTargetGrade(e.target.value)}
-                className="bg-white border border-black rounded-sm p-1 "
-              >
-                <option value="" hidden>
-                  Select Grade
-                </option>
-                {[...Array(12).keys()].map((grade) => (
-                  <option key={grade + 1} value={grade + 1}>
-                    Grade {grade + 1}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="py-2">
-              <input
-                type="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                accept="application/pdf"
-              />
-            </div>
-            <div>
-              <input
-                className="border border-black rounded-md min-w-[500px] px-2"
-                type="text"
-                placeholder="Prompt:"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-              />
-            </div>
+            <input
+              className="border border-black rounded-md min-w-[500px]"
+              type="text"
+              placeholder="Prompt:"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+            />
             <div className="mt-[20px]">
               <button
                 className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2"
