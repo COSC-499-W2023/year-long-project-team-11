@@ -20,7 +20,7 @@ export default function Prompt() {
     formData.append("prompt", prompt);
     formData.append("targetGrade", targetGrade);
 
-    fetch("http://localhost:8000", {
+    fetch("http://localhost:8000/api", {
       method: "POST",
       headers: {
         "X-CSRFToken": csrfToken,
