@@ -108,10 +108,14 @@ These past 2 weeks, the team aimed to complete 1 feature by the end of the break
 
 ----------------------------------------------------
 <h1>Week 13</h1>
+
 <b>List of Tasks</b>
-![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/2241bf43-52be-4aef-ace4-c1b7921da3f3)
-This week, the team focused on finishing their features to meet the design milestone on the 3rd. This work was mainly coding for our features, as well as writing the design document and filming the video.
-We ran into some difficulties late but managed to finish our features and get the document and video done.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/03bccd8d-ff04-49ee-8ee7-d698ac5587fe)
+
+
+This week, the team mostly focused on finishing their features to meet the design milestone on the 3rd. We also had to work on the design document and design video for the design milestone. 
+The work done this week was mainly coding for our features, as well as writing the design document and filming the video at the end of the week.
+We planned to finish our features by the Thursday meeting and for the most part did. We ran into some difficulties late but managed to finish our features and get the document and video done.
 
 <b>Kanban Board</b>
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/dff56e61-0518-4ea1-aa12-7907e85c1e45)
