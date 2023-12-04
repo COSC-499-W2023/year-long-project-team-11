@@ -1,8 +1,16 @@
 import React from 'react'
 import './css/login.css'
+import './css/userprofile.css'
 // import users from './tests/loginTest.json'
 
+
+  
 export default function UserProfile() {
+    const loadFile = (event) => {
+        const image = document.getElementById("output");
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
+      
     return (
 <div className="h-screen grid place-items-center">
   <div className="mx-auto w-1/2 bg-white rounded-lg" id="user-profile-box">
@@ -10,7 +18,14 @@ export default function UserProfile() {
 
         {/* Left Column  */}
       <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
-        <img className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} />
+        <div id="profile-pic">
+            <label id="-label" htmlFor="file">
+                <span id="glyphicon glyphicon-camera"></span>
+                <span>Change Image</span>
+            </label>
+            <input id="file" type="file" onchange={loadFile}/>
+            <img className="grid place-items-center" src={require("./img/symbol-user.png")} id="output" width="200" alt="user avatar" />
+        </div>
             <p className="text-[#19747E] font-bold text-2xl">Name</p>
       </div>
 
