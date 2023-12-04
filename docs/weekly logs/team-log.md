@@ -105,3 +105,25 @@ These past 2 weeks, the team aimed to complete 1 feature by the end of the break
 
 <b>Burn Up Chart</b>
 <img width="920" alt="Screenshot 2023-11-26 at 11 17 15 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/2ecd732b-04a6-4258-b272-8f7700fb498f">
+
+----------------------------------------------------
+<h1>Week 13</h1>
+
+<b>List of Tasks</b>
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/03bccd8d-ff04-49ee-8ee7-d698ac5587fe)
+
+
+This week, the team mostly focused on finishing their features to meet the design milestone on the 3rd. We also had to work on the design document and design video for the design milestone. 
+The work done this week was mainly coding for our features, as well as writing the design document and filming the video at the end of the week.
+We planned to finish our features by the Thursday meeting and for the most part did. We ran into some difficulties late but managed to finish our features and get the document and video done.
+
+<b>Kanban Board</b>
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/dff56e61-0518-4ea1-aa12-7907e85c1e45)
+
+<b>Burn Up Chart</b>
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/ea93b4f5-433c-4d69-9414-dd3971957b1b)
+
+
