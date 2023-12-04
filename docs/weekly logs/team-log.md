@@ -110,6 +110,7 @@ These past 2 weeks, the team aimed to complete 1 feature by the end of the break
 <h1>Week 13</h1>
 
 <b>List of Tasks</b>
+
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/03bccd8d-ff04-49ee-8ee7-d698ac5587fe)
 
 
@@ -118,9 +119,11 @@ The work done this week was mainly coding for our features, as well as writing t
 We planned to finish our features by the Thursday meeting and for the most part did. We ran into some difficulties late but managed to finish our features and get the document and video done.
 
 <b>Kanban Board</b>
+
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/dff56e61-0518-4ea1-aa12-7907e85c1e45)
 
 <b>Burn Up Chart</b>
+
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/ea93b4f5-433c-4d69-9414-dd3971957b1b)
 
 
