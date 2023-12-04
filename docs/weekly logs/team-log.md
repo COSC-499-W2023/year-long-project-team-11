@@ -105,3 +105,8 @@ These past 2 weeks, the team aimed to complete 1 feature by the end of the break
 
 <b>Burn Up Chart</b>
 <img width="920" alt="Screenshot 2023-11-26 at 11 17 15 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/2ecd732b-04a6-4258-b272-8f7700fb498f">
+
+----------------------------------------------------
+<h1>Week 13</h1>
+<b>List of Tasks</b>
+
