@@ -125,6 +125,8 @@ We planned to finish our features by the Thursday meeting and for the most part 
 - Save Content Page
 - LangChain + OpenAI API Integration
 + got the document and video done.
+
+
 AI Input Page and OpenAI API Integration/LangChain Implementation are completed and working however are not currently merged to development due to some last minute merge conflicts.  
 
 <b>Kanban Board</b>
