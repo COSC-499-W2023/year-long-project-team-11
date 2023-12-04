@@ -53,3 +53,12 @@ This week we had a meeting about the layout and design of the web application th
 - Another issue was a technical issue when setting up new code given by a group member. To make up for that lost time, I have setup placeholder stuff on my local directory and tried to help others with their own issues
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/5eeaa1fe-6d3d-4606-92f5-0e5bd30fbf35)
 
+# Week 13 (November 26 - December 3)
+- This week, we worked on the design document while finishing our features.
+- After talking to the TA, we realized that our feature can have more things added on to it
+- I added a change profile picture option on the user profile page
+- I also worked on the front end of the AI Input page
+- The issues were trying to run the docker server when several different features from the other members were getting merged into development
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/055b93a7-e7a6-4446-bed4-de4e820495d3)
+
+
