@@ -1,3 +1,9 @@
+# Week 13 (Nov 27 - Dec 3)
+During Week 13 I completed the feature of uploading and parsing text from PDFs, splitting the parsed text into chunks, and using the chunks to make a vector store to allow the OpenAI API to communicate with a PDF document. I also worked on the system architecture of the design document, as well as recorded a section for the video. 
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/90d7578e-94cb-4d2e-b4d6-fb65e4d6b221)
+
+
 # Week 11/12 (Nov 13 - 19/Nov 20 - 26)
 During week 11 I completed my task of setting up our Django project, and during week 12 I completed my task of setting up a basic integration of the API with our backend.
 
