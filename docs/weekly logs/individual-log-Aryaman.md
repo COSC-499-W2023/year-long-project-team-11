@@ -47,3 +47,25 @@ I have been assigned to work on making a tutorial page for our users who will be
 This week I took the newest pull and started making a react file for the tutorial page with a barebones layout.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/3ebcf966-f470-4d84-b036-91b06f8ca6ee)
 
+Week 11-12 (Nov 13th-Nov 26th)
+These 2 weeks the tasks are focused on finishing the features before the deadline and ensuring that they function with the other features.
+
+This week I completed making the tutorial feature for the web application and now have begun focusing on the other feature that needs to be completed.
+
+I did encounter a few issues trying to set up a page to start coding upon but after some brainstorming and asking for help from my team I was able to finish it and have made a branch and pushed that.
+
+Now have moved on to the next feature, which would require coding a search bar for the pages to use and filter material.
+
+Just need to make a few tweaks and so for the tutorial and will be finally pushed.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/cd286a92-f802-4db6-b7db-97a976cad0ee)
+
+Week 13 (Nov 27th-Dec 03rd)
+This week we had to work on the design document while finalizing and working on our features, but after talking to the TA, I realized the feature needed more features.
+To achieve this I decided to learn and use the react tooltip library and added that to the buttons on the tutorial page which gave the page more functionality. 
+Another part I started working on the front for the search and filter feature which would allow the user to use tags to filter the content or use a search bar to find a certain object 
+Did encounter a few issues with merging other pull requests causing a bit of backlog on the work but the issue is being fixed so I decided to work on an older pull history.
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/d1717f92-b9c3-45cf-82f7-4435fafdeaa5)
+
+
+
