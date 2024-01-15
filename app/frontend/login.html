@@ -4,16 +4,7 @@
 		<meta charset="UTF-8" />
 		<title>Login</title>
 		<!-- Does the user exist? -->
-		<script type="text/javascript">
-			// ALWAYS START SESSION!!!
-			session_start();
-			window.addEventListener('submit', function checkPasswordMatch(event) {
-				if (!isset($_SESSION['sessionuser'])) {
-					alert("User does not exist");
-					event.preventDefault();
-				}
-			});
-		</script>
+        
 		<!-- Other stylesheet (extra changes) -->
 		<link rel="stylesheet" href="login.css" />
 	</head>

@@ -116,7 +116,18 @@ These past 2 weeks, the team aimed to complete 1 feature by the end of the break
 
 This week, the team mostly focused on finishing their features to meet the design milestone on the 3rd. We also had to work on the design document and design video for the design milestone. 
 The work done this week was mainly coding for our features, as well as writing the design document and filming the video at the end of the week.
-We planned to finish our features by the Thursday meeting and for the most part did. We ran into some difficulties late but managed to finish our features and get the document and video done.
+We planned to finish our features by the Thursday meeting and for the most part did. We ran into some difficulties late but managed to finish the following features:
+- Tutorial Page
+- Database
+- Login
+- Create User
+- AI Input Page
+- Save Content Page
+- LangChain + OpenAI API Integration
++ got the document and video done.
+
+
+AI Input Page and OpenAI API Integration/LangChain Implementation are completed and working however are not currently merged to development due to some last minute merge conflicts.  
 
 <b>Kanban Board</b>
 
