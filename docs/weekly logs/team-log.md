@@ -1,4 +1,4 @@
-<img width="1079" alt="Screenshot 2023-11-26 at 11 16 28 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/461a4d61-d314-4dc9-86ca-ac54319883b5">RyBowler - Ryan Bowler <br />
+RyBowler - Ryan Bowler <br />
 Aryamanp12 - Aryaman Patil <br />
 lotusbro - Depar Hlawn <br />
 7ito - Justin Tom <br />
