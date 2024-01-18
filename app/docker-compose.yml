@@ -19,7 +19,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     environment:
-      - DB_HOST=mysql_server
+      DB_HOST: mysql-server
     ports:
       - "8000:8000"
     volumes:

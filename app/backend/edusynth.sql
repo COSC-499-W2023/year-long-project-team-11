@@ -26,8 +26,8 @@ GRANT
 ON edusynth.* 
 TO 'webuser' @'%';
 
-
 FLUSH PRIVILEGES;
+
 
 -- Create Tables
 CREATE TABLE IF NOT EXISTS users (
