@@ -28,6 +28,7 @@ TO 'webuser' @'%';
 
 FLUSH PRIVILEGES;
 
+
 -- Create Tables
 CREATE TABLE IF NOT EXISTS users (
   userid INT(11) NOT NULL AUTO_INCREMENT,

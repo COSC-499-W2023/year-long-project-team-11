@@ -7,6 +7,12 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+openai = "*"
+python-dotenv = "*"
+pypdf2 = "*"
+langchain = "*"
+tiktoken = "*"
+faiss-cpu = "*"
 mysqlclient = {version="2.2.0"}
 djangorestframework-simplejwt = "*"
 
