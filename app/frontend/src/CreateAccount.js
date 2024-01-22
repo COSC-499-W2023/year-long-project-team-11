@@ -126,72 +126,103 @@ export default function CreateAccount() {
     }
 
     return (
-        <div className="h-screen grid place-items-center">
-            <div className="px-[100px] py-[30px] grid place-items-center rounded-lg border-[3px] border-black bg-[#E2E2E2] text-center">
-                <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
-                <form onSubmit={handleSubmit}>
-                    {/* Username */}
-                    <p className="text-sm text-red-500">&nbsp;{errors.firstName}</p>
-                    <input
-                        className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-                        type="text"
-                        name="username"
-                        placeholder="Username"
-                        maxLength={100}
-                        required
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+        <div>
+            {/* Nav Bar */}
+            <nav class="bg-gray-300">
+                <div class="flex justify-between">
+                    <div>Logo</div>
+                    <Link to={"/Prompt"}>
+                        <a className="text-[#44566B] underline" href="#">A.I. Page</a>
+                    </Link>
+                    <Link to={"/SavedContent"}>
+                        <a className="text-[#44566B] underline" href="#">Saved Content</a>
+                    </Link>
+                    <Link to={"/Tutorial"}>
+                        <a className="text-[#44566B] underline" href="#">Tutorial</a>
+                    </Link>
+                    <Link to={"/Profile"}>
+                        <a className="text-[#44566B] underline" href="#">Profile</a>
+                    </Link>
+                    <Link to={"/Login"}>
+                        <a className="text-[#44566B] underline" href="#">Log In</a>
+                    </Link>
+                    <Link to={"/Logout"}>
+                        <a className="text-[#44566B] underline" href="#">Log Out</a>
+                    </Link>
+                    <Link to={"/SignUp"}>
+                        <a className="text-[#44566B] underline" href="#">Sign Up</a>
+                    </Link>
+                </div>
+            </nav>
 
-                    {/* Email */}
-                    <p className="text-sm text-red-500">&nbsp;{errors.email}</p>
-                    <input
-                        className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        maxLength={100}
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+            {/* Content */}
+            <div className="h-screen grid place-items-center">
+                <div className="px-[100px] py-[30px] grid place-items-center rounded-lg border-[3px] border-black bg-[#E2E2E2] text-center">
+                    <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
+                    <form onSubmit={handleSubmit}>
+                        {/* Username */}
+                        <p className="text-sm text-red-500">&nbsp;{errors.firstName}</p>
+                        <input
+                            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+                            type="text"
+                            name="username"
+                            placeholder="Username"
+                            maxLength={100}
+                            required
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
 
-                    {/* Password */}
-                    <p className="text-sm text-red-500">&nbsp;{errors.password}</p>
-                    <input
-                        className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        maxLength={100}
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                        {/* Email */}
+                        <p className="text-sm text-red-500">&nbsp;{errors.email}</p>
+                        <input
+                            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            maxLength={100}
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                    {/* Confirm Password */}
-                    <p className="text-sm text-red-500">&nbsp;{errors.confirmPassword}</p>
-                    <input
-                        className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm Password"
-                        maxLength={100}
-                        required
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
+                        {/* Password */}
+                        <p className="text-sm text-red-500">&nbsp;{errors.password}</p>
+                        <input
+                            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            maxLength={100}
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                    <p className='text-sm pt-[2px] pb-[20px]'>
-                        Already have an account?&#160;
-                        <Link to={"/Login"}>
-                            <a href="#" className="text-[#44566B] underline">Sign In</a>
-                        </Link>
-                    </p>
+                        {/* Confirm Password */}
+                        <p className="text-sm text-red-500">&nbsp;{errors.confirmPassword}</p>
+                        <input
+                            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirm Password"
+                            maxLength={100}
+                            required
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
 
-                    <button className='bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]' type="submit">Sign Up</button>
-                </form>
+                        <p className='text-sm pt-[2px] pb-[20px]'>
+                            Already have an account?&#160;
+                            <Link to={"/Login"}>
+                                <a href="#" className="text-[#44566B] underline">Sign In</a>
+                            </Link>
+                        </p>
 
+                        <button className='bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]' type="submit">Sign Up</button>
+                    </form>
+
+                </div>
             </div>
         </div>
     )
