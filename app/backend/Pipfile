@@ -15,6 +15,7 @@ tiktoken = "*"
 faiss-cpu = "*"
 mysqlclient = {version="2.2.0"}
 djangorestframework-simplejwt = "*"
+python-pptx = "*"
 
 [dev-packages]
 
