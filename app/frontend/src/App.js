@@ -4,7 +4,7 @@ import Login from './Login'
 import Landing from './Landing';
 import { Routes, Route } from "react-router-dom";
 import CreateAccount from './CreateAccount';
-import UserProfile from './UserProfile';
+import Prompt from './Prompt';
 
 function App() {
   return (
@@ -15,10 +15,9 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path='/Logout' element={<Logout />} />
         <Route path='/SignUp' element={<CreateAccount />} />
-        <Route path='/UserProfile' element={<UserProfile />} />
+        <Route path='/Prompt' element={<Prompt />} />
       </Routes>
-      {/* <Login></Login> */}
-      {/* <Logout/> */}
+
     </div>
   );
 }
