@@ -5,6 +5,7 @@ export default function Prompt() {
   const [prompt, setPrompt] = useState("");
   const [file, setFile] = useState(null);
   const [targetGrade, setTargetGrade] = useState("");
+  const [context, setContext] = useState("");
   const [output, setOutput] = useState("");
   const csrfToken = Cookies.get("csrftoken");
 
@@ -15,6 +16,7 @@ export default function Prompt() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("prompt", prompt);
+    formData.append("context", context);
     formData.append("targetGrade", targetGrade);
 
     fetch("http://localhost:8000/api/", {
@@ -73,6 +75,16 @@ export default function Prompt() {
             </div>
 
             <div>
+              <input
+                className="border border-black rounded-md min-w-[500px] px-2"
+                type="text"
+                placeholder="Context:"
+                value={context}
+                onChange={(e) => setContext(e.target.value)}
+              />
+            </div>
+
+            <div className="mt-[20px]">
               <input
                 className="border border-black rounded-md min-w-[500px] px-2"
                 type="text"
