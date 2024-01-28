@@ -1,0 +1,11 @@
+# ===== TERM 2 =====
+# Week 2 (January 15-21)
+This week I had planned to implement the database profile into the user profile page, but that ended up not happening as I was troubleshooting the docker to work with the js-cookie from the npm install option. This week just ended up troubleshooting the errors in setting up the docker server. For next week, I hope to finish the database to show in the user profile page, and if I have extra time, to start making automated tests from the past tasks that we did.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/f3244fbc-8c1a-4c58-9be6-6494492123ee)
+
+# Week 1 (January 8-14)
+This week I planned to finish the User Profile page that I could not do over the break as I lost the motivation to do it while taking the winter break. For this week, we managed to discuss on what features we need to get done by the end of January. I am now going to work on finishing the User Profile page as well as Setting up automated tests for the past tasks we did on term 1.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/aed587e8-80ea-4477-9b8d-b07c57c596e8)
+
+
+
