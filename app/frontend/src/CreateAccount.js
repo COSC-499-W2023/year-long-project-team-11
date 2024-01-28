@@ -116,7 +116,7 @@ export default function CreateAccount() {
             return err;
         });
 
-        if (responseCode != 200) {
+        if (responseCode !== 200) {
             alert("Field is invalid!");
             return;
         } else {
@@ -128,30 +128,23 @@ export default function CreateAccount() {
     return (
         <div>
             {/* Nav Bar */}
-            <nav class="bg-gray-300">
-                <div class="flex justify-between">
-                    <div>Logo</div>
-                    <Link to={"/Prompt"}>
-                        <a className="text-[#44566B] underline" href="#">A.I. Page</a>
-                    </Link>
-                    <Link to={"/SavedContent"}>
-                        <a className="text-[#44566B] underline" href="#">Saved Content</a>
-                    </Link>
-                    <Link to={"/Tutorial"}>
-                        <a className="text-[#44566B] underline" href="#">Tutorial</a>
-                    </Link>
-                    <Link to={"/Profile"}>
-                        <a className="text-[#44566B] underline" href="#">Profile</a>
-                    </Link>
-                    <Link to={"/Login"}>
-                        <a className="text-[#44566B] underline" href="#">Log In</a>
-                    </Link>
-                    <Link to={"/Logout"}>
-                        <a className="text-[#44566B] underline" href="#">Log Out</a>
-                    </Link>
-                    <Link to={"/SignUp"}>
-                        <a className="text-[#44566B] underline" href="#">Sign Up</a>
-                    </Link>
+            <nav class="bg-[#E2E2E2]">
+                <div class="flex justify-between mr-5 ml-5 py-2">
+                    {/* General Area (Left side) */}
+                    <div class="flex items-center space-x-1">
+                        <div class="font-bold">(Logo) EduSynth</div>
+                        <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
+                        <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
+                        <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
+                    </div>
+
+                    {/* User Area (Right side) */}
+                    <div class="flex items-center space-x-1">
+                        <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Profile">Profile</a>
+                        <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
+                        <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                        <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/SignUp">Sign Up</a>
+                    </div>
                 </div>
             </nav>
 
