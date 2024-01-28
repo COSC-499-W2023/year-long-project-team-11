@@ -4,26 +4,18 @@ from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.llms import OpenAI
-from langchain.vectorstores import FAISS
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
-# from langchain.embeddings import GPT4AllEmbeddings
 
 # Create your views here.
 
-# default_template = PromptTemplate.from_template(
-#     "This is text taken from university course lecture slides. From this original material, generate text for new slides that can be used to teach a {targetGrade} class. Output in a markdown format, denote a new slide with a tag of your choosing. {prompt}"
-# )
-
-default_template = PromptTemplate.from_template(
-    """
-    You will be receiving text parsed from {context}, and converting this into a new PowerPoint presentation to be used for other age groups. 
+template = """You will be receiving text parsed from {context}, and converting this into a new PowerPoint presentation to be used for other age groups. 
 
     We will be generating the slides by using preset PowerPoint slide layouts, and populating their placeholders with text. In order to do this, you need to output in a XML format, which I will explain now:
 
-    There are 6 preset slide layouts that you have access to, here's each one with a list of their placeholders:
+    There are 6 preset slide layouts that you have access to, here's each one with their properties and placeholders:
     Title Slide (A slide with a centered title and optional subtitle):
     Identifier: "title"
     Placeholder 0: Title
@@ -93,8 +85,10 @@ default_template = PromptTemplate.from_template(
             <text>Slide 6 Caption</text>
         </slide>
     </slides>
-    Using these preset slides and their placeholder components, please use the original materials and convert them into slides that can be can be used to teach a {targetGrade} class. {prompt}.
-    """
+    Using these preset slides and their placeholder components, please use the original materials and convert them into slides that can be used to teach a {targetGrade} class. {prompt}."""
+
+default_template = PromptTemplate.from_template(
+    "This is text taken from university course lecture slides. From this original material, generate text for new slides that can be used to teach a {targetGrade} class. Output in a markdown format, denote a new slide with a tag of your choosing. {prompt}"
 )
 
 @csrf_exempt
@@ -103,7 +97,7 @@ def ai(request):
         load_dotenv()
         uploaded_file = request.FILES.get('file')
         prompt = request.POST.get('prompt')
-        context = request.POST.get('context')
+        # context = request.POST.get('context')
         targetGrade = request.POST.get('targetGrade')
 
         # extract text
@@ -122,14 +116,13 @@ def ai(request):
 		
         chunks = text_splitter.split_text(text)
         embeddings = OpenAIEmbeddings()
-        # embeddings = GPT4AllEmbeddings()
 		
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 		
         if prompt:
-            docs = knowledge_base.similarity_search(default_template.format(context=context, targetGrade=targetGrade, prompt=prompt))
-            llm = OpenAI(temperature=0.8)
+            docs = knowledge_base.similarity_search(default_template.format(targetGrade=targetGrade, prompt=prompt))
+            llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.8)
             chain = load_qa_chain(llm, chain_type="stuff")
-            response = chain.run(input_documents=docs, question=default_template.format(context=context, targetGrade=targetGrade, prompt=prompt))
+            response = chain.run(input_documents=docs, question=default_template.format(targetGrade=targetGrade, prompt=prompt))
             return JsonResponse({'response': response})
     return HttpResponse("Hello World")

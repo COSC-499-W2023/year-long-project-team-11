@@ -12,6 +12,7 @@ export default function Prompt() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(prompt);
+    console.log(context);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -38,7 +39,7 @@ export default function Prompt() {
   return (
     <div className="h-screen grid place-items-center">
       <div className="grid place-items-center rounded-lg px-[100px] py-[30px] text-center bg-[#E2E2E2] border-[3px] border-black">
-        {output.length != 0 && (
+        {output.length !== 0 && (
           <div className="my-[10px]">
             <p>{output}</p>
           </div>
