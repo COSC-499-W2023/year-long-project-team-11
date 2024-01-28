@@ -17,7 +17,7 @@ export default function Prompt() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("prompt", prompt);
-    formData.append("context", context);
+    formData.append("ctx", context);
     formData.append("targetGrade", targetGrade);
 
     fetch("http://localhost:8000/api/", {
