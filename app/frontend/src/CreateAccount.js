@@ -128,10 +128,9 @@ export default function CreateAccount() {
     if (responseCode != 200) {
       alert("Field is invalid!");
       return;
-    } else {
-      alert("Success!");
     }
     console.log("Successfully created an account: " + email);
+    window.location.href = "/Login";
   };
 
   return (
