@@ -22,3 +22,10 @@ During Week 9 we created our presentation for November 2nd. During this week I f
 # Individual Log Week 10
 During Week 10 there wasn't much progress on the code due to catching up assigments and midterms in other classes. To compensate for not making progress this week the group has planned to finish one of their main tasks over the reading break to make sure we do not lag behind. Currently I did manage to have a rudimentary coding and setup for the ER diagram but as both of it are still work in progress it cannot be implemented nor pushed to the development. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/aa74e76c-2f33-4b7e-9012-e37dcc8ffdce)
+# Individual Log Week 11-12
+During Week 11 I finished up setting up the ER diagram that is in the document branch. In Week 12 I have set up a basic HTML and CSS saved content page. The code is almost completed but I am currently testing this with the backend API integration that my teammate implemented for more completion. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/728b8fef-093a-47fb-ae10-de1b05281941)
+# Individual Log Week 13
+During Week 13 I created saving content page and created the models and serializers for the backend. The page works as intended and saved content page also has a functioning download button that downloades the generated content into a txt. I coordinated with the team to get my individual portions of the team work of the report and created short videos and documented about Database design and ER diagram. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/4ff70dda-bef7-4b3b-8e00-c589793aebed)
+
