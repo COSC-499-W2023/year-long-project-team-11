@@ -88,6 +88,12 @@ default_template = PromptTemplate.from_template(template)
 current_file_path = os.path.dirname(os.path.realpath(__file__))
 GENERATEDCONTENT_DIRECTORY = os.path.join(current_file_path, 'generatedcontent')
 
+BLACK = RGBColor(0, 0, 0)
+WHITE = RGBColor(255, 255, 255)
+LIGHTBLUE = RGBColor(135, 206, 235)
+CREAM = RGBColor(255, 253, 208)
+GREY = RGBColor(128, 128, 128)
+
 def generate_filename(extension='.pptx', directory=GENERATEDCONTENT_DIRECTORY):
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     file_name = f"presentation_{timestamp}{extension}"
@@ -100,34 +106,34 @@ def generate_filename(extension='.pptx', directory=GENERATEDCONTENT_DIRECTORY):
         counter += 1
     return unique_file_name
 
-def set_background_color(prs):
+def set_background_color(prs, color):
     for master in prs.slide_masters:
         background = master.background
         fill = background.fill
         fill.solid()
-        fill.fore_color.rgb = RGBColor(255, 255, 255)  # Set color to ---- (needs a form value to change here)
+        fill.fore_color.rgb = color  # Set color to ---- (needs a form value to change here)
 
-def set_font(prs):
+def set_font(prs, type):
     for slide in prs.slides:
         for shape in slide.shapes:
             if hasattr(shape, "text_frame") and shape.text_frame:
                 for paragraph in shape.text_frame.paragraphs:
                     for run in paragraph.runs:
-                        run.font.name = 'Arial'  # Set font to ---- (needs a form value to change here)
+                        run.font.name = type  # Set font to ---- (needs a form value to change here)
 
-def set_font_color(prs, r, g, b):
+def set_font_color(prs, color):
     for slide in prs.slides:
         for shape in slide.shapes:
             if hasattr(shape, "text_frame") and shape.text_frame:
                 for paragraph in shape.text_frame.paragraphs:
                     for run in paragraph.runs:
-                        run.font.color.rgb = RGBColor(0, 0, 0)  # Set font color ---- (needs a form value to change)
+                        run.font.color.rgb = color  # Set font color ---- (needs a form value to change)
 
 
-def generate_slides_from_XML(xml_string):
+def generate_slides_from_XML(xml_string, bgcolor, fonttype, fontcolor):
     root = ET.fromstring(xml_string)
     prs = Presentation()
-    set_background_color(prs)
+    set_background_color(prs, bgcolor)
 
     for slide in root.findall('slide'):
         if slide.get('layout') == 'title':
@@ -202,8 +208,8 @@ def generate_slides_from_XML(xml_string):
                     shapes.placeholders[i].text_frame.text = content_string
                 else:
                     shapes.placeholders[i].text_frame.text = element.text
-        set_font(prs)
-        set_font_color(prs)
+    set_font(prs, fonttype)
+    set_font_color(prs, fontcolor)
     file_name = generate_filename()
     file_path = os.path.join(GENERATEDCONTENT_DIRECTORY, file_name)
     prs.save(file_path)
@@ -217,6 +223,9 @@ def ai(request):
         prompt = request.POST.get('prompt')
         ctx = request.POST.get('ctx')
         targetGrade = request.POST.get('targetGrade')
+        bgcolor = request.POST.get('backgroundColor')
+        fonttype = request.POST.get('fontType')
+        fontcolor = request.POST.get('fontColor')
 
         # extract text
         pdf_reader = PdfReader(uploaded_file)
@@ -243,7 +252,28 @@ def ai(request):
             chain = load_qa_chain(llm, chain_type="stuff")
             response = chain.run(input_documents=docs, question=default_template.format(ctx=ctx, targetGrade=targetGrade, prompt=prompt))
             
-            file_name = generate_slides_from_XML(response)
+            
+            if bgcolor == 'BLACK':
+                bgcolor = BLACK
+            elif bgcolor == 'WHITE':
+                bgcolor = WHITE
+            elif bgcolor == 'LIGHTBLUE':
+                bgcolor = LIGHTBLUE
+            elif bgcolor == 'CREAM':
+                bgcolor = CREAM
+            elif bgcolor == 'GREY':
+                bgcolor = GREY
+
+            bgcolor = WHITE
+
+            if fontcolor == 'BLACK':
+                fontcolor = BLACK
+            elif fontcolor == 'WHITE':
+                fontcolor = WHITE
+
+            fontcolor = BLACK
+
+            file_name = generate_slides_from_XML(response, bgcolor, fonttype, fontcolor)
             return JsonResponse({'filename' : file_name, 'response': response})
         else:
             return JsonResponse({'response': 'No context specified'})
