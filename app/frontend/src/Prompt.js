@@ -96,6 +96,34 @@ export default function Prompt() {
             </div>
 
             <div className="py-2">
+              <input
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                accept="application/pdf"
+              />
+            </div>
+
+            <div>
+              <input
+                className="border border-black rounded-md min-w-[500px] px-2"
+                type="text"
+                placeholder="Context:"
+                value={context}
+                onChange={(e) => setContext(e.target.value)}
+              />
+            </div>
+
+            <div className="mt-[20px]">
+              <input
+                className="border border-black rounded-md min-w-[500px] px-2"
+                type="text"
+                placeholder="Prompt:"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+              />
+            </div>
+
+            <div className="py-2">
               <label htmlFor="backgroundColor" className="px-2">Background Color:</label>
               <select
                 id="backgroundColor"
@@ -108,7 +136,7 @@ export default function Prompt() {
                 <option value="black">Black</option>
                 <option value="grey">grey</option>
                 <option value="cream">cream</option>
-                <option value="light blue">light blue</option>
+                <option value="lightblue">light blue</option>
               </select>
             </div>
 
@@ -142,34 +170,6 @@ export default function Prompt() {
                 <option value="Georgia">Georgia</option>
                 <option value="Comic Sans">Comic Sans</option>
               </select>
-            </div>
-
-            <div className="py-2">
-              <input
-                type="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                accept="application/pdf"
-              />
-            </div>
-
-            <div>
-              <input
-                className="border border-black rounded-md min-w-[500px] px-2"
-                type="text"
-                placeholder="Context:"
-                value={context}
-                onChange={(e) => setContext(e.target.value)}
-              />
-            </div>
-
-            <div className="mt-[20px]">
-              <input
-                className="border border-black rounded-md min-w-[500px] px-2"
-                type="text"
-                placeholder="Prompt:"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-              />
             </div>
 
             <div className="mt-[20px]">
