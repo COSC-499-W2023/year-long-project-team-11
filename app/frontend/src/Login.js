@@ -68,16 +68,15 @@ export default function Login() {
     if (responseCode != 200) {
       alert("Username or password is incorrect!");
       return;
-    } else {
-      alert("Success!");
     }
+    
     // Initialize the access & refresh token in localstorage.
     localStorage.clear();
     localStorage.setItem("access_token", data.access);
     localStorage.setItem("refresh_token", data.refresh);
     axios.defaults.headers.common["Authorization"] = "Bearer ${data['access']}";
 
-    window.open("http://localhost:3000");
+    window.location.href = "/Prompt";
     // window.open("/");
 
     // ==========================================================================================

@@ -1,7 +1,23 @@
 import React from 'react'
+import {useEffect, useState} from 'react'
+import axios from 'axios';
 
 
 export default function Logout() {
+  const handleLogout = async (e) => {
+    try {
+      const {data} = await  
+      axios.post('http://localhost:8000/logout/',{refresh_token:localStorage.getItem('refresh_token')},
+        {headers: {'Content-Type': 'application/json'}},  
+        {withCredentials: true});
+      localStorage.clear();
+      axios.defaults.headers.common['Authorization'] = null;
+      window.location.href = '/Login'
+    } catch (e) {
+      console.log('Logout is not working', e)
+    }
+  };
+
   return (
     <div>
       {/* Nav Bar */}
@@ -34,7 +50,7 @@ export default function Logout() {
           <p className='font-medium'>Do you want to logout?</p>
           <br></br>
           <div className='buttons'>
-            <button className='bg-[#19747E] text-white py-2 rounded hover:bg-[#316268] w-[100%]'>Log Out</button>
+            <button onClick={handleLogout} className='bg-[#19747E] text-white py-2 rounded hover:bg-[#316268] w-[100%]'>Log Out</button>
             <button className='bg-white text-black py-2 mt-4 rounded hover:bg-[#e2e2e2] w-[100%]'>Go back</button>
           </div>
 
