@@ -10,6 +10,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from datetime import datetime
 import xml.etree.ElementTree as ET
+from pptx.dml.color import RGBColor
 from pptx import Presentation
 import os
 
@@ -99,10 +100,35 @@ def generate_filename(extension='.pptx', directory=GENERATEDCONTENT_DIRECTORY):
         counter += 1
     return unique_file_name
 
+def set_background_color(prs):
+    for master in prs.slide_masters:
+        background = master.background
+        fill = background.fill
+        fill.solid()
+        fill.fore_color.rgb = RGBColor(255, 255, 255)  # Set color to ---- (needs a form value to change here)
+
+def set_font(prs):
+    for slide in prs.slides:
+        for shape in slide.shapes:
+            if hasattr(shape, "text_frame") and shape.text_frame:
+                for paragraph in shape.text_frame.paragraphs:
+                    for run in paragraph.runs:
+                        run.font.name = 'Arial'  # Set font to ---- (needs a form value to change here)
+
+def set_font_color(prs, r, g, b):
+    for slide in prs.slides:
+        for shape in slide.shapes:
+            if hasattr(shape, "text_frame") and shape.text_frame:
+                for paragraph in shape.text_frame.paragraphs:
+                    for run in paragraph.runs:
+                        run.font.color.rgb = RGBColor(0, 0, 0)  # Set font color ---- (needs a form value to change)
+
+
 def generate_slides_from_XML(xml_string):
     root = ET.fromstring(xml_string)
     prs = Presentation()
-    
+    set_background_color(prs)
+
     for slide in root.findall('slide'):
         if slide.get('layout') == 'title':
             title_slide_layout = prs.slide_layouts[0]
@@ -176,6 +202,8 @@ def generate_slides_from_XML(xml_string):
                     shapes.placeholders[i].text_frame.text = content_string
                 else:
                     shapes.placeholders[i].text_frame.text = element.text
+        set_font(prs)
+        set_font_color(prs)
     file_name = generate_filename()
     file_path = os.path.join(GENERATEDCONTENT_DIRECTORY, file_name)
     prs.save(file_path)
