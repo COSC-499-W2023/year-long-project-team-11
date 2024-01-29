@@ -5,8 +5,7 @@ import Landing from './Landing';
 import { Routes, Route } from "react-router-dom";
 import CreateAccount from './CreateAccount';
 import Prompt from './Prompt';
-import Tutorial from './Tutorial';
-
+import SavedContent from "./SavedContent"; 
 function App() {
   return (
     <div className='App'>
@@ -17,7 +16,7 @@ function App() {
         <Route path='/Logout' element={<Logout />} />
         <Route path='/SignUp' element={<CreateAccount />} />
         <Route path='/Prompt' element={<Prompt />} />
-        <Route path='/Tutorial' element={<Tutorial />} />
+        <Route path='/SavedContent' element={<SavedContent/>} />
       </Routes>
     </div>
   );

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from app.models import AppUser
 # from django.contrib.auth import get_user_model, authenticate
-
+from app.models import AppSaveText
 # AppUser = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,3 +36,9 @@ class UserLoginSerializer(serializers.Serializer):
         if not user:
             raise ValidaitonError('User not found')
         return user
+
+class AppSaveTextSerizalizer(serializers.ModelSerializer):
+   class Meta:
+       model= AppSaveText
+       fields=('savecontent',)
+
