@@ -32,3 +32,17 @@ The team also spent a small portion of time reorganizing tasks/assigning feature
 
 <b>Burn Up Chart</b>
 <img width="949" alt="Screenshot 2024-01-21 at 11 06 13 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/eb072e98-3993-4c07-aa83-8d1372662a62">
+
+
+----------------------------------------------------
+<h1>Week 3</h1>
+<b>List of Tasks</b>
+<img width="1098" alt="Screenshot 2024-01-28 at 10 32 28 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/26b9d9a2-3796-43e0-8ddf-3734d5afa053">
+
+This week, the team successfully managed to complete the implementation of our A.I. prompt, tutorial, and user profile pages, as well as giving the AI the ability to generate slides. Each page also now possesses a nav bar, allowing for a smooth and simple way fo navigating the various pages of the site. The saved content page also had work done on it, though that feature ended up being shifted to instead complete a view page for an individual post, allowing us to better test the A.I's generation capabilities. The team struggled with numerous bugs this week relating to megre conflicts, missing dependancies, as well as failure to connect to the database, though all of these bugs have successfully been squashed. We now move into finalizing and making touch-up's to our features before our peer-review presentation this coming Thursday.
+
+<b>Kanban Board</b>
+<img width="1082" alt="Screenshot 2024-01-28 at 10 32 02 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/43b40eca-a91a-4a6d-b181-db00503bea7f">
+
+<b>Burn Up Chart</b>
+<img width="895" alt="Screenshot 2024-01-28 at 10 32 38 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/ddfd6e1d-4b05-458d-836f-c30dac1b12cb">
