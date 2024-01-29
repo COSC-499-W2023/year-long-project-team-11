@@ -112,11 +112,11 @@ export default function Prompt() {
                 className="bg-white border border-black rounded-sm p-1"
               >
                 <option value="">Select Color</option>
-                <option value="WHITE">White</option>
-                <option value="BLACK">Black</option>
-                <option value="GREY">grey</option>
-                <option value="CREAM">cream</option>
-                <option value="LIGHTBLUE">light blue</option>
+                <option value="white">White</option>
+                <option value="black">Black</option>
+                <option value="grey">grey</option>
+                <option value="cream">cream</option>
+                <option value="lightblue">light blue</option>
               </select>
             </div>
 
@@ -146,7 +146,7 @@ export default function Prompt() {
                 <option value="Arial">Arial</option>
                 <option value="Times New Roman">Times New Roman</option>
                 <option value="Helvetica">Helvetica</option>
-                <option value="courier">courier</option>
+                <option value="Courier">Courier</option>
                 <option value="Georgia">Georgia</option>
                 <option value="Comic Sans">Comic Sans</option>
               </select>

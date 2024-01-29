@@ -252,28 +252,25 @@ def ai(request):
             chain = load_qa_chain(llm, chain_type="stuff")
             response = chain.run(input_documents=docs, question=default_template.format(ctx=ctx, targetGrade=targetGrade, prompt=prompt))
             
-            
-            if bgcolor == 'BLACK':
-                bgcolor = BLACK
-            elif bgcolor == 'WHITE':
-                bgcolor = WHITE
-            elif bgcolor == 'LIGHTBLUE':
-                bgcolor = LIGHTBLUE
-            elif bgcolor == 'CREAM':
-                bgcolor = CREAM
-            elif bgcolor == 'GREY':
-                bgcolor = GREY
+            apply_bgcolor = WHITE
+            if bgcolor == 'black':
+                apply_bgcolor = BLACK
+            elif bgcolor == 'white':
+                apply_bgcolor = WHITE
+            elif bgcolor == 'lightblue':
+                apply_bgcolor = LIGHTBLUE
+            elif bgcolor == 'cream':
+                apply_bgcolor = CREAM
+            elif bgcolor == 'grey':
+                apply_bgcolor = GREY
 
-            bgcolor = WHITE
+            apply_fontcolor = BLACK
+            if fontcolor == 'black':
+                apply_fontcolor = BLACK
+            elif fontcolor == 'white':
+                apply_fontcolor = WHITE
 
-            if fontcolor == 'BLACK':
-                fontcolor = BLACK
-            elif fontcolor == 'WHITE':
-                fontcolor = WHITE
-
-            fontcolor = BLACK
-
-            file_name = generate_slides_from_XML(response, bgcolor, fonttype, fontcolor)
+            file_name = generate_slides_from_XML(response, apply_bgcolor, fonttype, apply_fontcolor)
             return JsonResponse({'filename' : file_name, 'response': response})
         else:
             return JsonResponse({'response': 'No context specified'})
