@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 
 export default function Prompt() {
-  const [prompt, setPrompt] = useState("");
-  const [file, setFile] = useState(null);
   const [targetGrade, setTargetGrade] = useState("");
+  const [file, setFile] = useState(null);
   const [context, setContext] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [output, setOutput] = useState("");
+  const [filename, setFilename] = useState("");
   const csrfToken = Cookies.get("csrftoken");
 
   const handleSubmit = (e) => {
@@ -30,6 +31,8 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         setOutput(data.response);
+        setFilename(data.filename);
+        console.log(filename);
       })
       .catch((error) => {
         console.error("Error: ", error);
@@ -42,6 +45,7 @@ export default function Prompt() {
         {output.length !== 0 && (
           <div className="my-[10px]">
             <p>{output}</p>
+            <a href={`http://localhost:8000/api/presentations/${filename}`}>Download</a>
           </div>
         )}
         <form onSubmit={handleSubmit}>
