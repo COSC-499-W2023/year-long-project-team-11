@@ -4,7 +4,9 @@ from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from app.models import AppUser
+from app.models import AppSaveText
 from .serializers import UserSerializer
+from .serializers import AppSaveTextSerizalizer
 import os
 import sys
 
@@ -48,3 +50,14 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+def saveOutput(request):
+    try:
+        serializer = AppSaveTextSerizalizer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({"message": "Output saved successfully"}, status=200)
+        else:
+            return JsonResponse(serializer.errors, status=400)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
