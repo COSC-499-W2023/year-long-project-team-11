@@ -32,7 +32,7 @@ export default function UserProfile() {
 
         {/* Right Column */}
       <div className="grid place-items-center w-[70%] p-4 " id="right-box">
-            <p className="text-[#19747E] font-bold text-2xl">Name's Public Materials</p>
+            <p className="text-[#19747E] font-bold text-2xl">{userData.username}'s Public Materials</p>
 
             <div className="flex">
 
