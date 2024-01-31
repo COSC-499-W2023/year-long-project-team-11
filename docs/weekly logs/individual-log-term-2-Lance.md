@@ -1,4 +1,8 @@
 # ===== TERM 2 =====
+# Week 3 (January 22-28)
+This week I worked on setting up the user profile. I am troubleshooting the hashing password error with Ryan, and Justin has helped me figure out the js-cookie problem everyone has been having. Now I need to clean up the user profile more and make the page populated with the database.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/743b7bb2-ae9e-41a2-8b9f-e15bba932beb)
+
 # Week 2 (January 15-21)
 This week I had planned to implement the database profile into the user profile page, but that ended up not happening as I was troubleshooting the docker to work with the js-cookie from the npm install option. This week just ended up troubleshooting the errors in setting up the docker server. For next week, I hope to finish the database to show in the user profile page, and if I have extra time, to start making automated tests from the past tasks that we did.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/f3244fbc-8c1a-4c58-9be6-6494492123ee)

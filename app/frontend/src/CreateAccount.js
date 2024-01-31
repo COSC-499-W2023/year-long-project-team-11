@@ -125,13 +125,12 @@ export default function CreateAccount() {
         return err;
       });
 
-    if (responseCode != 200) {
+    if (responseCode !== 200) {
       alert("Field is invalid!");
       return;
-    } else {
-      alert("Success!");
     }
     console.log("Successfully created an account: " + email);
+    window.location.href = "/Login";
   };
 
   return (
