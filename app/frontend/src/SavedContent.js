@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
+  const [downloadLink, setDownloadLink] = useState("");
 
   const handleDownload = () => {
     const element = document.createElement('a');
@@ -14,13 +15,20 @@ const SavedContent = () => {
     element.click();
     document.body.removeChild(element);
   };
-const location=useLocation();
-const outputData= location.state?.output;
-useEffect(() => {
-  if (outputData) {
-    setParagraph(outputData);
-  }
-}, [outputData]);
+
+  const location=useLocation();
+  const data = location.state;
+  
+  useEffect(() => {
+    if (data) {
+      console.log(data)
+      const output= data.output;
+      const link = data.download;
+      setParagraph(output);
+      setDownloadLink(link);
+    }
+  }, [data]);
+
   return (
     <div className="savedcontent flex flex-col items-center justify-center min-h-screen">
       <div className="max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
@@ -31,7 +39,7 @@ useEffect(() => {
         </div>
         <div className="flex justify-between items-center">
         <div className='buttons flex flex-row'>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={handleDownload}>Download</button>
+        <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = downloadLink}>Download</button>
         <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
         </div>
           

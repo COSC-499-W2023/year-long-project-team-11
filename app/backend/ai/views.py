@@ -79,7 +79,8 @@ Here is a description of each of the slide layouts for you to determine their us
 "comp": Short for comparison, the same thing as a two content slide, but with a title for each side
 "caption": A slide with a title and caption on the left side, and a main content body on the right
 
-Please also note that a content placeholder displays text as bullet points for every new line, whereas title/subtitle/text do not, so you will need to wrap each bullet point with a <b></b> tag.
+Please also note that a content placeholder displays text as bullet points for every new line, whereas title/subtitle/text do not, so you will need to wrap each bullet point with a <b></b> tag, as shown in the example.
+Please do not start a bullet point with a hyphen ('-'), please ensure all content in a <content> tag is wrapped in a <b> tag. 
 
 Using these preset slides and their placeholder components, please use the original materials and convert them into slides that can be can be used to teach a {targetGrade} class. Output only in the XML format. {prompt}."""
 

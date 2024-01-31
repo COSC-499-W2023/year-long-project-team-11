@@ -9,11 +9,30 @@ export default function Prompt() {
   const [prompt, setPrompt] = useState("");
   const [output, setOutput] = useState("");
   const [filename, setFilename] = useState("");
-  const [backgroundColor, setBackgroundColor] = useState("");
-  const [fontColor, setFontColor] = useState("");
-  const [fontType, setFontType] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState("white");
+  const [fontColor, setFontColor] = useState("black");
+  const [fontType, setFontType] = useState("Arial");
+  const [showStyleOptions, setShowStyleOptions] = useState(false);
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
+
+  const getColorCode = (color) => {
+    switch(color) {
+      case "black":
+        return "rgb(0, 0, 0)";
+      case "white":
+        return "rgb(255, 255, 255)";
+      case "lightblue":
+        return "rgb(135, 206, 235)";
+      case "cream":
+        return "rgb(255, 253, 208)";
+      case "grey":
+        return "rgb(128, 128, 128)";
+      default:
+        return "rgb(0, 0, 0)";
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(prompt);
@@ -38,8 +57,8 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         setOutput(data.response);
-        navigate('/SavedContent', { state: { output: data.response } });
         setFilename(data.filename);
+        navigate('/SavedContent', { state: { output: data.response, download: `http://localhost:8000/api/presentations/${data.filename}` } });
         console.log(filename);
       })
       .catch((error) => {
@@ -66,7 +85,7 @@ export default function Prompt() {
 
   return (
     <div className="h-screen grid place-items-center">
-      <div className="grid place-items-center rounded-lg px-[100px] py-[30px] text-center bg-[#E2E2E2] border-[3px] border-black">
+      <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
         {output.length !== 0 && (
           <div className="my-[10px]">
             <p>{output}</p>
@@ -76,8 +95,17 @@ export default function Prompt() {
         )}
         <form onSubmit={handleSubmit}>
           <div>
-            <div className="py-2">
-              <label htmlFor="targetGrade" className="px-2">Target Grade Level:</label>
+            <h2 className="text-center font-bold text-2xl">Generate a Presentation</h2>
+            <div className="py-4 border-b-[1px] border-slate-400">
+              <p className="py-1">Upload the materials you would like to use as a base</p>
+              <input
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                accept="application/pdf"
+              />
+            </div>
+
+            <div className="py-4 border-b-[1px] border-slate-400">
               <select
                 id="targetGrade"
                 value={targetGrade}
@@ -85,7 +113,7 @@ export default function Prompt() {
                 className="bg-white border border-black rounded-sm p-1"
               >
                 <option value="" hidden>
-                  Select Grade
+                  Target Grade Level
                 </option>
                 {[...Array(12).keys()].map((grade) => (
                   <option key={grade + 1} value={grade + 1}>
@@ -95,81 +123,94 @@ export default function Prompt() {
               </select>
             </div>
 
-            <div className="py-2">
-              <input
-                type="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                accept="application/pdf"
-              />
-            </div>
-
-            <div>
+            <div className="py-4 border-b-[1px] border-slate-400">
+              <p className="py-1">Give some context about the file you are uploading: </p>
               <input
                 className="border border-black rounded-md min-w-[500px] px-2"
                 type="text"
-                placeholder="Context:"
+                placeholder="(e.g. a university computer science course)"
                 value={context}
                 onChange={(e) => setContext(e.target.value)}
               />
             </div>
 
-            <div className="mt-[20px]">
+            <div className="py-4 border-b-[1px] border-slate-400">
+              <p className="py-1">(Optional) Enter any specific requests</p>
               <input
                 className="border border-black rounded-md min-w-[500px] px-2"
                 type="text"
-                placeholder="Prompt:"
+                placeholder="Any further requests?"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
               />
             </div>
-
-            <div className="py-2">
-              <label htmlFor="backgroundColor" className="px-2">Background Color:</label>
-              <select
-                id="backgroundColor"
-                value={backgroundColor}
-                onChange={(e) => setBackgroundColor(e.target.value)}
-                className="bg-white border border-black rounded-sm p-1"
+                  
+            <div className="py-4">
+              <button
+                onClick={() => setShowStyleOptions(!showStyleOptions)}
+                className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2"
               >
-                <option value="">Select Color</option>
-                <option value="white">White</option>
-                <option value="black">Black</option>
-                <option value="grey">grey</option>
-                <option value="cream">cream</option>
-                <option value="lightblue">light blue</option>
-              </select>
+                {showStyleOptions ? "Hide Style Options" : "Show Style Options"}
+              </button>
             </div>
+            
+            <div
+              style={{
+                maxHeight: showStyleOptions ? "500px" : "0",
+                overflow: 'hidden',
+                transition: 'max-height 0.2s ease-out',
+              }} 
+              className="origin-top bg-neutral-300 rounded-lg">
+              <div className="py-2">
+                <label htmlFor="backgroundColor" className="px-2">Background Color:</label>
+                <select
+                  id="backgroundColor"
+                  value={backgroundColor}
+                  onChange={(e) => setBackgroundColor(e.target.value)}
+                  className="bg-white border border-black rounded-sm p-1"
+                >
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
+                  <option value="grey">Grey</option>
+                  <option value="cream">Cream</option>
+                  <option value="lightblue">Light Blue</option>
+                </select>
+                <div
+                  style={{backgroundColor: getColorCode(backgroundColor)}} 
+                  className="align-middle w-[20px] h-[20px] inline-block ml-[10px] border border-black"></div>
+              </div>
 
-            <div className="py-2">
-              <label htmlFor="fontColor" className="px-2">Font Color:</label>
-              <select
-                id="fontColor"
-                value={fontColor}
-                onChange={(e) => setFontColor(e.target.value)}
-                className="bg-white border border-black rounded-sm p-1"
-              >
-                <option value="">Select Color</option>
-                <option value="black">Black</option>
-                <option value="white">White</option>
-              </select>
-            </div>
+              <div className="py-2">
+                <label htmlFor="fontColor" className="px-2">Font Color:</label>
+                <select
+                  id="fontColor"
+                  value={fontColor}
+                  onChange={(e) => setFontColor(e.target.value)}
+                  className="bg-white border border-black rounded-sm p-1"
+                >
+                  <option value="black">Black</option>
+                  <option value="white">White</option>
+                </select>
+                <div
+                  style={{backgroundColor: getColorCode(fontColor)}} 
+                  className="align-middle w-[20px] h-[20px] inline-block ml-[10px] border border-black"></div>
+              </div>
 
-            <div className="py-2">
-              <label htmlFor="fontType" className="px-2">Font Type:</label>
-              <select
-                id="fontType"
-                value={fontType}
-                onChange={(e) => setFontType(e.target.value)}
-                className="bg-white border border-black rounded-sm p-1"
-              >
-                <option value="">Select Font</option>
-                <option value="Arial">Arial</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Helvetica">Helvetica</option>
-                <option value="Courier">Courier</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Comic Sans">Comic Sans</option>
-              </select>
+              <div className="py-2">
+                <label htmlFor="fontType" className="px-2">Font Type:</label>
+                <select
+                  id="fontType"
+                  value={fontType}
+                  onChange={(e) => setFontType(e.target.value)}
+                  className="bg-white border border-black rounded-sm p-1 w-auto"
+                >
+                  <option value="Arial">Arial</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                  <option value="Helvetica">Helvetica</option>
+                  <option value="Courier">Courier</option>
+                  <option value="Georgia">Georgia</option>
+                </select>
+              </div>
             </div>
 
             <div className="mt-[20px]">
