@@ -87,10 +87,11 @@ export default function Prompt() {
     <div>
       {/* Nav Bar */}
       <nav class="bg-[#E2E2E2]">
-          <div class="flex justify-between mr-5 ml-5 py-2">
+          <div class="flex justify-between mr-5 ml-2 py-2">
               {/* General Area (Left side) */}
               <div class="flex items-center space-x-1">
-                  <div class="font-bold">(Logo) EduSynth</div>
+                  {/* <div class="font-bold">(Logo) EduSynth</div> */}
+                  <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
                   <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Prompt">A.I. Page</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
