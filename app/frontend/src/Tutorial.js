@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import tutorialImage1 from './img-tutorial/tutorialimg1.png';
+import tutorialImage2 from './img-tutorial/tutorialimg2.png';
 
 const Tutorial = () => {
   // State to keep track of the user's choice
@@ -10,6 +12,8 @@ const Tutorial = () => {
     // Here you can add logic to process the user's choice
     alert(`You have chosen to ${choice}`);
   };
+
+  
 
   return (
     <div>
@@ -41,7 +45,8 @@ const Tutorial = () => {
       {/* Content */}
       <div className="tutorial h-screen grid place-items-center">
         <div className="grid place-items-center rounded-lg px-[100px] py-[30px] text-center bg-[#E2E2E2] border-[3px] border-black" >
-          <h1 className="font-bold text-2xl pb-[200px]">Welcome to the AI Content Converter!</h1>
+          <h1 className="font-bold text-2xl">Welcome to the AI Content Converter!</h1>
+          <img src={tutorialImage1} alt="Image of prompt page" /> 
           <p>
             This website allows you to convert your teaching material into the format you need or generate fresh content using AI.
           </p>
@@ -51,23 +56,25 @@ const Tutorial = () => {
               <select value={choice} onChange={(e) => setChoice(e.target.value)}>
                 <option value="">Select an option</option>
                 <option value="convert existing material">Convert Existing Material</option>
-                <option value="generate new content">Generate New Content</option>
+{/*                 <option value="generate new content">Generate New Content</option> */}
               </select>
             </label>
           </form>
 
           {choice === 'convert existing material' && (
-            <div>
-              <h2 className="font-bold text-1xl pb-[200px] pt-[50px]">How to Convert Existing Material</h2>
+            <div className="grid place-items-center">
+              <h2 className="font-bold text-1xl pt-[50px]">How to Convert Existing Material</h2>
+              <img src={tutorialImage2} alt="Image of styling options" /> 
               <p>
-                Step 1: Choose the material you want to convert.<br />
-                Step 2: Select the desired format.<br />
-                Step 3: Click 'Convert' and wait for the process to complete.<br />
+                Step 1: Enter a context of the study materials you are uploading.<br />
+                Step 2: Choose the target grade level.<br />
+                Step 3 (optional): Enter a prompt to note any specific request and choose styling options for the presentation.<br />
+                Step 4: Click 'Prompt' and wait for the process to complete.<br />
               </p>
             </div>
           )}
 
-          {choice === 'generate new content' && (
+{/*           {choice === 'generate new content' && (
             <div>
               <h2 className="font-bold text-1xl pb-[200px] pt-[50px]">How to Convert Existing Material</h2>
               <p>
@@ -76,7 +83,7 @@ const Tutorial = () => {
                 Step 3: Click 'Generate' and wait for the AI to create your content.<br />
               </p>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>
