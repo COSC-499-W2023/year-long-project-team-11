@@ -35,6 +35,11 @@ export default function Prompt() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (context === "") {
+
+    }
+
     console.log(prompt);
     console.log(context);
 
@@ -130,6 +135,7 @@ export default function Prompt() {
                   type="file"
                   onChange={(e) => setFile(e.target.files[0])}
                   accept="application/pdf"
+                  required
                 />
               </div>
 
@@ -139,6 +145,7 @@ export default function Prompt() {
                   value={targetGrade}
                   onChange={(e) => setTargetGrade(e.target.value)}
                   className="bg-white border border-black rounded-sm p-1"
+                  required
                 >
                   <option value="" hidden>
                     Target Grade Level
@@ -159,6 +166,7 @@ export default function Prompt() {
                   placeholder="(e.g. a university computer science course)"
                   value={context}
                   onChange={(e) => setContext(e.target.value)}
+                  required
                 />
               </div>
 
