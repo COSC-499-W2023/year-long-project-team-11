@@ -69,8 +69,11 @@ Here is an example of the XML style format, showing each of the 6 preset slide l
 	    <text>Caption</text>
     </slide>
 </slides>
-Please note that you do not need to use every single layout preset, only use the preset you determine to be the most effective at displaying the information for a particular slide.
+Each of the child elements of a slide are a placeholder. 
+Please also note that a content placeholder displays text as bullet points, whereas title/subtitle/text do not. So you will need to wrap each bullet point with a <b></b> tag, as shown in the example.
+Please do not start a bullet point with a hyphen ('-'), please ensure all content in a <content> tag is wrapped in a <b> tag. 
 
+Please note that you do not need to use every single layout preset, only use the preset you determine to be the most effective at displaying the information for a particular slide.
 Here is a description of each of the slide layouts for you to determine their usefulness:
 "title": A slide with a centered title and optional subtitle
 "content": A slide with a title on top and a content body below
@@ -79,14 +82,18 @@ Here is a description of each of the slide layouts for you to determine their us
 "comp": Short for comparison, the same thing as a two content slide, but with a title for each side
 "caption": A slide with a title and caption on the left side, and a main content body on the right
 
-Please also note that a content placeholder displays text as bullet points for every new line, whereas title/subtitle/text do not, so you will need to wrap each bullet point with a <b></b> tag.
-
 Using these preset slides and their placeholder components, please use the original materials and convert them into slides that can be can be used to teach a {targetGrade} class. Output only in the XML format. {prompt}."""
 
 default_template = PromptTemplate.from_template(template)
 
 current_file_path = os.path.dirname(os.path.realpath(__file__))
 GENERATEDCONTENT_DIRECTORY = os.path.join(current_file_path, 'generatedcontent')
+
+BLACK = RGBColor(0, 0, 0)
+WHITE = RGBColor(255, 255, 255)
+LIGHTBLUE = RGBColor(135, 206, 235)
+CREAM = RGBColor(255, 253, 208)
+GREY = RGBColor(128, 128, 128)
 
 def generate_filename(extension='.pptx', directory=GENERATEDCONTENT_DIRECTORY):
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -100,34 +107,34 @@ def generate_filename(extension='.pptx', directory=GENERATEDCONTENT_DIRECTORY):
         counter += 1
     return unique_file_name
 
-def set_background_color(prs):
+def set_background_color(prs, color):
     for master in prs.slide_masters:
         background = master.background
         fill = background.fill
         fill.solid()
-        fill.fore_color.rgb = RGBColor(255, 255, 255)  # Set color to ---- (needs a form value to change here)
+        fill.fore_color.rgb = color  # Set color to ---- (needs a form value to change here)
 
-def set_font(prs):
+def set_font(prs, type):
     for slide in prs.slides:
         for shape in slide.shapes:
             if hasattr(shape, "text_frame") and shape.text_frame:
                 for paragraph in shape.text_frame.paragraphs:
                     for run in paragraph.runs:
-                        run.font.name = 'Arial'  # Set font to ---- (needs a form value to change here)
+                        run.font.name = type  # Set font to ---- (needs a form value to change here)
 
-def set_font_color(prs, r, g, b):
+def set_font_color(prs, color):
     for slide in prs.slides:
         for shape in slide.shapes:
             if hasattr(shape, "text_frame") and shape.text_frame:
                 for paragraph in shape.text_frame.paragraphs:
                     for run in paragraph.runs:
-                        run.font.color.rgb = RGBColor(0, 0, 0)  # Set font color ---- (needs a form value to change)
+                        run.font.color.rgb = color  # Set font color ---- (needs a form value to change)
 
 
-def generate_slides_from_XML(xml_string):
+def generate_slides_from_XML(xml_string, bgcolor, fonttype, fontcolor):
     root = ET.fromstring(xml_string)
     prs = Presentation()
-    set_background_color(prs)
+    set_background_color(prs, bgcolor)
 
     for slide in root.findall('slide'):
         if slide.get('layout') == 'title':
@@ -202,8 +209,8 @@ def generate_slides_from_XML(xml_string):
                     shapes.placeholders[i].text_frame.text = content_string
                 else:
                     shapes.placeholders[i].text_frame.text = element.text
-        set_font(prs)
-        set_font_color(prs)
+    set_font(prs, fonttype)
+    set_font_color(prs, fontcolor)
     file_name = generate_filename()
     file_path = os.path.join(GENERATEDCONTENT_DIRECTORY, file_name)
     prs.save(file_path)
@@ -217,6 +224,9 @@ def ai(request):
         prompt = request.POST.get('prompt')
         ctx = request.POST.get('ctx')
         targetGrade = request.POST.get('targetGrade')
+        bgcolor = request.POST.get('backgroundColor')
+        fonttype = request.POST.get('fontType')
+        fontcolor = request.POST.get('fontColor')
 
         # extract text
         pdf_reader = PdfReader(uploaded_file)
@@ -243,7 +253,25 @@ def ai(request):
             chain = load_qa_chain(llm, chain_type="stuff")
             response = chain.run(input_documents=docs, question=default_template.format(ctx=ctx, targetGrade=targetGrade, prompt=prompt))
             
-            file_name = generate_slides_from_XML(response)
+            apply_bgcolor = WHITE
+            if bgcolor == 'black':
+                apply_bgcolor = BLACK
+            elif bgcolor == 'white':
+                apply_bgcolor = WHITE
+            elif bgcolor == 'lightblue':
+                apply_bgcolor = LIGHTBLUE
+            elif bgcolor == 'cream':
+                apply_bgcolor = CREAM
+            elif bgcolor == 'grey':
+                apply_bgcolor = GREY
+
+            apply_fontcolor = BLACK
+            if fontcolor == 'black':
+                apply_fontcolor = BLACK
+            elif fontcolor == 'white':
+                apply_fontcolor = WHITE
+
+            file_name = generate_slides_from_XML(response, apply_bgcolor, fonttype, apply_fontcolor)
             return JsonResponse({'filename' : file_name, 'response': response})
         else:
             return JsonResponse({'response': 'No context specified'})
