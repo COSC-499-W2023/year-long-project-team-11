@@ -34,3 +34,9 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     objects = AppUserManager()
     def __str__(self):
         return self.username
+
+class AppSaveText(models.Model):
+    id= models.AutoField(primary_key= True)
+    savecontent= models.TextField()
+    def __str__(self):
+        return self.savecontent

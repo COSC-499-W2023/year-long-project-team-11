@@ -125,88 +125,116 @@ export default function CreateAccount() {
         return err;
       });
 
-    if (responseCode != 200) {
+    if (responseCode !== 200) {
       alert("Field is invalid!");
       return;
-    } else {
-      alert("Success!");
     }
     console.log("Successfully created an account: " + email);
+    window.location.href = "/Login";
   };
 
   return (
-    <div className="h-screen grid place-items-center">
-      <div className="px-[100px] py-[30px] grid place-items-center rounded-lg border-[3px] border-black bg-[#E2E2E2] text-center">
-        <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          {/* Username */}
-          <p className="text-sm text-red-500">&nbsp;{errors.firstName}</p>
-          <input
-            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-            type="text"
-            name="username"
-            placeholder="Username"
-            maxLength={100}
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    <div>
+      {/* Nav Bar */}
+      <nav class="bg-[#E2E2E2]">
+          <div class="flex justify-between mr-5 ml-2 py-2">
+              {/* General Area (Left side) */}
+              <div class="flex items-center space-x-1">
+                  {/* <div class="font-bold">(Logo) EduSynth</div> */}
+                  <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
+              </div>
 
-          {/* Email */}
-          <p className="text-sm text-red-500">&nbsp;{errors.email}</p>
-          <input
-            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-            type="text"
-            name="email"
-            placeholder="Email"
-            maxLength={100}
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+              <div>
+                <p className="text-[#44566B] py-3 px-3">{localStorage.getItem("username")}</p>
+              </div>
 
-          {/* Password */}
-          <p className="text-sm text-red-500">&nbsp;{errors.password}</p>
-          <input
-            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-            type="password"
-            name="password"
-            placeholder="Password"
-            maxLength={100}
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+              {/* User Area (Right side) */}
+              <div class="flex items-center space-x-1">
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/SignUp">Sign Up</a>
+              </div>
+          </div>
+      </nav>
 
-          {/* Confirm Password */}
-          <p className="text-sm text-red-500">&nbsp;{errors.confirmPassword}</p>
-          <input
-            className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            maxLength={100}
-            required
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+      {/* Content */}
+      <div className="h-screen grid place-items-center">
+        <div className="px-[100px] py-[30px] grid place-items-center rounded-lg border-[3px] border-black bg-[#E2E2E2] text-center">
+          <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
+          <form onSubmit={handleSubmit}>
+            {/* Username */}
+            <p className="text-sm text-red-500">&nbsp;{errors.firstName}</p>
+            <input
+              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+              type="text"
+              name="username"
+              placeholder="Username"
+              maxLength={100}
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
 
-          <p className="text-sm pt-[2px] pb-[20px]">
-            Already have an account?&#160;
-            <Link to={"/Login"}>
-              <a href="#" className="text-[#44566B] underline">
-                Sign In
-              </a>
-            </Link>
-          </p>
+            {/* Email */}
+            <p className="text-sm text-red-500">&nbsp;{errors.email}</p>
+            <input
+              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+              type="text"
+              name="email"
+              placeholder="Email"
+              maxLength={100}
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-          <button
-            className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]"
-            type="submit"
-          >
-            Sign Up
-          </button>
-        </form>
+            {/* Password */}
+            <p className="text-sm text-red-500">&nbsp;{errors.password}</p>
+            <input
+              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+              type="password"
+              name="password"
+              placeholder="Password"
+              maxLength={100}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            {/* Confirm Password */}
+            <p className="text-sm text-red-500">&nbsp;{errors.confirmPassword}</p>
+            <input
+              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              maxLength={100}
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+
+            <p className="text-sm pt-[2px] pb-[20px]">
+              Already have an account?&#160;
+              <Link to={"/Login"}>
+                <a href="#" className="text-[#44566B] underline">
+                  Sign In
+                </a>
+              </Link>
+            </p>
+
+            <button
+              className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

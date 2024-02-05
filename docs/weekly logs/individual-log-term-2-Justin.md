@@ -13,5 +13,4 @@ This week I completed my merge of my AI API feature, we were previously having t
 
 # Week 1 (Jan 8 - Jan 14)
 After talking with other teams during the Thursday session, I was informed of Python libraries that other teams were using for slide generation. So this week I ended up mostly researching those libraries for slide generation (python-pptx), as well as looking at the OpenAI assistant API which another group was using to process file uploads. 
-
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/cd3e0ea9-eac7-4eff-a2cf-af166c1a112a)
