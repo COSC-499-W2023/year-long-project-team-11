@@ -17,3 +17,8 @@ There was an issue with the tutorial page not being linked so I added the links 
 This week we worked on the feedback we received upon the use of our web application and we were brainstorming upon the potential fixes for them.
 Thus, I worked on improving the theming features and potential issues regarding it.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/c4732616-d0b2-4ea0-b309-99f457ffd0ac)
+
+# Week 5
+I did not do too much this week regarding coding or related work as I was preparing for midterms but I planned out on ideas to work on regarding,
+future changes to implement and plan it all out.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/790dfd0a-f9b5-4acb-99bf-6accefa33a86)
