@@ -1,3 +1,7 @@
+# Week 5 (Feb 5 - Feb 11)
+This week I completed my feature of implementing a loading spinner for the AI generation page, although minor adjustments can still be made if we want to. I also worked on my feature of implementing re-generation of generated content. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/81b241aa-5f5d-4bee-ba66-566c5ef3e73e)
+
 # Week 4 (Jan 29 - Feb 4)
 This week I revamped the frontend for the Prompt.js page, implemented slide themes, and worked on getting both AI generation and user authentication working on the same build in time for our firs peer review. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/dee5bb65-a8c3-4d4f-af74-8e44ec3d8add)
