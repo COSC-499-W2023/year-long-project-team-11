@@ -1,4 +1,8 @@
 # ===== TERM 2 =====
+# Week 5 (February 5-February 11)
+This week we are continuing finishing our features as well as we had new features lined up to finish. I was too busy to do work so I was not able to commit my pushes. I just need to add in the saved content to the user profile and add a change image and now I can finally do testing. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/a00915c0-44ee-4caa-960c-1ceef8432a79)
+
 # Week 4 (January 29-February 4)
 This week we had the first peer testing of our website. I learned a lot from testing the first team's food app and the second team's AI generation website.= Before the day of presentation, I worked on adding the info of the user profile by getting info from a user in the database. I have also added a favicon image and the logo for the website. I had tons of help troubleshooting by the whole group as we were trying to find out why our docker was having errors in running some pages. Next week, I need to do testing and fix errors that came from peer feedback and peer testing.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/efb0c423-2b8c-49ee-a14c-fce1f31e26ea)
