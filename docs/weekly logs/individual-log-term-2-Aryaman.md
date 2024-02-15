@@ -6,3 +6,19 @@ This week I was assigned to work on creating and adding themes to the pages as w
 # Week 2
 This week the team decided upon the deliverables required for the project and I was assigned a task regarding implementing themes for the slides being generated as well as adding upon the search feature for the user profile page regarding the saved content.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/13c37cc6-f4d6-46c0-a86d-090c7ab986cc)
+
+
+# Week 3
+This week I worked on the code regarding adding a theme to the slides that are being generated so created a new branch called slide generation and am working on it.
+There was an issue with the tutorial page not being linked so I added the links needed.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/caec6ad3-775a-4a25-ae81-d045fa3a691c)
+
+# Week 4
+This week we worked on the feedback we received upon the use of our web application and we were brainstorming upon the potential fixes for them.
+Thus, I worked on improving the theming features and potential issues regarding it.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/c4732616-d0b2-4ea0-b309-99f457ffd0ac)
+
+# Week 5
+I did not do too much this week regarding coding or related work as I was preparing for midterms but I planned out on ideas to work on regarding,
+future changes to implement and plan it all out.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/790dfd0a-f9b5-4acb-99bf-6accefa33a86)
