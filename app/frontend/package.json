@@ -12,6 +12,7 @@
     "js-cookie": "^3.0.5",
     "mysql": "^2.18.1",
     "react": "^18.2.0",
+    "react-doc-viewer": "^0.1.5",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
