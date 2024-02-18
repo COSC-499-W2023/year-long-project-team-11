@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Document, Packer, Paragraph } from 'docx';
 import { useLocation } from 'react-router-dom';
-import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+// import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import FileViewer from "offices-viewer";
 
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
@@ -20,12 +21,6 @@ const SavedContent = () => {
   const location = useLocation();
   const data = location.state;
 
-  const docs = [
-    { uri: `http://localhost:8000/api/presentations/${filename}` }, // Local File
-  ];
-
-
-
   useEffect(() => {
     if (data) {
       console.log(data)
@@ -33,8 +28,16 @@ const SavedContent = () => {
       const filename = data.filename;
       setParagraph(output);
       setFilename(filename);
+      
     }
   }, [data]);
+
+  const file = `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`;
+  const fileType = "pptx";
+
+  const docs = [
+    { uri: `http://localhost:8000/api/presentations/${data.filename}` }, // Local File
+  ];
 
   return (
     <div>
@@ -71,7 +74,11 @@ const SavedContent = () => {
           <p className="text-lg mb-4">Content Type</p>
           <div className="my-8">
             <div>
-              <DocViewer documents={docs} />
+              <DocViewer documents={ [ { uri: `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`, fileType: "pptx" } ] } pluginRenderers={DocViewerRenderers} />
+              <FileViewer 
+                fileType={fileType}
+                filePath={file}
+              />
             </div>
           </div>
           <div className="flex justify-between items-center">
