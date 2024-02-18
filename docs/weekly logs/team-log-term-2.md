@@ -46,3 +46,31 @@ This week, the team successfully managed to complete the implementation of our A
 
 <b>Burn Up Chart</b>
 <img width="895" alt="Screenshot 2024-01-28 at 10 32 38 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/ddfd6e1d-4b05-458d-836f-c30dac1b12cb">
+
+----------------------------------------------------
+<h1>Week 4</h1>
+<b>List of Tasks</b>
+<img width="1101" alt="Screenshot 2024-02-04 at 10 22 41 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/e8bc2a78-72e0-4208-acb8-4e98694e8c7b">
+
+This week, the team spent most of our time testing code and performing bug fixes where necessary in preparation for the Thursday peer review session, though a few additions were made to the site including but not limimited to: adding logos and favicons, improved/easier to understand navigation, making the tutorial page more understandable, and improving the prompt a.i. to return better results.
+
+On Thursday, the team walked a few other participants through a hueristic evaluation of our site while taking notes on what works, and what needs to be better. The team also reviewed the sites of others teams as well, providing constructive feedback where applicable.
+
+<b>Kanban Board</b>
+<img width="1085" alt="Screenshot 2024-02-04 at 10 22 15 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/9cd05602-7030-4bd1-bbc8-274e89f455a3">
+
+<b>Burn Up Chart</b>
+<img width="909" alt="Screenshot 2024-02-04 at 10 22 59 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/b15cfa56-197e-4254-9c05-f5b18285d2d4">
+
+----------------------------------------------------
+<h1>Week 5</h1>
+<b>List of Tasks</b>
+<img width="1108" alt="Screenshot 2024-02-11 at 9 28 27 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/63763d1e-df0f-4c59-b25d-9d63f35a5b98">
+
+This week, the group as a whole had midterms in other classess which sucked up most of our time. We did however begin work on implementing django tests, as well as a loading screen for the prompt page to let users know when the A.I. is thinking, as well as prevent them from asking for a new prompt while the original one is still generating. The largest part of the work done however, is that we converged all the feedback from last weeks evaluations into a set of tasks/features that need to be accomplished. These tasks are now in progress.
+
+<b>Kanban Board</b>
+<img width="1077" alt="Screenshot 2024-02-11 at 9 28 04 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/7328232a-f6a7-469b-8e35-527c30e3fa0f">
+
+<b>Burn Up Chart</b>
+<img width="911" alt="Screenshot 2024-02-11 at 9 28 41 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/76402247-f59c-4433-84a6-1457939d3a8c">

@@ -69,8 +69,11 @@ Here is an example of the XML style format, showing each of the 6 preset slide l
 	    <text>Caption</text>
     </slide>
 </slides>
-Please note that you do not need to use every single layout preset, only use the preset you determine to be the most effective at displaying the information for a particular slide.
+Each of the child elements of a slide are a placeholder. 
+Please also note that a content placeholder displays text as bullet points, whereas title/subtitle/text do not. So you will need to wrap each bullet point with a <b></b> tag, as shown in the example.
+Please do not start a bullet point with a hyphen ('-'), please ensure all content in a <content> tag is wrapped in a <b> tag. 
 
+Please note that you do not need to use every single layout preset, only use the preset you determine to be the most effective at displaying the information for a particular slide.
 Here is a description of each of the slide layouts for you to determine their usefulness:
 "title": A slide with a centered title and optional subtitle
 "content": A slide with a title on top and a content body below
@@ -78,9 +81,6 @@ Here is a description of each of the slide layouts for you to determine their us
 "two": Short for two-content, a slide with a title on top, and two side by side content bodies
 "comp": Short for comparison, the same thing as a two content slide, but with a title for each side
 "caption": A slide with a title and caption on the left side, and a main content body on the right
-
-Please also note that a content placeholder displays text as bullet points for every new line, whereas title/subtitle/text do not, so you will need to wrap each bullet point with a <b></b> tag, as shown in the example.
-Please do not start a bullet point with a hyphen ('-'), please ensure all content in a <content> tag is wrapped in a <b> tag. 
 
 Using these preset slides and their placeholder components, please use the original materials and convert them into slides that can be can be used to teach a {targetGrade} class. Output only in the XML format. {prompt}."""
 
