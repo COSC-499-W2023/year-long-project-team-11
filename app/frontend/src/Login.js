@@ -5,10 +5,40 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+  // // Is the user authenticated?
+  // if (sessionStorage.getItem('loggedIn') === true) {
+  //   window.location.href("/Prompt.js");
+  // }
+  // // Is their authentication token still valid?
+  // else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+  //     window.location.href("/Prompt.js");
+  // }
+  // else {
+  // // The user is authenticated and the authentication has not expired.
+  // }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  // if (sessionStorage.getItem('loggedIn') == true) {
+    // if (false) {
+    // document.getElementById('login-option').style.display = 'none'; //Will hide
+    // document.getElementById('logout-option').style.display = 'block'; //Will show
+    // document.getElementById('profile-option').style.display = 'block'; //Will show
+    // document.getElementById('signup-option').style.display = 'none'; //Will hide
+  // } else {
+    // document.getElementById('login-option').style.display = 'block'; //Will show
+    // document.getElementById('logout-option').style.display = 'none'; //Will hide
+    // document.getElementById('profile-option').style.display = 'none'; //Will show
+    // document.getElementById('signup-option').style.display = 'block'; //Will hide
+  // }
+
+  // document.getElementById('login-option').style.display = 'block';
+  // document.getElementById('logout-option').style.display = 'block';
+  // document.getElementById('profile-option').style.display = 'block';
+  // document.getElementById('signup-option').style.display = 'block';
 
   // const cors = require('cors');
   // app.use(cors());
@@ -142,10 +172,10 @@ export default function Login() {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-                  <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Login">Log In</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+                  <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a id='login-option' className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Login">Log In</a>
+                  <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
               </div>
           </div>
       </nav>
