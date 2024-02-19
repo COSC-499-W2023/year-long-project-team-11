@@ -1,5 +1,13 @@
 from django.test import TestCase
 from app.models import AppUser
+from django.test import Client
+from django.urls import reverse
+from rest_framework.test import APIClient
+from rest_framework import status
+# from django.test import TestCase
+# from django.urls import reverse
+# from rest_framework.test import APIClient
+# from rest_framework import status
 
 # Create your tests here.
 class UserTestCase(TestCase):
@@ -16,3 +24,41 @@ class UserTestCase(TestCase):
         self.assertEqual(tester1.username, 'Test1')
         self.assertEqual(tester2.username, 'Test2')
         self.assertNotEqual(tester2.username, 'Test4')
+
+class LoginTestCase(TestCase):
+    def setUp(self):
+        # Setup any necessary data such as creating users in the database
+        self.client = APIClient()
+
+    def test_login_success(self):
+        # Test successful login
+        url = reverse('token_obtain_pair')  # Assuming you're using DRF JWT authentication
+        data = {'email': 'test@example.com', 'password': 'password123'}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        # Add assertions to check if access and refresh tokens are returned in response data
+
+    def test_login_invalid_credentials(self):
+        # Test login with invalid credentials
+        url = reverse('token_obtain_pair')
+        data = {'email': 'invalid@example.com', 'password': 'invalidpassword'}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+        # Add assertions to check error message or absence of tokens in response data
+
+    # Add more test cases as needed
+        
+class LogoutTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_logout_clears_local_storage_and_redirects(self):
+        response = self.client.post(reverse('logout'))  # Assuming '/logout' is the URL for logging out
+
+        # Assert that the response status code is 302 (redirect)
+        self.assertEqual(response.status_code, 302)
+
+        # Assert that local storage is cleared
+        self.assertNotIn('username', self.client.session)  # Assuming username is stored in session        
