@@ -17,5 +17,10 @@ This week we discussed about getting our individual things completed and bug fix
 This week we discussed about making final tests and runs before peer testing.  The feedback given after the peer testing are discussed and will be implemented in the following weeks. I mainly worked with the others to ensure my part and everyone's else parts were working as intended. In the upcoming weeks I will try to create automated testing and work on creating saving content page that allows people to view and delete generated content fully. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/9bd3ae3a-b35b-4065-b312-d41cbcb2177d)
 
+# Individual Log Week 5
+This week we discussed about incorporating the feedback given by the users and professor. For my task I continued working on creating some more API calls for save content but also researched upon doing the automated testing. I also added a react doc viewer on the save content page so users can view their content easier. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/6f793ce9-9b24-4f0c-91fd-1cd6274ab9ca)
+
+
 
 
