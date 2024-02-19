@@ -40,3 +40,9 @@ class AppSaveText(models.Model):
     savecontent= models.TextField()
     def __str__(self):
         return self.savecontent
+
+class AppSaveBlob(models.Model):
+    id=models.AutoField(primary_key= True)
+    file= models.BinaryField()
+    timestamp=models.DateTimeField(auto_now_add=True)
+    
