@@ -20,6 +20,9 @@ This week we discussed about making final tests and runs before peer testing.  T
 # Individual Log Week 5
 This week we discussed about incorporating the feedback given by the users and professor. For my task I continued working on creating some more API calls for save content but also researched upon doing the automated testing. I also added a react doc viewer on the save content page so users can view their content easier. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/6f793ce9-9b24-4f0c-91fd-1cd6274ab9ca)
+# Individual Log Week 6
+This is the week going into reading break. Sadly I havent worked much this week but my plan is to some more work to make up for previous week. Currently I have done some basic backend setup for save content. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/f3d93b50-df8f-4d5e-922d-ce03d56029a6)
 
 
 

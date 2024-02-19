@@ -22,3 +22,9 @@ Thus, I worked on improving the theming features and potential issues regarding 
 I did not do too much this week regarding coding or related work as I was preparing for midterms but I planned out on ideas to work on regarding,
 future changes to implement and plan it all out.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/790dfd0a-f9b5-4acb-99bf-6accefa33a86)
+
+# Week 6 
+This week I worked upon implementing a doc viewer feature that lets the user preview the pptx before downloading it.
+However, I did run into some trouble and would need to find a workaround for the issue.
+I worked upon this code with Justin and might have to let the user preview a pdf or image version as the doc viewer does not allow it unless the website is live the code does work.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/347eea94-6f98-461b-9b28-8ae90875fff9)

@@ -1,3 +1,8 @@
+# Week 6 (Feb 12 - Feb 18)
+This week I worked with Arya on the preview feature, as well as the API key credit wraning feature. Arya and I ran into issues using react-doc-viewer with pptx files, since the files were being served by localhost, which was not https, and the library used Microsoft's "Office Web Viewer" which wouldn't allow connections to non https domains. This meant that the feature would not work in development. We are considering options to work around this. After doing research, there is no API way of getting the remaining credits for an API key, meaning that the only implementation would be to estimate usage, which would not be accurate. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/78c7b33b-d58a-46e4-baba-2e73ef1a9f95)
+
+
 # Week 5 (Feb 5 - Feb 11)
 This week I completed my feature of implementing a loading spinner for the AI generation page, although minor adjustments can still be made if we want to. I also worked on my feature of implementing re-generation of generated content. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/81b241aa-5f5d-4bee-ba66-566c5ef3e73e)
