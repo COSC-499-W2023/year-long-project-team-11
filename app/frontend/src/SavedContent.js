@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Document, Packer, Paragraph } from 'docx';
 import { useLocation } from 'react-router-dom';
-// import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import FileViewer from "offices-viewer";
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
@@ -75,10 +74,6 @@ const SavedContent = () => {
           <div className="my-8">
             <div>
               <DocViewer documents={ [ { uri: `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`, fileType: "pptx" } ] } pluginRenderers={DocViewerRenderers} />
-              <FileViewer 
-                fileType={fileType}
-                filePath={file}
-              />
             </div>
           </div>
           <div className="flex justify-between items-center">
