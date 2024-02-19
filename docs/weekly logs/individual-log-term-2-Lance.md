@@ -1,4 +1,8 @@
 # ===== TERM 2 =====
+# Week 6 (February 12-February 18)
+This week I added test cases for login and logout, for next week I need to finish making 10 testing on tutorial, login, logout, and create user. The problem was looking through the django testing page and trying to use the correct command for testing
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/03876c23-dd62-4d06-9af4-475fc7aac41f)
+
 # Week 5 (February 5-February 11)
 This week we are continuing finishing our features as well as we had new features lined up to finish. I was too busy to do work so I was not able to commit my pushes. I just need to add in the saved content to the user profile and add a change image and now I can finally do testing. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/a00915c0-44ee-4caa-960c-1ceef8432a79)
