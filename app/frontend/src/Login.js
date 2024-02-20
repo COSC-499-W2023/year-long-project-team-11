@@ -114,7 +114,7 @@ export default function Login() {
     axios.defaults.headers.common["Authorization"] = "Bearer ${data['access']}";
 
     window.location.href = "/Prompt";
-    // window.open("/");
+    // window.open("/Prompt");
 
     // ==========================================================================================
 
@@ -172,9 +172,9 @@ export default function Login() {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                  <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a id='profile-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
                   <a id='login-option' className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Login">Log In</a>
-                  <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a id='logout-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
                   <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
               </div>
           </div>

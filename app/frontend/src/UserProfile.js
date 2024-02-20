@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./css/login.css";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Link } from "react-router-dom";
 
 export default function UserProfile() {
+
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
       // Fetch the username using Axios
-      axios.get("http://localhost:8000/")
+      axios.get("http://localhost:8000/", {
+        headers: {
+            'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
+        }
+    })
       .then(response => {
         
           setUserData(response.data[0]);
       })
       .catch(error => {
-          console.error("Error fetching user data:", error);
+          if (error.code === "ERR_BAD_REQUEST") {
+            localStorage.clear();
+            window.location.href = "/Login";
+          } else {
+            console.error("Error fetching user data:", error);
+          }
       });
 }, []); // The empty dependency array ensures that the effect runs only once after the initial render
 // 
@@ -39,9 +49,9 @@ export default function UserProfile() {
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
                   <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/UserProfile">Profile</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
               </div>
           </div>
         </nav>

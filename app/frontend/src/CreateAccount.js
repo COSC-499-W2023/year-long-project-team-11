@@ -153,9 +153,9 @@ export default function CreateAccount() {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
                   <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/SignUp">Sign Up</a>
               </div>
           </div>
