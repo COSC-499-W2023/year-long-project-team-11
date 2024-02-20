@@ -26,6 +26,8 @@ GRANT
 ON edusynth.* 
 TO 'webuser' @'%';
 
+
+
 FLUSH PRIVILEGES;
 
 
