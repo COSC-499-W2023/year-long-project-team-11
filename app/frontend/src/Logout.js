@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
 export default function Logout() {
+const [userData, setUserData] = useState({});
+
+  // See if user is logged in
+  useEffect(() => {
+    // Fetch the username using Axios
+    axios.get("http://localhost:8000/", {
+      headers: {
+          'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
+      }
+    })
+    .then(response => {
+        setUserData(response.data[0]);
+    })
+    .catch(error => {
+        if (error.code === "ERR_BAD_REQUEST") {
+          // User is not logged in
+          window.location.href = "/Login";
+        } else {
+          // User is logged in
+        }
+    });
+  }, []); 
+
   const handleLogout = async (e) => {
     try {
       localStorage.clear();

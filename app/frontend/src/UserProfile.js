@@ -13,21 +13,20 @@ export default function UserProfile() {
         headers: {
             'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
         }
-    })
+      })
       .then(response => {
-        
           setUserData(response.data[0]);
       })
       .catch(error => {
           if (error.code === "ERR_BAD_REQUEST") {
-            localStorage.clear();
+            // User is not logged in
             window.location.href = "/Login";
           } else {
             console.error("Error fetching user data:", error);
           }
       });
-}, []); // The empty dependency array ensures that the effect runs only once after the initial render
-// 
+    }, []);
+
     return (
       <div>
       {/* Nav Bar */}

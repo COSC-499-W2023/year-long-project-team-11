@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -13,6 +13,11 @@ export default function CreateAccount() {
     password: "",
     confirmPassword: "",
   });
+
+  // See if user is logged in
+  if (localStorage.getItem('loggedIn') == 'true') {
+    window.location.href = "/Prompt";
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,7 +109,6 @@ export default function CreateAccount() {
       confirmPassword: "",
     }));
 
-    // ====================== ADD FUNCTIONALITY HERE ======================
     const user = {
       email: email,
       username: username,
