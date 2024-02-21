@@ -27,7 +27,7 @@ const SavedContent = () => {
       const filename = data.filename;
       setParagraph(output);
       setFilename(filename);
-      
+
     }
   }, [data]);
 
@@ -73,7 +73,7 @@ const SavedContent = () => {
           <p className="text-lg mb-4">Content Type</p>
           <div className="my-8">
             <div>
-              <DocViewer documents={ [ { uri: `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`, fileType: "pptx" } ] } pluginRenderers={DocViewerRenderers} />
+              <DocViewer documents={[{ uri: `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`, fileType: "pptx" }]} pluginRenderers={DocViewerRenderers} />
             </div>
           </div>
           <div className="flex justify-between items-center">

@@ -16,10 +16,14 @@ import os
 
 # Create your views here.
 
-template = """You have received text parsed from {ctx}. Your task is to output new text for a new PowerPoint presentation to be used for other age groups.
-In order to generate new slides, I need you to output in an XML style format.
-We will be generating the slides by using preset PowerPoint slide layouts. Each of these slide layouts has a list of placeholders that you will populate with text.
-Here is an example of the XML style format, showing each of the 6 preset slide layouts:
+system_prompt = """You are an agent whose task is to generate text in order to generate a PowerPoint presentation. 
+
+In order to do this, you need generate text in an XML style format.
+
+You will be using preset slide layouts. Each of these slide layouts has a list of placeholders that you will populate with text.
+
+Here is an example of the format, showing each of the 6 preset slide layouts:
+
 <slides>
     <slide layout="title">
         <title>Slide Title</title>
@@ -69,11 +73,9 @@ Here is an example of the XML style format, showing each of the 6 preset slide l
 	    <text>Caption</text>
     </slide>
 </slides>
-Each of the child elements of a slide are a placeholder. 
-Please also note that a content placeholder displays text as bullet points, whereas title/subtitle/text do not. So you will need to wrap each bullet point with a <b></b> tag, as shown in the example.
-Please do not start a bullet point with a hyphen ('-'), please ensure all content in a <content> tag is wrapped in a <b> tag. 
 
 Please note that you do not need to use every single layout preset, only use the preset you determine to be the most effective at displaying the information for a particular slide.
+
 Here is a description of each of the slide layouts for you to determine their usefulness:
 "title": A slide with a centered title and optional subtitle
 "content": A slide with a title on top and a content body below
@@ -82,7 +84,60 @@ Here is a description of each of the slide layouts for you to determine their us
 "comp": Short for comparison, the same thing as a two content slide, but with a title for each side
 "caption": A slide with a title and caption on the left side, and a main content body on the right
 
-Using these preset slides and their placeholder components, please use the original materials and convert them into slides that can be can be used to teach a {targetGrade} class. Output only in the XML format. {prompt}."""
+Please also note that a content placeholder displays text as bullet points for every new line, whereas title/subtitle/text do not, so you will need to wrap each bullet point with a `<b>` tag.
+
+Here is an example of what you need to produce:
+<slides>
+    <slide layout="title">
+        <title>Understanding Subject</title>
+        <subtitle>Looking at Subject</subtitle>
+    </slide>
+    <slide layout="content">
+        <title>What is Topic?</title>
+        <content>
+			<b>Point 1</b>
+			<b>Point 2</b>
+		</content>
+    </slide>
+    <slide layout="content">
+        <title>Why is topic Important?</title>
+        <content>
+			<b>Helps us learn new things</b>
+		</content>
+    </slide>
+    <slide layout="comp">
+	    <title>Topic</title>
+	    <text>What is Topic?</text>
+	    <content>
+			<b>Point 1</b>
+			<b>Point 2</b>
+	    </content>
+	    <text>Why is it ___?</text>
+	    <content>
+			<b>Point 1</b>
+			<b>Point 2</b>
+	    </content>
+    </slide>
+    <slide layout="content">
+        <title>What is Topic?</title>
+        <content>
+			<b>Point 1</b>
+            <b>Example: </b>
+		</content>
+    </slide>
+    <slide layout="title">
+        <title>Recap: </title>
+        <subtitle>Understanding</subtitle>
+    </slide>
+</slides>
+
+Please leave out any string used in markdown e.g. ```xml```
+"""
+
+template = """{system}
+You have received text parsed from {ctx}. Your task is to adapt this material into new materials for a presentation can be used to assist learning for other age groups.
+
+Please use the original materials and convert them into slides that can be can be used to teach a grade {targetGrade} class. {prompt}."""
 
 default_template = PromptTemplate.from_template(template)
 
@@ -129,7 +184,6 @@ def set_font_color(prs, color):
                 for paragraph in shape.text_frame.paragraphs:
                     for run in paragraph.runs:
                         run.font.color.rgb = color  # Set font color ---- (needs a form value to change)
-
 
 def generate_slides_from_XML(xml_string, bgcolor, fonttype, fontcolor):
     root = ET.fromstring(xml_string)
@@ -248,10 +302,11 @@ def ai(request):
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 		
         if ctx:
-            docs = knowledge_base.similarity_search(default_template.format(ctx=ctx, targetGrade=targetGrade, prompt=prompt))
-            llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.8)
+            docs = knowledge_base.similarity_search(default_template.format(system=system_prompt, ctx=ctx, targetGrade=targetGrade, prompt=prompt))
+            llm = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0.8)
             chain = load_qa_chain(llm, chain_type="stuff")
-            response = chain.run(input_documents=docs, question=default_template.format(ctx=ctx, targetGrade=targetGrade, prompt=prompt))
+            response = chain.run(input_documents=docs, question=default_template.format(system=system_prompt, ctx=ctx, targetGrade=targetGrade, prompt=prompt))
+            print(response)
             
             apply_bgcolor = WHITE
             if bgcolor == 'black':
@@ -285,3 +340,6 @@ def serve_presentation(request, file_name):
         return FileResponse(open(file_path, 'rb'), as_attachment=download)
     else:
         raise Http404("The requested file does not exist")
+    
+def regenerate(request):
+    return HttpResponse("Listening for requests on regenerate...")
