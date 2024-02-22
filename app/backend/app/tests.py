@@ -1,14 +1,18 @@
 from django.test import TestCase
 from app.models import AppUser
 from django.contrib.auth.models import User
+
 from django.test import Client
-# from django.urls import reverse
-# from rest_framework.test import APIClient
-# from rest_framework import status
-# from django.test import TestCase
-# from django.urls import reverse
-# from rest_framework.test import APIClient
-# from rest_framework import status
+from django.urls import reverse
+from rest_framework.test import APIClient
+from rest_framework import status
+
+from rest_framework.test import APITestCase
+from rest_framework.authtoken.models import Token
+
+import json
+from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
 
 
@@ -68,34 +72,6 @@ class UserTestCase(TestCase):
         user_count_after = AppUser.objects.count()
         # Ensure the user count remains unchanged
         self.assertEqual(user_count_after, user_count_before)
-
-    def test_delete_specific_user(self):
-        """Test deleting a specific user when there are multiple users with the same username"""
-        username_to_delete = "Test_duplicate"  # Assuming there are multiple users with this username
-        user_count_before = AppUser.objects.count()
-        
-        # Retrieve the users with the given username
-        users_to_delete = AppUser.objects.filter(username=username_to_delete)
-        
-        # Ensure there is at least one user with the given username
-        self.assertTrue(users_to_delete.exists(), "No user found with the specified username")
-
-        # Assuming you want to delete the first user with the given username
-        user_to_delete = users_to_delete.first()
-        user_id_to_delete = user_to_delete.id
-        
-        user_to_delete.delete()  # Delete the user
-        
-        user_count_after = AppUser.objects.count()
-        
-        # Ensure only one user with the given username is deleted
-        self.assertEqual(user_count_after, user_count_before - 1)
-        
-        # Ensure no other user with the same username remains in the database
-        self.assertFalse(AppUser.objects.filter(username=username_to_delete).exists())
-        
-        # Ensure the correct user is deleted by checking its ID
-        self.assertFalse(AppUser.objects.filter(id=user_id_to_delete).exists())
 
     def test_delete_specific_user(self):
         """Test deleting a specific user when there are multiple users with the same username"""
@@ -191,8 +167,9 @@ class AppUserTestCase(TestCase):
         with self.assertRaises(ValidationError) as context:
             user = AppUser(username="Test4", email="invalid_email", password="")
             user.full_clean()  # Trigger validation
-            #full_clean() validates all fields on the `user` instance checking things such as field types(charfield for strings, integerfield for integers), field constraints(min and max values for charfield and integerfield), and field validators (validate_email)
-            #if there are validation errors during this validation process, Django raises ValidationError with details about the error.
+
+        # full_clean() validates all fields on the `user` instance checking things such as field types(charfield for strings, integerfield for integers), field constraints(min and max values for charfield and integerfield), and field validators (validate_email)
+        # if there are validation errors during this validation process, Django raises ValidationError with details about the error.
         
 
     def test_blank_email(self):
@@ -208,48 +185,49 @@ class AppUserTestCase(TestCase):
             user.full_clean()  # Trigger validation
 
 
+# ================ LOG IN TEST CASES ================
 
-
-
-
-
-
-
-        
 # class LoginTestCase(TestCase):
 #     def setUp(self):
-#         # Setup any necessary data such as creating users in the database
-#         self.client = APIClient()
+#         # Create a test user
+#         self.user = AppUser.objects.create(email="test@example.com", username="testuser")
 
-#     def test_login_success(self):
-#         # Test successful login
-#         url = reverse('token_obtain_pair')  # Assuming you're using DRF JWT authentication
-#         data = {'email': 'test@example.com', 'password': 'password123'}
-#         response = self.client.post(url, data, format='json')
-#         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-#         # Add assertions to check if access and refresh tokens are returned in response data
-
-#     def test_login_invalid_credentials(self):
-#         # Test login with invalid credentials
-#         url = reverse('token_obtain_pair')
-#         data = {'email': 'invalid@example.com', 'password': 'invalidpassword'}
-#         response = self.client.post(url, data, format='json')
-#         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
-#         # Add assertions to check error message or absence of tokens in response data
-
-#     # Add more test cases as needed
+#     def test_login_with_valid_credentials(self):
+#         # Define the login URL
+#         login_url = 'http://localhost:3000/Login'  # Adjust this to match your actual login URL
         
+#         # Define valid credentials
+#         valid_credentials = {'email': 'test@example.com', 'password': 'password123'}
+
+#         # Make a POST request to login endpoint with valid credentials
+#         response = self.client.post(login_url, json.dumps(valid_credentials), content_type='application/json')
+
+#         # Assert that the response status code is 200 (or any other expected code)
+#         self.assertEqual(response.status_code, 200)
+
+#         # Optionally, assert any other expected behavior in the response
+#         # For example, you might check if the response contains an access token or a success message
+
+# ================ LOG OUT TEST CASES ================
+            
 # class LogoutTestCase(TestCase):
 #     def setUp(self):
-#         self.client = Client()
+#         # Create a test user
+#         self.user = AppUser.objects.create(email="test@example.com", username="testuser")
 
-#     def test_logout_clears_local_storage_and_redirects(self):
-#         response = self.client.post(reverse('logout'))  # Assuming '/logout' is the URL for logging out
+#     def test_logout(self):
+#         # Log in the user
+#         self.client.force_login(self.user)
+
+#         # Simulate calling the logout endpoint with Axios
+#         response = self.client.post(reverse('logout'))
 
 #         # Assert that the response status code is 302 (redirect)
 #         self.assertEqual(response.status_code, 302)
 
-#         # Assert that local storage is cleared
-#         self.assertNotIn('username', self.client.session)  # Assuming username is stored in session        
+#         # Assert that the user is redirected to the expected page
+#         self.assertEqual(response.url, '/login/')  # Adjust the redirect URL as per your application's logout behavior
+
+#         # Assert server-side behavior (e.g., session/cookie cleared)
+#         # For example, you could check if the user is no longer authenticated
+#         self.assertFalse(response.wsgi_request.user.is_authenticated)
