@@ -48,6 +48,42 @@ class UserTestCase(TestCase):
         user_count_after = AppUser.objects.count()
         self.assertEqual(user_count_after, user_count_before - 1)
     
+    def test_delete_nonexistent_user(self):
+        """Test attempting to delete a user that does not exist"""
+        user_count_before = AppUser.objects.count()
+        # Assuming 'nonexistent_user' does not exist
+        with self.assertRaises(AppUser.DoesNotExist):
+            AppUser.objects.get(username="nonexistent_user").delete()
+        user_count_after = AppUser.objects.count()
+        # Ensure the user count remains unchanged
+        self.assertEqual(user_count_after, user_count_before)
+
+    def test_delete_specific_user(self):
+        """Test deleting a specific user when there are multiple users with the same username"""
+        username_to_delete = "Test_duplicate"  # Assuming there are multiple users with this username
+        user_count_before = AppUser.objects.count()
+        
+        # Retrieve the users with the given username
+        users_to_delete = AppUser.objects.filter(username=username_to_delete)
+        
+        # Assuming you want to delete the first user with the given username
+        user_to_delete = users_to_delete.first()
+        user_id_to_delete = user_to_delete.id
+        
+        user_to_delete.delete()  # Delete the user
+        
+        user_count_after = AppUser.objects.count()
+        
+        # Ensure only one user with the given username is deleted
+        self.assertEqual(user_count_after, user_count_before - 1)
+        
+        # Ensure no other user with the same username remains in the database
+        self.assertFalse(AppUser.objects.filter(username=username_to_delete).exists())
+        
+        # Ensure the correct user is deleted by checking its ID
+        self.assertFalse(AppUser.objects.filter(id=user_id_to_delete).exists())
+
+    
     def test_user_update(self):
         """Test updating user information"""
         user = AppUser.objects.get(username="Test2")
@@ -76,29 +112,25 @@ class AppUserTestCase(TestCase):
         user = AppUser.objects.get(username="existing_user")
         self.assertEqual(user.email, "existing@example.com")
 
- 
-        
-    # def setUp(self):
-    #     self.client = Client()
-
-    # def test_invalid_email_format(self):
-    #     """Test if ValidationError is raised for invalid email format"""
-    #     with self.assertRaises(ValidationError) as cm:
-    #         AppUser.objects.create(username="Test4", email="invalid@email")
-
-    #     self.assertEqual(str(cm.exception), "Enter a valid email address.")
+    def test_invalid_email_format(self):
+        """Test if ValidationError is raised for invalid email format"""
+        # Attempt to create a user with an invalid email format and missing password
+        with self.assertRaises(ValidationError) as context:
+            user = AppUser(username="Test4", email="invalid_email", password="")
+            user.full_clean()  # Trigger validation
         
 
-#     def test_blank_email(self):
-#         """Test if blank email is rejected"""
-#         with self.assertRaises(ValueError):
-#             AppUser.objects.create(username="Test5", email="")
+    def test_blank_email(self):
+        """Test if blank email is rejected"""
+        with self.assertRaises(ValidationError) as context:
+            user = AppUser(username="Test4", email="", password="") # No clue yet if having a blank password does anything (Check test_blank_username below for one without password)
+            user.full_clean()  # Trigger validation
 
-#     def test_blank_username(self):
-#         """Test if blank username is rejected"""
-#         with self.assertRaises(ValueError):
-#             AppUser.objects.create(username="", email="test@example.com")
-
+    def test_blank_username(self):
+        """Test if blank username is rejected"""
+        with self.assertRaises(ValidationError) as context:
+            user = AppUser.objects.create(username="", email="test@example.com")
+            user.full_clean()  # Trigger validation
 
 
 
