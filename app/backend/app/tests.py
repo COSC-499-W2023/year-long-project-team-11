@@ -28,6 +28,34 @@ class UserTestCase(TestCase):
         self.assertEqual(tester2.username, 'Test3')
         self.assertNotEqual(tester2.username, 'Test4')
 
+    def test_get_user_by_email(self):
+        """Test retrieving user by email"""
+        user = AppUser.objects.get(email="test2@example.com")
+        self.assertEqual(user.username, "Test2")   
+
+    def test_user_creation(self):
+        """Test creating a new user"""
+        user_count_before = AppUser.objects.count()
+        AppUser.objects.create(username="Test6", email="test6@example.com")
+        user_count_after = AppUser.objects.count()
+        self.assertEqual(user_count_after, user_count_before + 1)
+
+    def test_user_deletion(self):
+        """Test deleting a user"""
+        user_count_before = AppUser.objects.count()
+        user = AppUser.objects.get(username="Test3")
+        user.delete()
+        user_count_after = AppUser.objects.count()
+        self.assertEqual(user_count_after, user_count_before - 1)
+    
+    def test_user_update(self):
+        """Test updating user information"""
+        user = AppUser.objects.get(username="Test2")
+        user.username = "UpdatedTest2"
+        user.save()
+        updated_user = AppUser.objects.get(username="UpdatedTest2")
+        self.assertEqual(updated_user.username, "UpdatedTest2")
+
 class AppUserTestCase(TestCase):
     def setUp(self):
         # Set up any necessary data for the test
@@ -43,6 +71,13 @@ class AppUserTestCase(TestCase):
         existing_user = AppUser.objects.get(email="existing@example.com")
         self.assertEqual(existing_user.username, "existing_user")
 
+    def test_get_user_by_username(self):
+        """Test retrieving user by username"""
+        user = AppUser.objects.get(username="existing_user")
+        self.assertEqual(user.email, "existing@example.com")
+
+ 
+        
     # def setUp(self):
     #     self.client = Client()
 
@@ -64,38 +99,15 @@ class AppUserTestCase(TestCase):
 #         with self.assertRaises(ValueError):
 #             AppUser.objects.create(username="", email="test@example.com")
 
-    # def test_get_user_by_username(self):
-    #     """Test retrieving user by username"""
-    #     user = AppUser.objects.get(username="Test1")
-    #     self.assertEqual(user.email, "test1@example.com")
 
-#     def test_get_user_by_email(self):
-#         """Test retrieving user by email"""
-#         user = AppUser.objects.get(email="test2@example.com")
-#         self.assertEqual(user.username, "Test2")
 
-#     def test_user_creation(self):
-#         """Test creating a new user"""
-#         user_count_before = AppUser.objects.count()
-#         AppUser.objects.create(username="Test6", email="test6@example.com")
-#         user_count_after = AppUser.objects.count()
-#         self.assertEqual(user_count_after, user_count_before + 1)
 
-#     def test_user_deletion(self):
-#         """Test deleting a user"""
-#         user_count_before = AppUser.objects.count()
-#         user = AppUser.objects.get(username="Test3")
-#         user.delete()
-#         user_count_after = AppUser.objects.count()
-#         self.assertEqual(user_count_after, user_count_before - 1)
 
-#     def test_user_update(self):
-#         """Test updating user information"""
-#         user = AppUser.objects.get(username="Test2")
-#         user.username = "UpdatedTest2"
-#         user.save()
-#         updated_user = AppUser.objects.get(username="UpdatedTest2")
-#         self.assertEqual(updated_user.username, "UpdatedTest2")
+
+
+
+
+
         
 # class LoginTestCase(TestCase):
 #     def setUp(self):
