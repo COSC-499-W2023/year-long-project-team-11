@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
 export default function Logout() {
+const [userData, setUserData] = useState({});
+
+  // See if user is logged in
+  useEffect(() => {
+    // Fetch the username using Axios
+    axios.get("http://localhost:8000/", {
+      headers: {
+          'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
+      }
+    })
+    .then(response => {
+        setUserData(response.data[0]);
+    })
+    .catch(error => {
+        if (error.code === "ERR_BAD_REQUEST") {
+          // User is not logged in
+          window.location.href = "/Login";
+        } else {
+          // User is logged in
+        }
+    });
+  }, []); 
+
   const handleLogout = async (e) => {
     try {
       localStorage.clear();
@@ -33,9 +56,9 @@ export default function Logout() {
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
                   <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]">Log Out</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
               </div>
           </div>
       </nav>

@@ -5,43 +5,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  // // Is the user authenticated?
-  // if (sessionStorage.getItem('loggedIn') === true) {
-  //   window.location.href("/Prompt.js");
-  // }
-  // // Is their authentication token still valid?
-  // else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
-  //     window.location.href("/Prompt.js");
-  // }
-  // else {
-  // // The user is authenticated and the authentication has not expired.
-  // }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [userData, setUserData] = useState({});
 
-  // if (sessionStorage.getItem('loggedIn') == true) {
-    // if (false) {
-    // document.getElementById('login-option').style.display = 'none'; //Will hide
-    // document.getElementById('logout-option').style.display = 'block'; //Will show
-    // document.getElementById('profile-option').style.display = 'block'; //Will show
-    // document.getElementById('signup-option').style.display = 'none'; //Will hide
-  // } else {
-    // document.getElementById('login-option').style.display = 'block'; //Will show
-    // document.getElementById('logout-option').style.display = 'none'; //Will hide
-    // document.getElementById('profile-option').style.display = 'none'; //Will show
-    // document.getElementById('signup-option').style.display = 'block'; //Will hide
-  // }
-
-  // document.getElementById('login-option').style.display = 'block';
-  // document.getElementById('logout-option').style.display = 'block';
-  // document.getElementById('profile-option').style.display = 'block';
-  // document.getElementById('signup-option').style.display = 'block';
-
-  // const cors = require('cors');
-  // app.use(cors());
+  // See if user is logged in
+  if (localStorage.getItem('loggedIn') == 'true') {
+    window.location.href = "/Prompt";
+  }
 
   const validateEmail = (email) => {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -59,17 +33,6 @@ export default function Login() {
     }
 
     setEmailError("");
-    // const user = users.find(user => user.email === email)
-
-    // Frontend check if valid password
-    // if (user && user.password === password) {
-    //     setPasswordError('')
-    // } else {
-    //     setPasswordError("Invalid email or password. Please try again.")
-    // }
-    // setPassword('')
-
-    // ==========================================================================================
 
     const user = {
       email: email,
@@ -114,42 +77,6 @@ export default function Login() {
     axios.defaults.headers.common["Authorization"] = "Bearer ${data['access']}";
 
     window.location.href = "/Prompt";
-    // window.open("/");
-
-    // ==========================================================================================
-
-    // Create the POST request
-    // const login = "http://localhost:8000";
-
-    // fetch(login, {
-    //     method: "POST",
-    //     headers: {
-    //         Accept: "application/json, text/plain, */*",
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //         email: email,
-    //         password: password
-    //     })
-    // })
-    // .then((response) => response.json())
-    // .then((data) => {
-    //     console.log("===========================");
-    //     console.log(data);
-    //     console.log("+++++++++++++++++++++++++++");
-    //     if (data.error) {
-    //         // setPasswordError("Invalid email or password. Please try again.")
-    //         alert("Error Password or Username"); /*displays error message*/
-    //     } else {
-    //         // Successful login
-    //         console.log("Logged in as " + email);
-    //         window.open("http://localhost:3000");
-    //         // window.location.href = "http://localhost:3000";
-    //     }
-    // })
-    // .catch((err) => {
-    //     console.log(err);
-    // });
   };
 
   return (
@@ -172,9 +99,9 @@ export default function Login() {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                  <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a id='profile-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
                   <a id='login-option' className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Login">Log In</a>
-                  <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a id='logout-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
                   <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
               </div>
           </div>
