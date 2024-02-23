@@ -281,6 +281,7 @@ def serve_presentation(request, file_name):
     file_path = os.path.join(GENERATEDCONTENT_DIRECTORY, file_name)
     
     if os.path.exists(file_path) and os.path.isfile(file_path):
-        return FileResponse(open(file_path, 'rb'), as_attachment=True)
+        download = request.GET.get('download', 'false').lower() in ['true', '1', 't']
+        return FileResponse(open(file_path, 'rb'), as_attachment=download)
     else:
         raise Http404("The requested file does not exist")

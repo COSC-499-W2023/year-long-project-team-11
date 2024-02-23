@@ -74,3 +74,17 @@ This week, the group as a whole had midterms in other classess which sucked up m
 
 <b>Burn Up Chart</b>
 <img width="911" alt="Screenshot 2024-02-11 at 9 28 41 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/76402247-f59c-4433-84a6-1457939d3a8c">
+
+
+----------------------------------------------------
+<h1>Week 6</h1>
+<b>List of Tasks</b>
+<img width="1106" alt="Screenshot 2024-02-18 at 11 13 15 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/b6cf166e-e97a-4016-ad43-a9ec24bff748">
+
+This week wasn't the heaviest work week for our Capstone group, as we spent most of our time wrapping up in other courses, but it was still a very productive week as we planned out a number of tasks to be completed throughout the break, with multiple deadlines ensuring that we are able to speed up progress while we have the time. We started work on the features: Access Control, updating the AI content preview to show an actual preview instead of HTML, setting up a large number of automated tests from passed features that were missed, and providing the user with warnings if the API credits are running low.
+
+<b>Kanban Board</b>
+<img width="1078" alt="Screenshot 2024-02-18 at 11 13 03 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f9d7546e-7552-4620-b82b-1a23116edc15">
+
+<b>Burn Up Chart</b>
+<img width="904" alt="Screenshot 2024-02-18 at 11 13 34 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/17f9163d-d56e-4ce4-bcc2-121083ea5ba8">

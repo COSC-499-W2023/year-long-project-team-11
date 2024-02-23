@@ -76,7 +76,7 @@ export default function Prompt() {
       .then((data) => {
         setOutput(data.response);
         setFilename(data.filename);
-        navigate('/SavedContent', { state: { output: data.response, download: `http://localhost:8000/api/presentations/${data.filename}` } });
+        navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
         console.log(filename);
         console.log(data.response);
       })
