@@ -7,13 +7,15 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, APIRequestFactory
 from rest_framework.authtoken.models import Token
 
 import json
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
+
+from app.views import getData, addUser
 
 
 # Create your tests here.
@@ -30,10 +32,10 @@ class UserTestCase(TestCase):
         """Users are correctly added to the database"""
         tester1 = AppUser.objects.get(email="test1@example.com")
         tester2 = AppUser.objects.get(email="test2@example.com")
-        tester2 = AppUser.objects.get(email="test3@example.com")
+        tester3 = AppUser.objects.get(email="test3@example.com")
         self.assertEqual(tester1.username, 'Test1')
-        self.assertEqual(tester2.username, 'Test3')
-        self.assertNotEqual(tester2.username, 'Test4')
+        self.assertEqual(tester2.username, 'Test2')
+        self.assertNotEqual(tester3.username, 'Test4')
 
     def test_get_user_by_email(self):
         """Test retrieving user by email"""
@@ -42,10 +44,10 @@ class UserTestCase(TestCase):
 
     def test_user_update(self):
         """Test updating user information"""
-        user = AppUser.objects.get(username="Test2")
+        user = AppUser.objects.get(email="Test2@example.com")
         user.username = "UpdatedTest2"
         user.save()
-        updated_user = AppUser.objects.get(username="UpdatedTest2")
+        updated_user = AppUser.objects.get(email="Test2@example.com")
         self.assertEqual(updated_user.username, "UpdatedTest2")   
 
     def test_user_creation(self):
@@ -58,7 +60,7 @@ class UserTestCase(TestCase):
     def test_user_deletion(self):
         """Test deleting a user"""
         user_count_before = AppUser.objects.count()
-        user = AppUser.objects.get(username="Test3")
+        user = AppUser.objects.get(email="Test3@example.com")
         user.delete()
         user_count_after = AppUser.objects.count()
         self.assertEqual(user_count_after, user_count_before - 1)
@@ -68,7 +70,7 @@ class UserTestCase(TestCase):
         user_count_before = AppUser.objects.count()
         # Assuming 'nonexistent_user' does not exist
         with self.assertRaises(AppUser.DoesNotExist):
-            AppUser.objects.get(username="nonexistent_user").delete()
+            AppUser.objects.get(email="nonexistent_user@example.com").delete()
         user_count_after = AppUser.objects.count()
         # Ensure the user count remains unchanged
         self.assertEqual(user_count_after, user_count_before)
@@ -187,12 +189,14 @@ class AppUserTestCase(TestCase):
 
 # ================ LOG IN TEST CASES ================
 
-# class LoginTestCase(TestCase):
+# class LoginTestCase(APITestCase):
 #     def setUp(self):
 #         # Create a test user
 #         self.user = AppUser.objects.create(email="test@example.com", username="testuser")
 
 #     def test_login_with_valid_credentials(self):
+#         factory = APIRequestFactory()
+#         # view  = getData.as_view()
 #         # Define the login URL
 #         login_url = 'http://localhost:3000/Login'  # Adjust this to match your actual login URL
         
@@ -200,10 +204,12 @@ class AppUserTestCase(TestCase):
 #         valid_credentials = {'email': 'test@example.com', 'password': 'password123'}
 
 #         # Make a POST request to login endpoint with valid credentials
-#         response = self.client.post(login_url, json.dumps(valid_credentials), content_type='application/json')
+#         # response = self.client.post(login_url, json.dumps(valid_credentials), content_type='application/json')
+#         request = factory.post(login_url, valid_credentials, format='json')
+#         # response = view(request)
 
 #         # Assert that the response status code is 200 (or any other expected code)
-#         self.assertEqual(response.status_code, 200)
+#         self.assertEqual(request, 200)
 
 #         # Optionally, assert any other expected behavior in the response
 #         # For example, you might check if the response contains an access token or a success message
