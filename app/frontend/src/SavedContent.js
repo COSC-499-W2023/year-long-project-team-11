@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Document, Packer, Paragraph } from 'docx';
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
   const [filename, setFilename] = useState("");
+  const [comment, setComment] = useState(""); // State for managing the comment text
 
   const handleDownload = () => {
     const element = document.createElement('a');
@@ -15,6 +17,24 @@ const SavedContent = () => {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+  };
+
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+
+    try {
+      
+      const response = await axios.post('http://localhost:8000/addcomment/', {
+        Comment: comment,
+        Userid: userId, 
+        Postid: postId,
+        
+      });
+      console.log('Comment submitted:', response.data);
+      setComment(''); // Clear the comment box after successful submission
+    } catch (error) {
+      console.error('Error submitting comment:', error);
+    }
   };
 
   const location = useLocation();
@@ -80,7 +100,19 @@ const SavedContent = () => {
             <div className='buttons flex flex-row'>
               <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/presentations/${filename}?download=true`}>Download</button>
               <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
+              
             </div>
+            <form onSubmit={handleSubmitComment} className="mt-4">
+              <textarea
+                className="w-full p-2 text-lg border rounded-md"
+                placeholder="Leave a comment..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+               />
+               <button type="submit" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                 Submit Comment
+                 </button>
+              </form>
 
           </div>
         </div>

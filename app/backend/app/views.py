@@ -7,6 +7,7 @@ from app.models import AppUser
 from app.models import AppSaveText
 from .serializers import UserSerializer
 from .serializers import AppSaveTextSerizalizer
+from .serializers import AppCommentSerializer
 import os
 import sys
 
@@ -28,6 +29,17 @@ def addUser(request):
     else:
          print(serializer.errors, file=sys.stderr)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def addComment(request):
+    print("In the add(POST) method\n", file=sys.stderr)
+    serializer = AppCommentSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+    else:
+         print(serializer.errors, file=sys.stderr)
+    return Response(serializer.data)
+
 
 # permission_classes = (IsAuthenticated)
 # @api_view(['GET'])
