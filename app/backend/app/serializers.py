@@ -41,19 +41,8 @@ class AppSaveTextSerizalizer(serializers.ModelSerializer):
        model= AppSaveText
        fields=('savecontent',)
 
-class AppCommentSerializer(serializers.ModelSerializer):
-    Userid = serializers.IntegerField(write_only=True, source='user.id')
-    Postid = serializers.IntegerField(write_only=True, source='post.id')
-    
+class AppCommentSerializer(serializers.ModelSerializer):    
     class Meta:
         model = AppComment
         fields = ('Userid', 'Postid', 'Comment')
-    
-    def create(self, validated_data):
-        user_id = validated_data.pop('user')['id']
-        post_id = validated_data.pop('post')['id']
-        user = AppUser.objects.get(id=user_id)
-        post = AppSaveText.objects.get(id=post_id)
-        comment = AppComment.objects.create(user=user, post=post, **validated_data)
-        return comment      
     

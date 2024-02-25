@@ -43,8 +43,6 @@ class AppSaveText(models.Model):
     
 class AppComment(models.Model):
     id = models.AutoField(primary_key = True)
-    Userid = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='comments')
-    Postid = models.ForeignKey(AppSaveText, on_delete=models.CASCADE, related_name='comments')
+    Userid = models.IntegerField()
+    Postid = models.IntegerField()
     Comment = models.CharField(max_length = 200)
-    def __str__(self):
-        return self.Comment
