@@ -331,7 +331,6 @@ def ai(request):
                 | StrOutputParser()
             )
             response = chain.invoke(ctx)
-            # print(response)
             
             apply_bgcolor = WHITE
             if bgcolor == 'black':
@@ -408,7 +407,6 @@ def regenerate(request):
             )
             
             response = chain.invoke(user_prompt)
-            # print(response)
             
             apply_bgcolor = WHITE
             if bgcolor == 'black':
@@ -428,5 +426,16 @@ def regenerate(request):
             elif fontcolor == 'white':
                 apply_fontcolor = WHITE
             file_name = generate_slides_from_XML(response, apply_bgcolor, fonttype, apply_fontcolor)
+            
+            # Delete old iteration from filesystem
+            file_path = os.path.join(GENERATEDCONTENT_DIRECTORY, filename)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                print(f"File at {file_path} removed.")
+            else:
+                print("File does not exist")
+            
             return JsonResponse({'filename' : file_name, 'response': response, 'file_text': original_string, 'style': {'bg': bgcolor, 'fontcolor': fontcolor, 'fonttype': fonttype}})  
+        else:
+            return JsonResponse({{'response': 'No prompt specified'}})
     return HttpResponse("Listening for requests on regenerate...")
