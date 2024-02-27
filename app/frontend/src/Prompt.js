@@ -64,7 +64,7 @@ export default function Prompt() {
         setOutput(data.response);
         // setFilename(data.filename);
         setFilename("test");
-        navigate('/Regenerate', { state : { output: data.response, filename: data.filename } });
+        navigate('/Regenerate', { state : { output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
         // navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
         console.log(filename);
         console.log(data.response);

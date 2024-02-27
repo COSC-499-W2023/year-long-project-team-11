@@ -7,6 +7,11 @@ export default function Regenerate() {
   const [filename, setFilename] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [documentText, setDocumentText] = useState(null);
+  const [fontType, setFontType] = useState("Arial");
+  const [fontColor, setFontColor] = useState("black");
+  const [backgroundColor, setBackgroundColor] = useState("white");
+  const [context, setContext] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
@@ -19,6 +24,11 @@ export default function Regenerate() {
       console.log(data);
       setOutputString(data.output);
       setFilename(data.filename);
+      setDocumentText(data.documentText);
+      setFontType(data.fontType);
+      setFontColor(data.fontColor);
+      setBackgroundColor(data.backgroundColor);
+      setContext(data.context);
     }
   }, [data]);
 
@@ -31,8 +41,13 @@ export default function Regenerate() {
     formData.append("originalString", outputString);
     formData.append("prompt", prompt);
     formData.append("filename", filename);
+    formData.append("documentText", documentText);
+    formData.append("fontType", fontType);
+    formData.append("fontColor", fontColor);
+    formData.append("backgroundColor", backgroundColor);
+    formData.append("ctx", context)
 
-    fetch("http://localhost:8000/api/something/", {
+    fetch("http://localhost:8000/api/regenerate/", {
       method: "POST",
       headers: {
         "X-CSRFToken": csrfToken,
@@ -41,7 +56,7 @@ export default function Regenerate() {
     })
       .then((response) => response.json())
       .then((data) => {
-        navigate('/Regenerate', { state : { output: data.response, filename: data.filename } })
+        navigate('/Regenerate', { state : { output: data.response, context: data.context, filename: data.filename, documentText: data.file_text, fontType: data.style.fonttype, fontColor: data.style.fontcolor, backgroundColor: data.style.bg } })
       })
       .catch((error) => {
         console.error("Error: ", error);
