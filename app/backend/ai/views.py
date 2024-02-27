@@ -6,8 +6,9 @@ from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain.chains.question_answering import load_qa_chain
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
 from datetime import datetime
 import xml.etree.ElementTree as ET
 from pptx.dml.color import RGBColor
@@ -135,11 +136,11 @@ Please leave out any string used in markdown e.g. ```xml```
 """
 
 template = """{system}
-You have received text parsed from {ctx}. Your task is to adapt this material into new materials for a presentation can be used to assist learning for other age groups.
+Based on the following text parsed from {ctx}. Help adapt this into new materials for a presentation can be used to assist learning for other age groups.
+
+{document}
 
 Please use the original materials and convert them into slides that can be can be used to teach a grade {targetGrade} class. {prompt}."""
-
-default_template = PromptTemplate.from_template(template)
 
 current_file_path = os.path.dirname(os.path.realpath(__file__))
 GENERATEDCONTENT_DIRECTORY = os.path.join(current_file_path, 'generatedcontent')
@@ -275,7 +276,7 @@ def ai(request):
     if (request.method == 'POST'):
         load_dotenv()
         uploaded_file = request.FILES.get('file')
-        prompt = request.POST.get('prompt')
+        user_prompt = request.POST.get('prompt')
         ctx = request.POST.get('ctx')
         targetGrade = request.POST.get('targetGrade')
         bgcolor = request.POST.get('backgroundColor')
@@ -299,13 +300,23 @@ def ai(request):
         chunks = text_splitter.split_text(text)
         embeddings = OpenAIEmbeddings()
 		
-        knowledge_base = FAISS.from_texts(chunks, embeddings)
+        vectorstore = FAISS.from_texts(chunks, embeddings)
 		
         if ctx:
-            docs = knowledge_base.similarity_search(default_template.format(system=system_prompt, ctx=ctx, targetGrade=targetGrade, prompt=prompt))
-            llm = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0.8)
-            chain = load_qa_chain(llm, chain_type="stuff")
-            response = chain.run(input_documents=docs, question=default_template.format(system=system_prompt, ctx=ctx, targetGrade=targetGrade, prompt=prompt))
+            model = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0.8)
+            filled_template = template.replace("{system}", system_prompt)\
+                                      .replace("{targetGrade}", targetGrade)\
+                                      .replace("{prompt}", user_prompt)
+            prompt = ChatPromptTemplate.from_template(template=filled_template)
+            retriever = vectorstore.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": 0.5, "k": 4})
+            
+            chain = (
+                {"document": retriever, "ctx": RunnablePassthrough()}
+                | prompt
+                | model
+                | StrOutputParser()
+            )
+            response = chain.invoke(ctx)
             print(response)
             
             apply_bgcolor = WHITE
