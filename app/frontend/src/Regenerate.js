@@ -56,7 +56,17 @@ export default function Regenerate() {
     })
       .then((response) => response.json())
       .then((data) => {
-        navigate('/Regenerate', { state : { output: data.response, context: data.context, filename: data.filename, documentText: data.file_text, fontType: data.style.fonttype, fontColor: data.style.fontcolor, backgroundColor: data.style.bg } })
+        // navigate('/Regenerate', { state : { output: data.response, context: data.context, filename: data.filename, documentText: data.file_text, fontType: data.style.fonttype, fontColor: data.style.fontcolor, backgroundColor: data.style.bg } })
+        setOutputString(data.response);
+        setContext(data.context);
+        setFilename(data.filename);
+        setDocumentText(data.file_text);
+        setFontType(data.style.fonttype);
+        setFontColor(data.style.fontcolor);
+        setBackgroundColor(data.style.bg);
+
+        setPrompt("");
+        setShowForm(false);
       })
       .catch((error) => {
         console.error("Error: ", error);
@@ -64,6 +74,7 @@ export default function Regenerate() {
       .finally(() => {
         setIsLoading(false);
       })
+      
   }
 
   return (

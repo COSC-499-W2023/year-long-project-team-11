@@ -331,7 +331,7 @@ def ai(request):
                 | StrOutputParser()
             )
             response = chain.invoke(ctx)
-            print(response)
+            # print(response)
             
             apply_bgcolor = WHITE
             if bgcolor == 'black':
@@ -408,7 +408,7 @@ def regenerate(request):
             )
             
             response = chain.invoke(user_prompt)
-            print(response)
+            # print(response)
             
             apply_bgcolor = WHITE
             if bgcolor == 'black':
@@ -428,5 +428,5 @@ def regenerate(request):
             elif fontcolor == 'white':
                 apply_fontcolor = WHITE
             file_name = generate_slides_from_XML(response, apply_bgcolor, fonttype, apply_fontcolor)
-            return JsonResponse({'filename' : file_name, 'response': response, 'file_text': original_string, 'style': {'bg': apply_bgcolor, 'fontcolor': apply_fontcolor, 'fonttype': fonttype}})  
+            return JsonResponse({'filename' : file_name, 'response': response, 'file_text': original_string, 'style': {'bg': bgcolor, 'fontcolor': fontcolor, 'fonttype': fonttype}})  
     return HttpResponse("Listening for requests on regenerate...")
