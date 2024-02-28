@@ -40,3 +40,9 @@ class AppSaveText(models.Model):
     savecontent= models.TextField()
     def __str__(self):
         return self.savecontent
+    
+class AppComment(models.Model):
+    id= models.AutoField(primary_key= True)
+    Comment= models.TextField()
+    def __str__(self):
+        return self.Comment

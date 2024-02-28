@@ -8,6 +8,7 @@ from app.models import AppUser
 from app.models import AppSaveText
 from .serializers import UserSerializer
 from .serializers import AppSaveTextSerizalizer
+from .serializers import AppCommentSerializer
 import os
 import sys
 
@@ -26,6 +27,16 @@ def getData(request):
 def addUser(request):
     print("In the add(POST) method\n", file=sys.stderr)
     serializer = UserSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+    else:
+         print(serializer.errors, file=sys.stderr)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def addComment(request):
+    print("In the add(POST) method\n", file=sys.stderr)
+    serializer = AppCommentSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
     else:
