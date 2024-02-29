@@ -28,7 +28,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key = True)
     email = models.EmailField(max_length = 50, unique = True)
     username = models.CharField(max_length = 50)
-    password = models.CharField(max_length = 50)
+    password = models.TextField(max_length = 50)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = AppUserManager()
@@ -42,7 +42,9 @@ class AppSaveText(models.Model):
         return self.savecontent
     
 class AppComment(models.Model):
-    id= models.AutoField(primary_key= True)
-    Comment= models.TextField()
-    def __str__(self):
-        return self.Comment
+    id = models.AutoField(primary_key = True)
+    userid = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='comments')
+    postid = models.ForeignKey(AppSaveText, on_delete=models.CASCADE, related_name='comments')
+    comment = models.CharField(max_length = 200)
+    def str(self):
+        return self.comment

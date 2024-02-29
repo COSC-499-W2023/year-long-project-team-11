@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Document, Packer, Paragraph } from 'docx';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
   const [filename, setFilename] = useState("");
+  const [comment, setComment] = useState("");
+
 
   // If user is logged in
   if (localStorage.getItem('access_token')) {
@@ -19,6 +22,23 @@ const SavedContent = () => {
       document.getElementById('logout-option').style.display = 'none';
     },20);
   }
+
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    try {
+      // Adjust the URL to match your Django backend endpoint
+      const response = await axios.post('http://localhost:8000/addcomment/', {
+        Userid: 1, 
+        Postid: 1,
+        Comment: comment,
+        // Include any other data your backend requires
+      });
+      console.log('Comment submitted:', response.data);
+      setComment(''); // Clear the comment box after successful submission
+    } catch (error) {
+      console.error('Error submitting comment:', error);
+    }
+  };
 
   const handleDownload = () => {
     const element = document.createElement('a');
@@ -93,6 +113,17 @@ const SavedContent = () => {
             <div className='buttons flex flex-row'>
               <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/presentations/${filename}?download=true`}>Download</button>
               <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
+              <form onSubmit={handleSubmitComment} className="mt-4">
+                <textarea
+                  className="w-full p-2 text-lg border rounded-md"
+                  placeholder="Leave a comment..."
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button type="submit" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                  Submit Comment
+               </button>
+              </form>
             </div>
 
           </div>

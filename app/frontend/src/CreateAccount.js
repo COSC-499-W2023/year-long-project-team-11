@@ -134,7 +134,7 @@ export default function CreateAccount() {
       return;
     }
     console.log("Successfully created an account: " + email);
-    window.location.href = "/Login";
+     window.location.href = "/Login";
   };
 
   return (
