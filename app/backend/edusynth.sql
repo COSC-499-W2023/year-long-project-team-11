@@ -26,6 +26,18 @@ GRANT
 ON edusynth.* 
 TO 'webuser' @'%';
 
+GRANT
+  ALL
+  -- CREATE, ALTER, INSERT, UPDATE, DELETE, SELECT
+ON test_edusynth.* 
+TO 'webuser' @'localhost';
+
+GRANT
+  ALL
+  -- CREATE, ALTER, INSERT, UPDATE, DELETE, SELECT
+ON test_edusynth.* 
+TO 'webuser' @'%';
+
 FLUSH PRIVILEGES;
 
 
