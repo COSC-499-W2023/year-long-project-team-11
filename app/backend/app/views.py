@@ -7,6 +7,8 @@ from app.models import AppUser
 from app.models import AppSaveText
 from .serializers import UserSerializer
 from .serializers import AppSaveTextSerizalizer
+from .serializers import AppSave
+from .serializers import AppSaveForm
 import os
 import sys
 
@@ -61,3 +63,8 @@ def saveOutput(request):
             return JsonResponse(serializer.errors, status=400)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+
+class AppSaveList(APIView):
+    queryset= AppSave.objects.all()
+    serializer_class= AppSaveForm
+    
