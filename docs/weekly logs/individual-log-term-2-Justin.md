@@ -1,3 +1,8 @@
+# Week 7/8 (Feb 19 - Feb 25/Feb 26 - March 3)
+During the reading week I worked on and completed my feature of slide regeneration. This included writing a frontend for the feature, and coding an endpoint on our backend to be able to regenerate the slides. This also included prompt engineering a new prompt for regeneration, as well as improving on the old prompt. I also changed our model to gpt-3.5-turbo-0125 which is supposed to have better results for structured outputs. I also updated our LangChain code to use the new LCEL syntax. During week 8, I worked on cleaning up parts of the code, this included specifying constant variables in our Python code for readability, removing files that were not needed. I also worked on a frontend modal component for saving content to help with Arya's feature. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/029b7919-255f-45f5-b52a-7c740d197ce6)
+
+
 # Week 6 (Feb 12 - Feb 18)
 This week I worked with Arya on the preview feature, as well as the API key credit wraning feature. Arya and I ran into issues using react-doc-viewer with pptx files, since the files were being served by localhost, which was not https, and the library used Microsoft's "Office Web Viewer" which wouldn't allow connections to non https domains. This meant that the feature would not work in development. We are considering options to work around this. After doing research, there is no API way of getting the remaining credits for an API key, meaning that the only implementation would be to estimate usage, which would not be accurate. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/78c7b33b-d58a-46e4-baba-2e73ef1a9f95)
