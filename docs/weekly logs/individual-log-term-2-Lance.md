@@ -1,4 +1,9 @@
 # ===== TERM 2 =====
+# Week 7-8 (February 19-March 3)
+These past two weeks, I have been finishing up on the automated test cases in the testing branch and also starting on the AI to process more file types on the AI-file-process branch. I have pretty much most of the testing then, but we are nearing our deadlines for our features so Ryan had to take over the last parts of the test cases, while helping me with my problems too. In the AI to process more file types, Justin and I had troubles with new errors arising through the AI prompting. I have code already set up for docx/word and txt file prompts in the AI-file-process branch, but the branch I am working on right now still needs to get its errors fixed.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/9b8cfa5d-bdd9-453c-a2c3-470ee29b45ac)
+
+
 # Week 6 (February 12-February 18)
 This week I added test cases for login and logout, for next week I need to finish making 10 testing on tutorial, login, logout, and create user. The problem was looking through the django testing page and trying to use the correct command for testing
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/03876c23-dd62-4d06-9af4-475fc7aac41f)
