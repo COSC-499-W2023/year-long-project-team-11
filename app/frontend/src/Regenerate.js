@@ -2,20 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import MoonLoader from "react-spinners/MoonLoader";
+import ConfirmModal from "./components/ConfirmModal";
 
 export default function Regenerate() {
   const [outputString, setOutputString] = useState("<test></test>");
   const [filename, setFilename] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [showSave, setShowSave] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [documentText, setDocumentText] = useState(null);
   const [fontType, setFontType] = useState("Arial");
   const [fontColor, setFontColor] = useState("black");
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [context, setContext] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
+
+  const openModal = () => setShowSave(true);
+  const closeModal = () => setShowSave(false);
 
   const location = useLocation();
   const data = location.state;
@@ -184,7 +191,7 @@ export default function Regenerate() {
                 <button
                   className="bg-[#19747E] text-white rounded hover:bg-[#316268] p-1 mx-1"
                   type="button"
-                  onClick={() => navigate('/SavedContent', { state: { output: outputString, filename: filename } })}
+                  onClick={openModal}
                 >
                   Confirm
                 </button>
@@ -223,6 +230,36 @@ export default function Regenerate() {
                   </button>
                 </form>
               </div>
+              <ConfirmModal isOpen={showSave} closeModal={closeModal}>
+                <form onSubmit={() => navigate('/SavedContent', { state: { output: outputString, filename: filename, title: title, tags: tags } })}>
+                  <div className="p-2">
+                    <div>
+                      <h1 className="mb-2 text-2xl">Save</h1>
+                      <p>Title</p>
+                      <input
+                        className="border border-black rounded-md"
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                      <p>Tags</p>
+                      <input
+                        className="border border-black rounded-md"
+                        type="text"
+                        value={tags}
+                        onChange={(e) => setTags(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-[#19747E] text-white rounded hover:bg-[#316268] p-1 mt-2 mx-2"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                  
+                </form>
+              </ConfirmModal>
             </div>
           </div>
         </div>

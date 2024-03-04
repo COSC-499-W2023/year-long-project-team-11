@@ -6,6 +6,8 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
   const [filename, setFilename] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState("");
 
   const handleDownload = () => {
     const element = document.createElement('a');
@@ -27,7 +29,8 @@ const SavedContent = () => {
       const filename = data.filename;
       setParagraph(output);
       setFilename(filename);
-
+      setTitle(data.title);
+      setTags(data.tags);
     }
   }, [data]);
 
