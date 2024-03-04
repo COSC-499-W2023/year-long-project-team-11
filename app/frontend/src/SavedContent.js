@@ -9,6 +9,19 @@ const SavedContent = () => {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
 
+  // If user is logged in
+  if (localStorage.getItem('access_token')) {
+    setTimeout(function() {
+      document.getElementById('login-option').style.display = 'none'; //Will hide
+      document.getElementById('signup-option').style.display = 'none';
+    },20);
+  } else {
+    setTimeout(function() {
+      document.getElementById('profile-option').style.display = 'none';
+      document.getElementById('logout-option').style.display = 'none';
+    },20);
+  }
+
   const handleDownload = () => {
     const element = document.createElement('a');
     const file = new Blob([paragraph], { type: 'text/plain' });
@@ -59,13 +72,13 @@ const SavedContent = () => {
             <p className="text-[#44566B] py-3 px-3">{localStorage.getItem("username")}</p>
           </div>
 
-          {/* User Area (Right side) */}
-          <div class="flex items-center space-x-1">
-            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
-          </div>
+              {/* User Area (Right side) */}
+              <div class="flex items-center space-x-1">
+                  <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a id='login-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
+                  <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+              </div>
         </div>
       </nav>
 
