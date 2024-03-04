@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-
+from django.contrib.sessions.models import Session
 # Create your models here.
 class AppUserManager(BaseUserManager):
     def create_user(self, email, username, password = None):
@@ -40,3 +40,11 @@ class AppSaveText(models.Model):
     savecontent= models.TextField()
     def __str__(self):
         return self.savecontent
+
+class AppSave(models.Model):
+    id=models.AutoField(primary_key= True)
+    usersessionid = models.ForeignKey(Session, on_delete=models.CASCADE)
+    tag=models.CharField(max_length=255)
+    title=models.CharField(max_length=255)
+    filepath=models.CharField(max_length=255)
+    timestamp=models.DateTimeField(auto_now_add=True)
