@@ -2,6 +2,8 @@ from rest_framework import serializers
 from app.models import AppUser
 # from django.contrib.auth import get_user_model, authenticate
 from app.models import AppSaveText
+from app.models import AppSave
+from django.contrib.sessions.models import Session
 # AppUser = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
@@ -42,3 +44,8 @@ class AppSaveTextSerizalizer(serializers.ModelSerializer):
        model= AppSaveText
        fields=('savecontent',)
 
+class AppSaveForm(serializers.ModelSerializer):
+    class Meta:
+        model= AppSave
+        fields = ['id', 'usersessionid', 'tag', 'title', 'filepath', 'timestamp']
+        

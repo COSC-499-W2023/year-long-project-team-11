@@ -18,6 +18,19 @@ export default function Prompt() {
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
 
+  // If user is logged in
+  if (localStorage.getItem('access_token')) {
+    setTimeout(function() {
+      document.getElementById('login-option').style.display = 'none'; //Will hide
+      document.getElementById('signup-option').style.display = 'none';
+    },20);
+  } else {
+    setTimeout(function() {
+      document.getElementById('profile-option').style.display = 'none';
+      document.getElementById('logout-option').style.display = 'none';
+    },20);
+  }
+
   const getColorCode = (color) => {
     switch(color) {
       case "black":
@@ -62,8 +75,10 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         setOutput(data.response);
-        setFilename(data.filename);
-        navigate('/SavedContent', { state: { output: data.response, download: `http://localhost:8000/api/presentations/${data.filename}` } });
+        // setFilename(data.filename);
+        setFilename("test");
+        navigate('/Regenerate', { state : { output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
+        // navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
         console.log(filename);
         console.log(data.response);
       })
@@ -121,10 +136,10 @@ export default function Prompt() {
 
                 {/* User Area (Right side) */}
                 <div class="flex items-center space-x-1">
-                    <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-                    <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-                    <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-                    <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+                  <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a id='login-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
+                  <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
                 </div>
             </div>
         </nav>
@@ -210,7 +225,8 @@ export default function Prompt() {
                     overflow: 'hidden',
                     transition: 'max-height 0.2s ease-out',
                   }} 
-                  className="origin-top bg-neutral-300 rounded-lg">
+                  className="origin-top bg-neutral-300 rounded-lg"
+                >
                   <div className="py-2">
                     <label htmlFor="backgroundColor" className="px-2">Background Color:</label>
                     <select
