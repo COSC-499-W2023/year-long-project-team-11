@@ -15,7 +15,13 @@ export default function UserProfile() {
         }
       })
       .then(response => {
-          setUserData(response.data[0]);
+          var values = function(x) {
+            return Object.keys(x).map(function(k){return x[k]})
+          }
+          var result = response.data.filter(function(x) {
+            return values(x).indexOf(localStorage.getItem('email')) > -1
+          })
+          setUserData(result[0]);
       })
       .catch(error => {
           if (error.code === "ERR_BAD_REQUEST") {

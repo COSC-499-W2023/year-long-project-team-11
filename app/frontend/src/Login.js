@@ -70,6 +70,7 @@ export default function Login() {
 
     // Set username
     localStorage.setItem("username", email)
+    localStorage.setItem("email", email)
 
     // Set status
     localStorage.setItem("loggedIn", true)
