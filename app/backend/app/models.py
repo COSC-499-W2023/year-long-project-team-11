@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import validate_email
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.sessions.models import Session
@@ -26,7 +27,7 @@ class AppUserManager(BaseUserManager):
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key = True)
-    email = models.EmailField(max_length = 50, unique = True)
+    email = models.EmailField(max_length = 50, unique = True, validators=[validate_email])
     username = models.CharField(max_length = 50)
     password = models.TextField(max_length = 50)
     USERNAME_FIELD = 'email'
