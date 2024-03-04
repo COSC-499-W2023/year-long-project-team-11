@@ -6,6 +6,8 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
   const [filename, setFilename] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState("");
 
   // If user is logged in
   if (localStorage.getItem('access_token')) {
@@ -40,7 +42,8 @@ const SavedContent = () => {
       const filename = data.filename;
       setParagraph(output);
       setFilename(filename);
-
+      setTitle(data.title);
+      setTags(data.tags);
     }
   }, [data]);
 

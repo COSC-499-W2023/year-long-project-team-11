@@ -17,7 +17,7 @@ import os
 
 # Create your views here.
 
-system_prompt = """You are an agent whose task is to generate text in order to generate a PowerPoint presentation. 
+SYSTEM_PROMPT = """You are an agent whose task is to generate text in order to generate a PowerPoint presentation. 
 
 In order to do this, you need generate text in an XML style format.
 
@@ -135,14 +135,14 @@ Here is an example of what you need to produce:
 Please leave out any string used in markdown e.g. ```xml```
 """
 
-generate_template = """{system}
+GENERATE_TEMPLATE = """{system}
 Based on the following text parsed from {ctx}. Help adapt this into new materials for a presentation can be used to assist learning for other age groups.
 
 {document}
 
 Please use the original materials and convert them into slides that can be can be used to teach a grade {targetGrade} class. {prompt}."""
 
-regenerate_template = """{system}
+REGENERATE_TEMPLATE = """{system}
 
 This is text parsed from {ctx}. 
 {document}
@@ -318,7 +318,7 @@ def ai(request):
 		
         if ctx:
             model = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0.8)
-            filled_template = generate_template.replace("{system}", system_prompt)\
+            filled_template = GENERATE_TEMPLATE.replace("{system}", SYSTEM_PROMPT)\
                                       .replace("{targetGrade}", targetGrade)\
                                       .replace("{prompt}", user_prompt)
             prompt = ChatPromptTemplate.from_template(template=filled_template)
@@ -393,8 +393,8 @@ def regenerate(request):
         
         if user_prompt:
             model = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0.8)
-            filled_template = regenerate_template.replace("{originalString}", original_string)\
-                                                 .replace("{system}", system_prompt)\
+            filled_template = REGENERATE_TEMPLATE.replace("{originalString}", original_string)\
+                                                 .replace("{system}", SYSTEM_PROMPT)\
                                                  .replace("{ctx}", ctx)
             prompt = ChatPromptTemplate.from_template(template=filled_template)
             retriever = vectorstore.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": 0.5, "k": 4})
