@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 import axios from "axios";
 
 export default function CreateAccount() {
@@ -13,6 +14,12 @@ export default function CreateAccount() {
     password: "",
     confirmPassword: "",
   });
+  const csrfToken = Cookies.get("csrftoken");
+
+  // See if user is logged in
+  if (localStorage.getItem('loggedIn') == 'true') {
+    window.location.href = "/Prompt";
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,7 +111,6 @@ export default function CreateAccount() {
       confirmPassword: "",
     }));
 
-    // ====================== ADD FUNCTIONALITY HERE ======================
     const user = {
       email: email,
       username: username,
@@ -129,8 +135,33 @@ export default function CreateAccount() {
       alert("Field is invalid!");
       return;
     }
+    
     console.log("Successfully created an account: " + email);
     window.location.href = "/Login";
+
+    // Fetch API method
+    // fetch("http://localhost:8000/add/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(user),
+    // })
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! status: ${response.status}`);
+    //     } else {
+    //       return response.json();
+    //     }
+    //   })
+    //   .then(data => {
+    //     console.log("Successfully created an account: ", data);
+    //     window.location.href = "/Login";
+    //   })
+    //   .catch(error => {
+    //     responseCode = error.response.status;
+    //     return error;
+    //   });
   };
 
   return (
@@ -153,9 +184,9 @@ export default function CreateAccount() {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
                   <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/SignUp">Sign Up</a>
               </div>
           </div>

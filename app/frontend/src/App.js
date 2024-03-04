@@ -8,6 +8,7 @@ import Prompt from './Prompt';
 import Tutorial from './Tutorial';
 import UserProfile from './UserProfile';
 import SavedContent from "./SavedContent"; 
+import Regenerate from './Regenerate';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/Tutorial' element={<Tutorial />} />
         <Route path='/UserProfile' element={<UserProfile />} />
         <Route path='/SavedContent' element={<SavedContent/>} />
+        <Route path='/Regenerate' element={<Regenerate />} />
       </Routes>
     </div>
   );

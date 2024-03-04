@@ -28,3 +28,9 @@ This week I worked upon implementing a doc viewer feature that lets the user pre
 However, I did run into some trouble and would need to find a workaround for the issue.
 I worked upon this code with Justin and might have to let the user preview a pdf or image version as the doc viewer does not allow it unless the website is live the code does work.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/347eea94-6f98-461b-9b28-8ae90875fff9)
+
+# Week 7 & 8
+Counting the reading week and this week i worked upon making the comments feature and fixing issues regarding the models
+Had run into a lot of troubles with the database so had to debug and deal with those issues. 
+Made a new branch and started to work upon the commenting feature and have the code in place just waiting upon another member to complete their feature.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/436492d1-cae0-41c2-88bd-bae286ef7ccf)
