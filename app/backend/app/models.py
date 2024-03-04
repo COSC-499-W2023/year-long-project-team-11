@@ -36,11 +36,6 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
 
-class AppSaveText(models.Model):
-    id= models.AutoField(primary_key= True)
-    savecontent= models.TextField()
-    def __str__(self):
-        return self.savecontent
 
 class AppSave(models.Model):
     id=models.AutoField(primary_key= True)
@@ -49,3 +44,11 @@ class AppSave(models.Model):
     title=models.CharField(max_length=255)
     filepath=models.CharField(max_length=255)
     timestamp=models.DateTimeField(auto_now_add=True)
+
+class AppComment(models.Model):
+    id = models.AutoField(primary_key = True)
+    userid = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='comments')
+    postid = models.ForeignKey(AppSave, on_delete=models.CASCADE, related_name='comments')
+    comment = models.CharField(max_length = 200)
+    def str(self):
+        return self.comment

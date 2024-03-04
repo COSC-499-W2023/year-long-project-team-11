@@ -10,17 +10,17 @@ const SavedContent = () => {
   const [tags, setTags] = useState("");
 
   // If user is logged in
-  if (localStorage.getItem('access_token')) {
-    setTimeout(function() {
-      document.getElementById('login-option').style.display = 'none'; //Will hide
-      document.getElementById('signup-option').style.display = 'none';
-    },20);
-  } else {
-    setTimeout(function() {
-      document.getElementById('profile-option').style.display = 'none';
-      document.getElementById('logout-option').style.display = 'none';
-    },20);
-  }
+  // if (localStorage.getItem('access_token')) {
+  //   setTimeout(function() {
+  //     document.getElementById('login-option').style.display = 'none'; //Will hide
+  //     document.getElementById('signup-option').style.display = 'none';
+  //   },20);
+  // } else {
+  //   setTimeout(function() {
+  //     document.getElementById('profile-option').style.display = 'none';
+  //     document.getElementById('logout-option').style.display = 'none';
+  //   },20);
+  // }
 
   const handleDownload = () => {
     const element = document.createElement('a');

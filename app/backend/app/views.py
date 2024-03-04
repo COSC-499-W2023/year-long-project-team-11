@@ -4,12 +4,12 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from django.http import JsonResponse
 from app.models import AppUser
-from app.models import AppSaveText
 from .serializers import UserSerializer
-from .serializers import AppSaveTextSerizalizer
 from .serializers import AppSave
 from .serializers import AppSaveForm
+from .serializers import AppCommentSerializer
 import os
 import sys
 
@@ -28,6 +28,16 @@ def getData(request):
 def addUser(request):
     print("In the add(POST) method\n", file=sys.stderr)
     serializer = UserSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+    else:
+         print(serializer.errors, file=sys.stderr)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def addComment(request):
+    print("In the add(POST) method\n", file=sys.stderr)
+    serializer = AppCommentSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
     else:
@@ -58,7 +68,7 @@ class LogoutView(APIView):
 
 def saveOutput(request):
     try:
-        serializer = AppSaveTextSerizalizer(data=request.data)
+        serializer = AppSaveForm(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse({"message": "Output saved successfully"}, status=200)
@@ -70,4 +80,3 @@ def saveOutput(request):
 class AppSaveList(APIView):
     queryset= AppSave.objects.all()
     serializer_class= AppSaveForm
-    
