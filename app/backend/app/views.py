@@ -49,7 +49,7 @@ def addComment(request):
 def getComment(request, postid):
     comments = AppComment.objects.filter(postid=postid)
     serializer = AppCommentSerializer(comments, many=True)
-    return Response(serializer.daata)
+    return Response(serializer.data)
 
 # permission_classes = (IsAuthenticated)
 # @api_view(['GET'])
