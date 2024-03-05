@@ -18,6 +18,7 @@ djangorestframework-simplejwt = "*"
 python-pptx = "*"
 langchain-community = "*"
 langchain-openai = "*"
+python-docx = "*"
 
 [dev-packages]
 
