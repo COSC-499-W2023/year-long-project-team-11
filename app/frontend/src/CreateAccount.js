@@ -119,49 +119,49 @@ export default function CreateAccount() {
 
     // Create the POST requuest
     console.log("Stuck on post!");
-    var responseCode = 200;
-    axios
-      .post("http://localhost:8000/add/", {
-        email: email,
-        username: username,
-        password: password,
-      })
-      .catch((err) => {
-        responseCode = err.response.status;
-        return err;
-      });
+    // var responseCode = 200;
+    // axios
+    //   .post("http://localhost:8000/add/", {
+    //     email: email,
+    //     username: username,
+    //     password: password,
+    //   })
+    //   .catch((err) => {
+    //     responseCode = err.response.status;
+    //     return err;
+    //   });
 
-    if (responseCode !== 200) {
-      alert("Field is invalid!");
-      return;
-    }
+    // if (responseCode !== 200) {
+    //   alert("Field is invalid!");
+    //   return;
+    // }
     
-    console.log("Successfully created an account: " + email);
-    window.location.href = "/Login";
+    // console.log("Successfully created an account: " + email);
+    // window.location.href = "/Login";
 
     // Fetch API method
-    // fetch("http://localhost:8000/add/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(user),
-    // })
-    //   .then(response => {
-    //     if (!response.ok) {
-    //       throw new Error(`HTTP error! status: ${response.status}`);
-    //     } else {
-    //       return response.json();
-    //     }
-    //   })
-    //   .then(data => {
-    //     console.log("Successfully created an account: ", data);
-    //     window.location.href = "/Login";
-    //   })
-    //   .catch(error => {
-    //     responseCode = error.response.status;
-    //     return error;
-    //   });
+    fetch("http://localhost:8000/add/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          return response.json();
+        }
+      })
+      .then(data => {
+        console.log("Successfully created an account: ", data);
+        window.location.href = "/Login";
+      })
+      .catch(error => {
+        responseCode = error.response.status;
+        return error;
+      });
   };
 
   return (

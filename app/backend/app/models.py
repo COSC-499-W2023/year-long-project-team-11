@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import validate_email
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.contrib.sessions.models import Session
 # Create your models here.
 class AppUserManager(BaseUserManager):
     def create_user(self, email, username, password = None):
@@ -38,17 +37,15 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
 
 class AppSave(models.Model):
-    id=models.AutoField(primary_key= True)
-    usersessionid = models.ForeignKey(Session, on_delete=models.CASCADE)
-    tag=models.CharField(max_length=255)
-    title=models.CharField(max_length=255)
-    filepath=models.CharField(max_length=255)
-    timestamp=models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key= True)
+    userid = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    tag = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    filepath = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 class AppComment(models.Model):
     id = models.AutoField(primary_key = True)
     userid = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='comments')
     postid = models.ForeignKey(AppSave, on_delete=models.CASCADE, related_name='comments')
     comment = models.CharField(max_length = 200)
-    def str(self):
-        return self.comment

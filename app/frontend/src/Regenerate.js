@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import MoonLoader from "react-spinners/MoonLoader";
 import ConfirmModal from "./components/ConfirmModal";
+import axios, { AxiosError } from "axios";
 
 export default function Regenerate() {
   const [outputString, setOutputString] = useState("<test></test>");
@@ -81,7 +82,37 @@ export default function Regenerate() {
       .finally(() => {
         setIsLoading(false);
       })
+  }
 
+  const handleSavePost = (e) => {
+    e.preventDefault();
+
+    const post = {
+      tag: tags,
+      title: title,
+      filepath: filename,
+      userid: localStorage.getItem("userID"),
+    }
+
+    console.log(post);
+    
+    fetch("http://localhost:8000/save_output/", {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrfToken,
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer '.concat(localStorage.getItem('access_token')),
+      },
+      body: JSON.stringify(post),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Saved post: ", data);
+        navigate('/SavedContent', { state: { output: outputString, filename: filename, title: title, tags: tags } });
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      });
   }
 
   return (
@@ -231,7 +262,7 @@ export default function Regenerate() {
                 </form>
               </div>
               <ConfirmModal isOpen={showSave} closeModal={closeModal}>
-                <form onSubmit={() => navigate('/SavedContent', { state: { output: outputString, filename: filename, title: title, tags: tags } })}>
+                <form onSubmit={handleSavePost}>
                   <div className="p-2">
                     <div>
                       <h1 className="mb-2 text-2xl">Save</h1>

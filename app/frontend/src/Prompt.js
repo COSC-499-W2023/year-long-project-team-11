@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
@@ -30,6 +30,11 @@ export default function Prompt() {
   //     document.getElementById('logout-option').style.display = 'none';
   //   },20);
   // }
+
+  useEffect(() => {
+    console.log(localStorage.getItem('username'));
+    console.log(localStorage.getItem('userID'));
+  }, [])
 
   const getColorCode = (color) => {
     switch(color) {
@@ -75,8 +80,7 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         setOutput(data.response);
-        // setFilename(data.filename);
-        setFilename("test");
+        setFilename(data.filename);
         navigate('/Regenerate', { state : { output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
         // navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
         console.log(filename);
