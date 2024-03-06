@@ -11,6 +11,7 @@ const SavedContent = () => {
   const [tags, setTags] = useState("");
   const [postId, setPostId] = useState(0);
   const [comment, setComment] = useState("");
+  const [docs, setDocs] = useState([]);
 
   // If user is logged in
   // if (localStorage.getItem('access_token')) {
@@ -35,6 +36,9 @@ const SavedContent = () => {
       const filename = data.filename;
       setParagraph(output);
       setFilename(filename);
+      let base = filename.substring(0, filename.lastIndexOf('.'));
+      let previewFilename = base + ".pdf";
+      setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
       setTitle(data.title);
       setTags(data.tags);
       setPostId(data.postid);
@@ -57,13 +61,6 @@ const SavedContent = () => {
       console.error('Error submitting comment:', error);
     }
   };
-
-  const file = `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`;
-  const fileType = "pptx";
-
-  const docs = [
-    { uri: `http://localhost:8000/api/presentations/${data.filename}` }, // Local File
-  ];
 
   return (
     <div>
@@ -96,11 +93,11 @@ const SavedContent = () => {
       {/* Content */}
       <div className="savedcontent flex flex-col items-center justify-center min-h-screen">
         <div className="max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
-          <h1 className="text-4xl font-bold mb-4">Title of Content</h1>
-          <p className="text-lg mb-4">Content Type</p>
+          <h1 className="text-4xl font-bold mb-4">{title}</h1>
+          <p className="text-lg mb-4">{tags}</p>
           <div className="my-8">
             <div>
-              <DocViewer documents={[{ uri: `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`, fileType: "pptx" }]} pluginRenderers={DocViewerRenderers} />
+              <DocViewer documents={docs} pluginRenderers={DocViewerRenderers} />
             </div>
           </div>
           <div className="flex justify-between items-center">

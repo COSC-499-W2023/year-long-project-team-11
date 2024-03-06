@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import MoonLoader from "react-spinners/MoonLoader";
 import ConfirmModal from "./components/ConfirmModal";
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import axios, { AxiosError } from "axios";
 
 export default function Regenerate() {
@@ -19,6 +20,7 @@ export default function Regenerate() {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [docs, setDocs] = useState([]);
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
 
@@ -33,6 +35,9 @@ export default function Regenerate() {
       console.log(data);
       setOutputString(data.output);
       setFilename(data.filename);
+      let base = data.filename.substring(0, data.filename.lastIndexOf('.'));
+      let previewFilename = base + ".pdf";
+      setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
       setDocumentText(data.documentText);
       setFontType(data.fontType);
       setFontColor(data.fontColor);
@@ -40,6 +45,12 @@ export default function Regenerate() {
       setContext(data.context);
     }
   }, [data]);
+
+  useEffect(() => {
+    let base = filename.substring(0, filename.lastIndexOf('.'));
+    let previewFilename = base + ".pdf";
+    setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
+  }, [filename])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -200,7 +211,8 @@ export default function Regenerate() {
               <h1 className="text-4xl font-bold mb-4">Preview</h1>
               <div className="my-8">
                 <div>
-                  <pre>{outputString}</pre>
+                  {/* <pre>{outputString}</pre> */}
+                  <DocViewer documents={docs} pluginRenderers={DocViewerRenderers} />
                 </div>
               </div>
 
