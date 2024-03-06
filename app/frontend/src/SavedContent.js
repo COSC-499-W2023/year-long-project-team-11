@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Document, Packer, Paragraph } from 'docx';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 const SavedContent = () => {
@@ -9,6 +10,7 @@ const SavedContent = () => {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
   const [postId, setPostId] = useState(0);
+  const [comment, setComment] = useState("");
 
   // If user is logged in
   // if (localStorage.getItem('access_token')) {
@@ -39,6 +41,23 @@ const SavedContent = () => {
     }
   }, [data]);
 
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    try {
+      // Adjust the URL to match your Django backend endpoint
+      const response = await axios.post('http://localhost:8000/addcomment/', {
+        userid: localStorage.getItem("userID"),
+        postid: postId,
+        comment: comment,
+        // Include any other data your backend requires
+      });
+      console.log('Comment submitted:', response.data);
+      setComment(''); // Clear the comment box after successful submission
+    } catch (error) {
+      console.error('Error submitting comment:', error);
+    }
+  };
+
   const file = `http://localhost:8000/api/presentations/presentation_20240212051521.pptx/`;
   const fileType = "pptx";
 
@@ -64,13 +83,13 @@ const SavedContent = () => {
             <p className="text-[#44566B] py-3 px-3">{localStorage.getItem("username")}</p>
           </div>
 
-              {/* User Area (Right side) */}
-              <div class="flex items-center space-x-1">
-                  <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-                  <a id='login-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-                  <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-                  <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
-              </div>
+          {/* User Area (Right side) */}
+          <div class="flex items-center space-x-1">
+            <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+            <a id='login-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
+            <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+            <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+          </div>
         </div>
       </nav>
 
@@ -85,6 +104,17 @@ const SavedContent = () => {
             </div>
           </div>
           <div className="flex justify-between items-center">
+            <form onSubmit={handleSubmitComment} className="mt-4">
+              <textarea
+                className="w-full p-2 text-lg border rounded-md"
+                placeholder="Write a comment about the output..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <button type="submit" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                Submit Comment
+              </button>
+            </form>
             <div className='buttons flex flex-row'>
               <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/presentations/${filename}?download=true`}>Download</button>
               <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
