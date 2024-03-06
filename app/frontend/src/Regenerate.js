@@ -114,7 +114,7 @@ export default function Regenerate() {
                   A.I. Page
                 </a>
                 <a
-                  className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]"
+                  className="text-[#44566B] py-3 px-3 hover:text-black"
                   href="/SavedContent"
                 >
                   Saved Content
