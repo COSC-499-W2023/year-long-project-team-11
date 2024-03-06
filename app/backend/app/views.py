@@ -78,8 +78,8 @@ def saveOutput(request):
     try:
         serializer = AppSaveForm(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return JsonResponse({"message": "Output saved successfully"}, status=200)
+            saved_instance = serializer.save()
+            return JsonResponse({"message": "Output saved successfully", "postid": saved_instance.id}, status=200)
         else:
             return JsonResponse(serializer.errors, status=400)
     except Exception as e:

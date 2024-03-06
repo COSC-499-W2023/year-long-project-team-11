@@ -8,6 +8,7 @@ const SavedContent = () => {
   const [filename, setFilename] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
+  const [postId, setPostId] = useState(0);
 
   // If user is logged in
   // if (localStorage.getItem('access_token')) {
@@ -22,16 +23,6 @@ const SavedContent = () => {
   //   },20);
   // }
 
-  const handleDownload = () => {
-    const element = document.createElement('a');
-    const file = new Blob([paragraph], { type: 'text/plain' });
-    element.href = URL.createObjectURL(file);
-    element.download = 'paragraph.txt';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  };
-
   const location = useLocation();
   const data = location.state;
 
@@ -44,6 +35,7 @@ const SavedContent = () => {
       setFilename(filename);
       setTitle(data.title);
       setTags(data.tags);
+      setPostId(data.postid);
     }
   }, [data]);
 

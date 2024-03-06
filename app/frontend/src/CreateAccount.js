@@ -159,7 +159,6 @@ export default function CreateAccount() {
         window.location.href = "/Login";
       })
       .catch(error => {
-        responseCode = error.response.status;
         return error;
       });
   };
