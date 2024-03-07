@@ -311,6 +311,13 @@ def ai(request):
             doc = Document(uploaded_file)
             for paragraph in doc.paragraphs:
                 text += paragraph.text + '\n'
+        elif uploaded_file.name.endswith('.pptx'):
+            prs = Presentation(uploaded_file)
+            text = ""
+            for slide in prs.slides:
+                for shape in slide.shapes:
+                    if hasattr(shape, 'text'):
+                        text += shape.text + '\n'           
         else:
             return JsonResponse({'error': 'Unsupported file format'})
         
