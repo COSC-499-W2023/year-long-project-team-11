@@ -31,11 +31,6 @@ export default function Prompt() {
   //   },20);
   // }
 
-  useEffect(() => {
-    console.log(localStorage.getItem('username'));
-    console.log(localStorage.getItem('userID'));
-  }, [])
-
   const getColorCode = (color) => {
     switch(color) {
       case "black":
@@ -166,7 +161,7 @@ export default function Prompt() {
                   <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
-                    accept="application/pdf"
+                    accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation"
                     required
                   />
                 </div>
