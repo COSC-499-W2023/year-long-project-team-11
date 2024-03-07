@@ -15,6 +15,7 @@ from pptx.dml.color import RGBColor
 from pptx import Presentation
 from docx import Document
 import os
+import subprocess
 
 # Create your views here.
 
@@ -281,10 +282,14 @@ def generate_slides_from_XML(xml_string, bgcolor, fonttype, fontcolor):
                     shapes.placeholders[i].text_frame.text = element.text
     set_font(prs, fonttype)
     set_font_color(prs, fontcolor)
-    file_name = generate_filename()
-    file_path = os.path.join(GENERATEDCONTENT_DIRECTORY, file_name)
-    prs.save(file_path)
-    return file_name
+    file_name_pptx = generate_filename()
+    file_path_pptx = os.path.join(GENERATEDCONTENT_DIRECTORY, file_name_pptx)
+    prs.save(file_path_pptx)
+    
+    file_name_pdf = generate_filename(extension='.pdf')
+    convert_pptx_to_pdf(file_path_pptx, GENERATEDCONTENT_DIRECTORY)
+    
+    return file_name_pptx
 
 @csrf_exempt
 def ai(request):
@@ -445,10 +450,17 @@ def regenerate(request):
             file_name = generate_slides_from_XML(response, apply_bgcolor, fonttype, apply_fontcolor)
             
             # Delete old iteration from filesystem
-            file_path = os.path.join(GENERATEDCONTENT_DIRECTORY, filename)
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                print(f"File at {file_path} removed.")
+            file_path_pptx = os.path.join(GENERATEDCONTENT_DIRECTORY, filename)
+            base, ext = os.path.splitext(file_path_pptx)
+            file_path_pdf = base + ".pdf"
+            if os.path.exists(file_path_pptx):
+                os.remove(file_path_pptx)
+                print(f"File at {file_path_pptx} removed.")
+            else:
+                print("File does not exist")
+            if os.path.exists(file_path_pdf):
+                os.remove(file_path_pdf)
+                print(f"File at {file_path_pdf} removed.")
             else:
                 print("File does not exist")
             
@@ -456,3 +468,12 @@ def regenerate(request):
         else:
             return JsonResponse({{'response': 'No prompt specified'}})
     return HttpResponse("Listening for requests on regenerate...")
+
+def convert_pptx_to_pdf(pptx_path, output_dir):
+    try:
+        subprocess.run([
+            'soffice', '--convert-to', 'pdf', '--outdir', output_dir, pptx_path
+        ], check=True)
+        print(f"Converted {pptx_path} to PDF successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to convert {pptx_path} to PDF. Error: {e}")
