@@ -12,10 +12,7 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState("");
   const [userData, setUserData] = useState({});
 
-  // See if user is logged in
-  if (localStorage.getItem('loggedIn') == 'true') {
-    window.location.href = "/Prompt";
-  }
+  localStorage.clear();
 
   const validateEmail = (email) => {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
