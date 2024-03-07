@@ -3,8 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import MoonLoader from "react-spinners/MoonLoader";
 import ConfirmModal from "./components/ConfirmModal";
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import axios, { AxiosError } from "axios";
 
 export default function Regenerate() {
   const [outputString, setOutputString] = useState("<test></test>");
@@ -20,7 +18,6 @@ export default function Regenerate() {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [docs, setDocs] = useState([]);
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
 
@@ -35,9 +32,6 @@ export default function Regenerate() {
       console.log(data);
       setOutputString(data.output);
       setFilename(data.filename);
-      let base = data.filename.substring(0, data.filename.lastIndexOf('.'));
-      let previewFilename = base + ".pdf";
-      setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
       setDocumentText(data.documentText);
       setFontType(data.fontType);
       setFontColor(data.fontColor);
@@ -45,12 +39,6 @@ export default function Regenerate() {
       setContext(data.context);
     }
   }, [data]);
-
-  useEffect(() => {
-    let base = filename.substring(0, filename.lastIndexOf('.'));
-    let previewFilename = base + ".pdf";
-    setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
-  }, [filename])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,37 +81,7 @@ export default function Regenerate() {
       .finally(() => {
         setIsLoading(false);
       })
-  }
 
-  const handleSavePost = (e) => {
-    e.preventDefault();
-
-    const post = {
-      tag: tags,
-      title: title,
-      filepath: filename,
-      userid: localStorage.getItem("userID"),
-    }
-
-    console.log(post);
-    
-    fetch("http://localhost:8000/save_output/", {
-      method: "POST",
-      headers: {
-        "X-CSRFToken": csrfToken,
-        "Content-Type": "application/json",
-        'Authorization': 'Bearer '.concat(localStorage.getItem('access_token')),
-      },
-      body: JSON.stringify(post),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Saved post: ", data);
-        navigate('/SavedContent', { state: { output: outputString, filename: filename, title: title, tags: tags, postid: data.postid } });
-      })
-      .catch((error) => {
-        console.error("Error: ", error);
-      });
   }
 
   return (
@@ -211,8 +169,7 @@ export default function Regenerate() {
               <h1 className="text-4xl font-bold mb-4">Preview</h1>
               <div className="my-8">
                 <div>
-                  {/* <pre>{outputString}</pre> */}
-                  <DocViewer documents={docs} pluginRenderers={DocViewerRenderers} />
+                  <pre>{outputString}</pre>
                 </div>
               </div>
 
@@ -274,7 +231,7 @@ export default function Regenerate() {
                 </form>
               </div>
               <ConfirmModal isOpen={showSave} closeModal={closeModal}>
-                <form onSubmit={handleSavePost}>
+                <form onSubmit={() => navigate('/Output', { state: { output: outputString, filename: filename, title: title, tags: tags } })}>
                   <div className="p-2">
                     <div>
                       <h1 className="mb-2 text-2xl">Save</h1>

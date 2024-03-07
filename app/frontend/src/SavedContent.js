@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
 
-export default function Prompt() {
+export default function SavedContent() {
   const isLoggedIn = localStorage.getItem('access_token') ? true : false;
   const username = localStorage.getItem("username");
   return (
