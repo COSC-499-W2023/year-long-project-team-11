@@ -20,8 +20,17 @@ import sys
 @api_view(['GET'])
 # @authentication_classes([SessionAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
-def getData(request):
+def getData(request, user_id=None):
     print("In the get(GET) method\n", file=sys.stderr)
+    
+    if user_id is not None:
+        try:
+            user = AppUser.objects.get(id=user_id)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        except AppUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=404)
+        
     users = AppUser.objects.all()
     serializer = UserSerializer(users, many = True)
     # person = {'username': 'John', 'email': 'johnny@gmail.com'}

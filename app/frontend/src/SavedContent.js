@@ -3,6 +3,7 @@ import { Document, Packer, Paragraph } from 'docx';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import Comment from './components/Comment';
 
 const SavedContent = () => {
   const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
@@ -12,6 +13,7 @@ const SavedContent = () => {
   const [postId, setPostId] = useState(0);
   const [comment, setComment] = useState("");
   const [docs, setDocs] = useState([]);
+  const [comments, setComments] = useState([]);
 
   // If user is logged in
   // if (localStorage.getItem('access_token')) {
@@ -45,21 +47,45 @@ const SavedContent = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    console.log(postId);
+    if (true) {
+      fetch(`http://localhost:8000/comments/${postId}/`)
+        .then((response) => response.json())
+        .then((data) => { setComments(data); console.log(data) })
+        .catch((error) => console.log(error));
+    }
+  }, [postId])
+
   const handleSubmitComment = async (e) => {
     e.preventDefault();
     try {
-      // Adjust the URL to match your Django backend endpoint
-      const response = await axios.post('http://localhost:8000/addcomment/', {
-        userid: localStorage.getItem("userID"),
-        postid: postId,
-        comment: comment,
-        // Include any other data your backend requires
+      const response = await fetch('http://localhost:8000/addcomment/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userid: localStorage.getItem("userID"),
+          postid: postId,
+          comment: comment,
+        }),
       });
-      console.log('Comment submitted:', response.data);
-      setComment(''); // Clear the comment box after successful submission
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const newComment = await response.json();
+      addComment(newComment);
+      setComment('');
     } catch (error) {
       console.error('Error submitting comment:', error);
     }
+  };
+
+  const addComment = (newComment) => {
+    setComments((prevComments) => [...prevComments, newComment]);
   };
 
   return (
@@ -101,6 +127,12 @@ const SavedContent = () => {
             </div>
           </div>
           <div className="flex justify-between items-center">
+            <div className='buttons flex flex-row'>
+              <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/presentations/${filename}?download=true`}>Download</button>
+              <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
+            </div>
+          </div>
+          <div>
             <form onSubmit={handleSubmitComment} className="mt-4">
               <textarea
                 className="w-full p-2 text-lg border rounded-md"
@@ -112,9 +144,11 @@ const SavedContent = () => {
                 Submit Comment
               </button>
             </form>
-            <div className='buttons flex flex-row'>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/presentations/${filename}?download=true`}>Download</button>
-              <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
+            <div>
+              {comments.length > 0 &&
+                comments.map((comment) => <Comment key={comment.id} comment={comment} />)
+              }
+              {!comments && <p>No comments</p>}
             </div>
           </div>
         </div>
