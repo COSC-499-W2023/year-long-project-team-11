@@ -119,7 +119,7 @@ export default function Regenerate() {
       .then(response => response.json())
       .then(data => {
         console.log("Saved post: ", data);
-        navigate('/SavedContent', { state: { output: outputString, filename: filename, title: title, tags: tags, postid: data.postid } });
+        navigate('/Output', { state: { output: outputString, filename: filename, title: title, tags: tags, postid: data.postid } });
       })
       .catch((error) => {
         console.error("Error: ", error);
