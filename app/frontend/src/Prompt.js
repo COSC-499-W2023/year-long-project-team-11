@@ -162,7 +162,7 @@ export default function Prompt() {
                   <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
-                    accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation"
                     required
                   />
                 </div>
