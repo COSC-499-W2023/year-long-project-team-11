@@ -13,6 +13,7 @@ from datetime import datetime
 import xml.etree.ElementTree as ET
 from pptx.dml.color import RGBColor
 from pptx import Presentation
+from docx import Document
 import os
 
 # Create your views here.
@@ -297,12 +298,28 @@ def ai(request):
         fonttype = request.POST.get('fontType')
         fontcolor = request.POST.get('fontColor')
 
-        # extract text
-        pdf_reader = PdfReader(uploaded_file)
+        # extract text from uploaded file
         text = ""
-        for page in pdf_reader.pages:
-            text += page.extract_text()
-		
+        
+        if uploaded_file.name.endswith('.pdf'):
+            pdf_reader = PdfReader(uploaded_file)
+            for page in pdf_reader.pages:
+                text += page.extract_text()
+        elif uploaded_file.name.endswith('.txt'):
+            text += uploaded_file.read().decode("utf-8")
+        elif uploaded_file.name.endswith('.docx'):
+            doc = Document(uploaded_file)
+            for paragraph in doc.paragraphs:
+                text += paragraph.text + '\n'
+        elif uploaded_file.name.endswith('.pptx'):
+            prs = Presentation(uploaded_file)
+            for slide in prs.slides:
+                for shape in slide.shapes:
+                    if hasattr(shape, 'text'):
+                        text += shape.text + '\n'           
+        else:
+            return JsonResponse({'error': 'Unsupported file format'})
+        
         # Split text into chunks
         text_splitter = CharacterTextSplitter(
             separator="\n",
