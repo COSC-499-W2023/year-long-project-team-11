@@ -41,3 +41,9 @@ During week 7 (the break week), I fully implemented access control for our site,
 During week 8, I updated our user profile to actually show the correct user based on who is logged in (it was originally set to only show the first user in the database). I also began work on having the user profile page show the users saved content, but hit a roadblock as I am still waiting on the ability to save content to be pushed to development.
 
 <img width="1063" alt="Screenshot 2024-03-03 at 9 36 15 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/1cab1768-755a-421f-935d-2d1e302a0daa">
+
+**Week 9**
+This week was a bit of a scramble with the peer review and midterms in other courses all converging into the same week. An issue with the login token authentication popped up a few days before the review which ended up becoming a massive stressor, but I was able to resolve that issue fortunatly and our sites access control is air-tight once again. I also made some adjustments to the navBar, changing out the email to instead display the current users username. There was also a weird issue with the prompt page displaying links to pages it shouldn't have been able to (likely a github unintentional override of one of my previous additions) so I changed it back to ensure that no page gives you a link to a page you can't access. Finally, I did some very minor code clean up, just to make things a bit more readable for future work.
+I also helped a number of other group members resolve various issues with their features, but we don't get marks for that so no real point mentioning it.
+
+<img width="1062" alt="Screenshot 2024-03-10 at 11 23 34 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/4a01a9ec-d182-49cd-ab47-abea7de230db">
