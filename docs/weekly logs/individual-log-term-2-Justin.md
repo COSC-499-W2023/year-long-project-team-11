@@ -1,3 +1,8 @@
+# Week 9 (March 4 - March 10)
+This was the week of peer testing. In preparation for the peer test, I fixed our Preview feature, and worked with Arya on updating the database/models to include saved posts and comments, and we managed to finish the commenting feature in time for peer testing.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/9e190f0b-a323-47e8-a4a8-494eb8c72bb8)
+
+
 # Week 7/8 (Feb 19 - Feb 25/Feb 26 - March 3)
 During the reading week I worked on and completed my feature of slide regeneration. This included writing a frontend for the feature, and coding an endpoint on our backend to be able to regenerate the slides. This also included prompt engineering a new prompt for regeneration, as well as improving on the old prompt. I also changed our model to gpt-3.5-turbo-0125 which is supposed to have better results for structured outputs. I also updated our LangChain code to use the new LCEL syntax. During week 8, I worked on cleaning up parts of the code, this included specifying constant variables in our Python code for readability, removing files that were not needed. I also worked on a frontend modal component for saving content to help with Arya's feature. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/029b7919-255f-45f5-b52a-7c740d197ce6)

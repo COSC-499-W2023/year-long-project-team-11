@@ -34,3 +34,8 @@ Counting the reading week and this week i worked upon making the comments featur
 Had run into a lot of troubles with the database so had to debug and deal with those issues. 
 Made a new branch and started to work upon the commenting feature and have the code in place just waiting upon another member to complete their feature.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/436492d1-cae0-41c2-88bd-bae286ef7ccf)
+
+# Week 9
+This week we had the testing where we got our project peer reviewed and got valuable feedback regarding it.
+I made swome commits for the adding comment feature and pair programmed bugs with the database to connect the tables effectively as well.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/5faa3b18-9d0e-49b9-80ac-75cdacddd2e6)

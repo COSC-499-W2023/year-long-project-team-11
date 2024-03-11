@@ -1,15 +1,16 @@
 from rest_framework import serializers
 from app.models import AppUser
-# from django.contrib.auth import get_user_model, authenticate
-from app.models import AppSaveText
+from django.contrib.auth import get_user_model, authenticate
 from app.models import AppSave
+from app.models import AppComment
 from django.contrib.sessions.models import Session
+from rest_framework.exceptions import ValidationError
 # AppUser = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppUser
-        fields = ('email', 'username', 'password')
+        fields = ('id', 'email', 'username', 'password')
         # fields = '__all__'
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -36,16 +37,15 @@ class UserLoginSerializer(serializers.Serializer):
     def check_user(self, clean_data):
         user = authenticate(username = clean_data['email'], password = clean_data['password'])
         if not user:
-            raise ValidaitonError('User not found')
+            raise ValidationError('User not found')
         return user
 
-class AppSaveTextSerizalizer(serializers.ModelSerializer):
-   class Meta:
-       model= AppSaveText
-       fields=('savecontent',)
-
-class AppSaveForm(serializers.ModelSerializer):
+class AppSaveForm(serializers.ModelSerializer):    
     class Meta:
-        model= AppSave
-        fields = ['id', 'usersessionid', 'tag', 'title', 'filepath', 'timestamp']
-        
+        model = AppSave
+        fields = ('id', 'userid', 'tag', 'title', 'filepath', 'timestamp')
+
+class AppCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AppComment
+        fields = ('id', 'userid', 'postid', 'comment')

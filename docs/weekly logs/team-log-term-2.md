@@ -105,3 +105,20 @@ In terms of new functionality, the website now has complete access control, a dy
 
 <b>Test Report</b>
 <img width="964" alt="Screenshot 2024-03-03 at 11 20 26 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f4c591d3-5042-47f4-a56b-b543c45d6f8e">
+
+----------------------------------------------------
+<h1>Week 9</h1>
+<b>List of Tasks</b>
+<img width="1102" alt="Screenshot 2024-03-10 at 11 19 11 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/6543f7e8-9d04-46e3-a900-adfff492f7eb">
+
+This week, the team scrambled to get a number of features done in time for the peer reviews by setting a deadline for these tasks to be Tuesday, though this was met with varying degrees of success. Unfortunatly, Depar was unable to complete the updating the database with the addSaveContent field, nor optimizing the search feature by Tuesday, and Lance was unable to add the ability to process more filetypes before Tuesday, though all 3 of these features ended up being completed before the actual review thankfully. Other features the team managed to complete in time include fixing issues with access control tokens, completing the ability to add comments under posts, and altering the preview page to actually show a preview of the generated pdf instead of a blob of html text.
+After the peer review we spent some time compiling the feedback and very briefly touched on future plans, but opted to leave a deep scheduling for next week due to still being in midterm season. Overall, the team had a rather successful week.
+
+<b>Kanban Board</b>
+<img width="1076" alt="Screenshot 2024-03-10 at 11 18 56 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/92a9d830-bf7d-4163-b164-b5e8df3e3dc0">
+
+<b>Burn Up Chart</b>
+<img width="879" alt="Screenshot 2024-03-10 at 11 19 23 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/976a53b6-615f-477d-aee7-8b3da77da2c6">
+
+<b>Test Report</b>
+<img width="1068" alt="Screenshot 2024-03-10 at 11 20 32 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/1a99819d-6e9c-4a10-8531-ef121cc346b4">

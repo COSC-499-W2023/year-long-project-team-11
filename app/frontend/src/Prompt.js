@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
@@ -75,8 +75,7 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         setOutput(data.response);
-        // setFilename(data.filename);
-        setFilename("test");
+        setFilename(data.filename);
         navigate('/Regenerate', { state : { output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
         // navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
         console.log(filename);
@@ -162,7 +161,7 @@ export default function Prompt() {
                   <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
-                    accept="application/pdf"
+                    accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation"
                     required
                   />
                 </div>
