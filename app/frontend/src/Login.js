@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
 
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -66,31 +67,39 @@ export default function Login() {
     localStorage.setItem("access_token", data.access);
     localStorage.setItem("refresh_token", data.refresh);
 
-    // Set username
-    localStorage.setItem("username", email)
+    // Fetch the username using Axios
+    axios.get("http://localhost:8000/", {
+      headers: {
+          'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
+      }
+    })
+    .then(response => {
+        var values = function(x) {
+          return Object.keys(x).map(function(k){return x[k]})
+        }
+        var result = response.data.filter(function(x) {
+          return values(x).indexOf(localStorage.getItem('email')) > -1
+        })
+        localStorage.setItem("username", result[0].username)
+        localStorage.setItem("userID", result[0].id);
+    })
+    .catch(error => {
+        if (error.code === "ERR_BAD_REQUEST") {
+          // User is not logged in
+          window.location.href = "/Login";
+        } else {
+          console.error("Error fetching user data:", error);
+        }
+    });
+
+    // Set email
     localStorage.setItem("email", email)
 
     // Set status
     localStorage.setItem("loggedIn", true)
-
-    axios.defaults.headers.common["Authorization"] = "Bearer ${data['access']}";
-
-    axios.get("http://localhost:8000/", {
-      headers: {
-        'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
-      }
-    })
-      .then(response => {
-        var values = function (x) {
-          return Object.keys(x).map(function (k) { return x[k] })
-        }
-        var result = response.data.filter(function (x) {
-          return values(x).indexOf(localStorage.getItem('email')) > -1
-        })
-        localStorage.setItem("userID", result[0].id);
-        console.log(result)
-        window.location.href = "/Prompt";
-      })
+      
+    // Finally
+    window.location.href = "/Prompt";
   };
 
   return (
