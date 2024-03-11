@@ -6,6 +6,8 @@ COPY Pipfile Pipfile.lock ./
 
 RUN pip install pipenv && pipenv install --system --deploy
 
+RUN apt-get update && apt-get install -y libreoffice
+
 COPY . .
 
 EXPOSE 8000

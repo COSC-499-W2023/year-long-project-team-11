@@ -88,3 +88,20 @@ This week wasn't the heaviest work week for our Capstone group, as we spent most
 
 <b>Burn Up Chart</b>
 <img width="904" alt="Screenshot 2024-02-18 at 11 13 34 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/17f9163d-d56e-4ce4-bcc2-121083ea5ba8">
+
+----------------------------------------------------
+<h1>Week 7 & 8</h1>
+<b>List of Tasks</b>
+<img width="1100" alt="Screenshot 2024-03-03 at 11 15 39 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/436ae55a-606f-4074-9158-05c87cbc6f89">
+
+During week 7 (the break), the group had set a goal that we would all have one feature fully completed by its end. This goal was successfully met, with only Lance failing to complete his task in time (though it was close to completion), and some tasks needing to be reworked due to project suggestions from the prof. We then set a new goal to begin work on a secondary task which is to be fully completed by Tuesday, Mar 5. Great headway has already been made towards completing these new features, and Justin has already completed his.
+In terms of new functionality, the website now has complete access control, a dynamic navbar based on login status, an established auto-testing system with a number of automated tests, the ability to re-generate content after initial generation, optimized search capabilities for the A.I., and the ability to save content on the users account within the site.
+
+<b>Kanban Board</b>
+<img width="1081" alt="Screenshot 2024-03-03 at 11 15 19 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/d99d65af-bbcd-4108-be43-e5f43554691b">
+
+<b>Burn Up Chart</b>
+<img width="898" alt="Screenshot 2024-03-03 at 11 15 57 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/02018400-e0e5-4d19-bcfe-f4831de35f54">
+
+<b>Test Report</b>
+<img width="964" alt="Screenshot 2024-03-03 at 11 20 26 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f4c591d3-5042-47f4-a56b-b543c45d6f8e">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
@@ -19,17 +19,17 @@ export default function Prompt() {
   const csrfToken = Cookies.get("csrftoken");
 
   // If user is logged in
-  if (localStorage.getItem('access_token')) {
-    setTimeout(function() {
-      document.getElementById('login-option').style.display = 'none'; //Will hide
-      document.getElementById('signup-option').style.display = 'none';
-    },20);
-  } else {
-    setTimeout(function() {
-      document.getElementById('profile-option').style.display = 'none';
-      document.getElementById('logout-option').style.display = 'none';
-    },20);
-  }
+  // if (localStorage.getItem('access_token')) {
+  //   setTimeout(function() {
+  //     document.getElementById('login-option').style.display = 'none'; //Will hide
+  //     document.getElementById('signup-option').style.display = 'none';
+  //   },20);
+  // } else {
+  //   setTimeout(function() {
+  //     document.getElementById('profile-option').style.display = 'none';
+  //     document.getElementById('logout-option').style.display = 'none';
+  //   },20);
+  // }
 
   const getColorCode = (color) => {
     switch(color) {
@@ -76,7 +76,8 @@ export default function Prompt() {
       .then((data) => {
         setOutput(data.response);
         setFilename(data.filename);
-        navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
+        navigate('/Regenerate', { state : { output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
+        // navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
         console.log(filename);
         console.log(data.response);
       })
@@ -160,7 +161,7 @@ export default function Prompt() {
                   <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
-                    accept="application/pdf"
+                    accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation"
                     required
                   />
                 </div>
@@ -223,7 +224,8 @@ export default function Prompt() {
                     overflow: 'hidden',
                     transition: 'max-height 0.2s ease-out',
                   }} 
-                  className="origin-top bg-neutral-300 rounded-lg">
+                  className="origin-top bg-neutral-300 rounded-lg"
+                >
                   <div className="py-2">
                     <label htmlFor="backgroundColor" className="px-2">Background Color:</label>
                     <select
