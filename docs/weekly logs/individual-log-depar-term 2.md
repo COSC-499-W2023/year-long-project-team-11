@@ -26,6 +26,9 @@ This is the week going into reading break. Sadly I havent worked much this week 
 # Individual Log Week 7-8
 During Week 7 we mainly discussed about doing some catchup work and implementing a feature by the end of a week. I fully implemented the backend that allows for saving content. I also reviewed and tested code. During Week 8 I worked on editing the backend save content as we needed to change some fields and added to better suit our prompts. I had a midterm this week so I wasn't able to complete on another feature that is to optimize searching capabilities. Currently I have researched and done some basic coding. It will be on a branch called search optimize. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/dc473eb1-8b4e-4313-ac77-c98f002b2940)
+# Individual Log Week 9
+This week was peer testing week. In order to be prepared for it we all merged and did some bug fixing. I fixed the output page and created an entirely new page named saved content to store everything there. The changes was made in time for peer testing. Other than that I am still working on optimize searching and hope to finish this week as I just recently finished my last midterm this week 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/1c94229d-28b9-4b44-8d35-c78a4ecab8f5)
 
 
 
