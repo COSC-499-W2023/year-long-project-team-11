@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/login.css";
+// import "./css/profile-picture.css";
 import axios, { AxiosError } from "axios";
 import { Link } from "react-router-dom";
 
@@ -32,6 +33,12 @@ export default function UserProfile() {
           }
       });
     }, []);
+
+      // Function to handle file input change and display the selected image
+    const loadFile = (event) => {
+      var image = document.getElementById("output");
+      image.src = URL.createObjectURL(event.target.files[0]);
+    };
 
     return (
       <div>
@@ -70,6 +77,28 @@ export default function UserProfile() {
               {/* Left Column  */}
             <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
               <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} />
+              
+              {/*  <img alt="User Symbol" className="grid place-items-center" src={userData.userSymbol} height={140} width={100} /> */}
+
+              {/* <form action="upload.php" method="post" enctype="multipart/form-data"> */}
+                {/* <label for="fileToUpload">
+                  <div class="profile-pic" style="">
+                      <span class="glyphicon glyphicon-camera"></span>
+                      <span>Change Image</span>
+                  </div>
+                </label>
+                <input type="File" name="fileToUpload" id="fileToUpload"></input> */}
+              {/* </form> */}
+
+              {/* Right Column  */}
+              {/* <div id="profile-picture">
+                <label id="-label" for="file">
+                  <span id="glyphicon glyphicon-camera"></span>
+                  <span>Change Image</span>
+                </label> */}
+                {/* <input id="file" type="file" onchange="{loadFile}"/> */}
+                {/* <img src={require("./img/symbol-user.png")} id="output" width="200" /> */}
+              {/* </div> */}
                   <p className="text-[#19747E] font-bold text-2xl">{userData.username}</p>
             </div>
 
