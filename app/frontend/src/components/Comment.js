@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios, { AxiosError } from "axios";
 
 export default function Comment({ comment }) {
   const [poster, setPoster] = useState("");

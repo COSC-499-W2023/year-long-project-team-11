@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import MoonLoader from "react-spinners/MoonLoader";
 import ConfirmModal from "./components/ConfirmModal";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import axios, { AxiosError } from "axios";
 
 export default function Regenerate() {
   const [outputString, setOutputString] = useState("<test></test>");
@@ -143,12 +142,7 @@ export default function Regenerate() {
               {/* General Area (Left side) */}
               <div class="flex items-center space-x-1">
                 {/* <div class="font-bold">(Logo) EduSynth</div> */}
-                <img
-                  alt="Edusynth Logo"
-                  src={require("./img/logo/logo-landscape.png")}
-                  height={60}
-                  width={100}
-                />
+                <a href="/Prompt"><img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} /></a>
                 <a
                   className="text-[#44566B] py-3 px-3 hover:text-black"
                   href="/Prompt"

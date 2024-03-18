@@ -47,3 +47,8 @@ This week was a bit of a scramble with the peer review and midterms in other cou
 I also helped a number of other group members resolve various issues with their features, but we don't get marks for that so no real point mentioning it.
 
 <img width="1062" alt="Screenshot 2024-03-10 at 11 23 34 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/4a01a9ec-d182-49cd-ab47-abea7de230db">
+
+**Week 10**
+This week was a rather slow one for me in regards to project (coding) progress, focusing on FINALLY wrapping up the last of my midterms in other courses. At the beginning of the week I had the team meet up to discuss current progress, and we compiled all our feedback from peer reviews into a list of new featrues for each of us to work on, with my tasks being updating the user profile page to include saved content, and updating the nav bar to be more consistent with other websites (i.e. having the logo be a link to home, having your username be displayed instead of your email, etc.). For what little time I had this week I focused my efforts on augmenting the navBar with the changes listed above, though some very odd errors have popped up regarding setting the user's name which I am currently looking into.
+
+<img width="1065" alt="Screenshot 2024-03-17 at 9 03 48 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/d4a97360-2b45-4063-90c2-0db8aa605f8a">

@@ -36,7 +36,7 @@ const Tutorial = () => {
               {/* General Area (Left side) */}
               <div class="flex items-center space-x-1">
                   {/* <div class="font-bold">(Logo) EduSynth</div> */}
-                  <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
+                  <a href="/Prompt"><img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} /></a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
                   <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Tutorial">Tutorial</a>
@@ -60,7 +60,7 @@ const Tutorial = () => {
       <div className="tutorial h-screen grid place-items-center">
         <div className="grid place-items-center rounded-lg px-[100px] py-[30px] text-center bg-[#E2E2E2] border-[3px] border-black" >
           <h1 className="font-bold text-2xl">Welcome to the AI Content Converter!</h1>
-          <img src={tutorialImage1} alt="Image of prompt page" /> 
+          <img src={tutorialImage1} alt="prompt page" /> 
           <p>
             This website allows you to convert your teaching material into the format you need or generate fresh content using AI.
           </p>
@@ -78,7 +78,7 @@ const Tutorial = () => {
           {choice === 'convert existing material' && (
             <div className="grid place-items-center">
               <h2 className="font-bold text-1xl pt-[50px]">How to Convert Existing Material</h2>
-              <img src={tutorialImage2} alt="Image of styling options" /> 
+              <img src={tutorialImage2} alt="styling options" /> 
               <p>
                 Step 1: Enter a context of the study materials you are uploading.<br />
                 Step 2: Choose the target grade level.<br />

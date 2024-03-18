@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/login.css";
-import axios, { AxiosError } from "axios";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function UserProfile() {
 
@@ -41,7 +40,7 @@ export default function UserProfile() {
               {/* General Area (Left side) */}
               <div class="flex items-center space-x-1">
                   {/* <div class="font-bold">(Logo) EduSynth</div> */}
-                  <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
+                  <a href="/Prompt"><img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} /></a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>

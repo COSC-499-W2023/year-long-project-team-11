@@ -9,7 +9,7 @@ export default function Landing() {
       <div className='flex flex-row gap-9'>
         <Link to={"/Login"}>
           <div className=" flex-auto py-3 px-6 border-[3px] border-black rounded-lg bg-[#E2E2E2]">
-            <img className="object-center" src={require("./img/symbol-user.png")} width={260} />
+            <img alt="login" className="object-center" src={require("./img/symbol-user.png")} width={260} />
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2 text-center">Log In</div>
             </div>
@@ -18,7 +18,7 @@ export default function Landing() {
 
         <Link to={"/SignUp"}>
           <div className="flex-auto py-3 px-6 border-[3px] border-black rounded-lg bg-[#E2E2E2]">
-            <img className="object-center" src={require("./img/symbol-user.png")} width={260} />
+            <img alt="sign up" className="object-center" src={require("./img/symbol-user.png")} width={260} />
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2 text-center">Sign Up</div>
             </div>

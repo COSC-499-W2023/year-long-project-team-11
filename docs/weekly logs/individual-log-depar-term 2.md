@@ -30,6 +30,8 @@ During Week 7 we mainly discussed about doing some catchup work and implementing
 This week was peer testing week. In order to be prepared for it we all merged and did some bug fixing. I fixed the output page and created an entirely new page named saved content to store everything there. The changes was made in time for peer testing. Other than that I am still working on optimize searching and hope to finish this week as I just recently finished my last midterm this week 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/1c94229d-28b9-4b44-8d35-c78a4ecab8f5)
 
-
+# Individual Log Week 10
+This week we have put our prior milestones onhold and focused on completing core features that were raised after our peer testing. I am working on sending a forget password to email. I am currently researching on how I can do it and created a basic setup on forgetpassword branch. I hope to get more done next week.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/cf497a30-d71a-457e-8aa9-50a3d35be326)
 
 
