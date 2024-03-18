@@ -1,4 +1,8 @@
 # ===== TERM 2 =====
+# Week 10 (March 11-March 17)
+This week I worked on adding the profile picture for the user profile, and I am planning on adding the profile picture for the nav bar too. I am working on the profile-picture branch. However, I did a lot of error fixing that I was unable to fix during this week. The website somehow lags whenever I use the incorrect password on logging in or on sign up causing me unable to go on other pages. It might be due to the automatic logout code. The freezing bug also happens in user profile.  have code made in UserProfile.js and added a new css file for the change image UI, and I saw it work before the bugs happened. I Hopefully for next week I am able to finish the profile picture.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/4fa572a9-3de5-417c-8834-e1041c407372)
+
 # Week 9 (March 4-March 10)
 This week we had the second peer review, I reviewed pretty much all the options from 1-4 and learned from different peers on how they did their code and how I can work on ours better. For this week I finished up adding the file types for prompt, and then added pptx to be able to be uploaded into the prompt.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/2141e585-4b0f-4d6c-b784-04e02d4f1065)

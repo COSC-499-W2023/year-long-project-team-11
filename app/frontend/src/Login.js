@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 export default function Login() {
 
   const [email, setEmail] = useState("");
+  const username = "";
   const [password, setPassword] = useState("");
+  const userID = "";
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -74,8 +76,9 @@ export default function Login() {
         var result = response.data.filter(function(x) {
           return values(x).indexOf(localStorage.getItem('email')) > -1
         })
-        localStorage.setItem("username", result[0].username)
-        localStorage.setItem("userID", result[0].id);
+        console.log(result[0].username);
+        username = result[0].username;
+        userID = result[0].id;
     })
     .catch(error => {
         if (error.code === "ERR_BAD_REQUEST") {
@@ -86,10 +89,10 @@ export default function Login() {
         }
     });
 
-    // Set email
+    // Set localStorage status
     localStorage.setItem("email", email)
-
-    // Set status
+    localStorage.setItem("username", username);
+    localStorage.setItem("userID", userID);
     localStorage.setItem("loggedIn", true)
       
     // Finally
@@ -104,7 +107,7 @@ export default function Login() {
           {/* General Area (Left side) */}
           <div class="flex items-center space-x-1">
             {/* <div class="font-bold">(Logo) EduSynth</div> */}
-            <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
+            <a href="/Prompt"><img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} /></a>
             <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
             <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
             <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
