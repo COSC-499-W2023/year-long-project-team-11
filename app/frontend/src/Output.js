@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Document, Packer, Paragraph } from 'docx';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import Comment from './components/Comment';
 
 const Output = () => {
-  const [paragraph, setParagraph] = useState('Your paragraph of words goes here.');
   const [filename, setFilename] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
@@ -34,9 +31,7 @@ const Output = () => {
   useEffect(() => {
     if (data) {
       console.log(data)
-      const output = data.output;
       const filename = data.filename;
-      setParagraph(output);
       setFilename(filename);
       let base = filename.substring(0, filename.lastIndexOf('.'));
       let previewFilename = base + ".pdf";
