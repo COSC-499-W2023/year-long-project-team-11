@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./css/login.css";
-import users from "./tests/loginTest.json";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -12,7 +11,6 @@ export default function Login() {
   const userID = "";
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [userData, setUserData] = useState({});
 
   localStorage.clear();
 
@@ -33,10 +31,6 @@ export default function Login() {
 
     setEmailError("");
 
-    const user = {
-      email: email,
-      password: password,
-    };
     // Create the POST requuest
     console.log("Stuck on post!");
     var responseCode = 200;
@@ -57,8 +51,9 @@ export default function Login() {
       });
     console.log("Response Code: " + responseCode);
 
-    if (responseCode != 200) {
+    if (responseCode !== 200) {
       alert("Username or password is incorrect!");
+      setPasswordError("Username or password is incorrect!");
       return;
     }
 
@@ -144,6 +139,7 @@ export default function Login() {
               src={require("./img/symbol-user.png")}
               height={100}
               width={70}
+              alt="Sign In Icon"
             />
             <h2 className="font-bold text-2xl pb-[10px]">Sign In</h2>
 

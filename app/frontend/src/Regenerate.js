@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import MoonLoader from "react-spinners/MoonLoader";
 import ConfirmModal from "./components/ConfirmModal";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import axios, { AxiosError } from "axios";
 
 export default function Regenerate() {
   const [outputString, setOutputString] = useState("<test></test>");
