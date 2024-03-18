@@ -122,3 +122,19 @@ After the peer review we spent some time compiling the feedback and very briefly
 
 <b>Test Report</b>
 <img width="1068" alt="Screenshot 2024-03-10 at 11 20 32 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/1a99819d-6e9c-4a10-8531-ef121cc346b4">
+
+----------------------------------------------------
+<h1>Week 10</h1>
+<b>List of Tasks</b>
+<img width="1104" alt="Screenshot 2024-03-17 at 9 12 47 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/dbf0e9dc-091c-41c6-bc77-a110d53040a0">
+
+This was a rather slow week for the group, spending the majority of our time planning out what tasks are left to do before the completion of the project, and then assigning them to group members respectivly. All group memebers have now begun on the next set of tasks, and some have already made progress that can be seen in their respective branches. We have begin work on updating the navbar to better mimic other common website practices, fully completing the user profile and saved content pages, creating a new tutorial that is a video/gif (based on peer feedback), setting up a "delete user" page, implementing the ability for users to add a profile photo, and setting a "forgot my password" email system.
+
+<b>Kanban Board</b>
+<img width="1076" alt="Screenshot 2024-03-17 at 9 12 29 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/08aa9595-f1d5-4a28-aa7c-b4aa6654abab">
+
+<b>Burn Up Chart</b>
+<img width="893" alt="Screenshot 2024-03-17 at 9 12 58 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/e1a0bbcc-16fd-44a3-b4cb-320a5e1cbb50">
+
+<b>Test Report</b>
+<img width="980" alt="Screenshot 2024-03-17 at 9 14 33 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/9ec2e494-74da-4b23-94ee-a1a8c3cfb6d6">
