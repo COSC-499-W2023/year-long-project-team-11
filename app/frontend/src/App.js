@@ -10,6 +10,7 @@ import UserProfile from './UserProfile';
 import Output from "./Output"; 
 import Regenerate from './Regenerate';
 import SavedContent from './SavedContent';
+import ForgetPassword from './ForgetPassword';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/Output' element={<Output/>} />
         <Route path='/Regenerate' element={<Regenerate />} />
         <Route path='/SavedContent' element={<SavedContent/>}/>
+        <Route path='/ForgetPassword' element={<ForgetPassword/>}/>
       </Routes>
     </div>
   );
