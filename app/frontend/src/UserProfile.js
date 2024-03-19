@@ -76,7 +76,7 @@ export default function UserProfile() {
 
               {/* Left Column  */}
             <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
-              <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} />
+              {/* <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} /> */}
               
               {/*  <img alt="User Symbol" className="grid place-items-center" src={userData.userSymbol} height={140} width={100} /> */}
 
@@ -91,14 +91,14 @@ export default function UserProfile() {
               {/* </form> */}
 
               {/* Right Column  */}
-              {/* <div id="profile-picture">
+              <div className="grid place-items-center" id="profile-picture">
                 <label id="-label" for="file">
                   <span id="glyphicon glyphicon-camera"></span>
                   <span>Change Image</span>
-                </label> */}
-                {/* <input id="file" type="file" onchange="{loadFile}"/> */}
-                {/* <img src={require("./img/symbol-user.png")} id="output" width="200" /> */}
-              {/* </div> */}
+                </label>
+                <input id="file" type="file" onchange="{loadFile}"/>
+                <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} id="output" height={140} width={100}/>
+              </div>
                   <p className="text-[#19747E] font-bold text-2xl">{userData.username}</p>
             </div>
 
