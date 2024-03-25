@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import delete_account
 
 urlpatterns = [
     path("", views.getData),
@@ -13,4 +14,5 @@ urlpatterns = [
     path("addcomment/", views.addComment, name='add comment' ),
     path("comments/<int:postid>/", views.getComment, name='getComment'),
     path("posts/<int:id>/", views.getPost, name='getPost'),
+    path('delete_account/', delete_account, name='delete_account'),
 ]
