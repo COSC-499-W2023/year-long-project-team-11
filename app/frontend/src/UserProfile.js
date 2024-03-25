@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./css/login.css";
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 export default function UserProfile() {
 
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
       // Fetch the username using Axios
@@ -31,6 +32,25 @@ export default function UserProfile() {
           }
       });
     }, []);
+
+  // Deletion Function
+  const handleDeleteAccount = () => {
+    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      axios.delete("http://localhost:8000/delete_account/", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+        },
+      })
+      .then(response => {
+        alert("Account deleted successfully.");
+        navigate("/login"); // Navigate to login or home page after deletion
+      })
+      .catch(error => {
+        console.error("Error deleting account:", error);
+        alert("Failed to delete account.");
+      });
+    }
+  };
 
     return (
       <div>
@@ -70,6 +90,12 @@ export default function UserProfile() {
             <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
               <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} />
                   <p className="text-[#19747E] font-bold text-2xl">{userData.username}</p>
+
+              {/* Add Delete Account Link */}
+              <span className="text-[#19747E] cursor-pointer hover:text-red-600" onClick={handleDeleteAccount}>
+                Delete Account
+              </span>
+
             </div>
 
               {/* Right Column */}
