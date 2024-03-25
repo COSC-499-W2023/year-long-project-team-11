@@ -1,6 +1,6 @@
 # ===== TERM 2 =====
 # Week 11 (March 18-March 24)
-This week I worked on adding the delete user/account on the delete-user branch. The functionality of it should be done. I am just missing the backend endpoint for delete account. This was pretty difficult since I need to access the axios and add a new deleteAccount endpoint for localhost:8000. Hopefully I'll be able to find out how to access it for next week.
+This week I worked on adding the delete user/account on the delete-user branch. The functionality of it should be done. Added a views.py delete account view, added url route, and made axios call from frontend. Hopefully I'll be able to finish the profile picture
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/f32baa4f-6efd-4666-913d-8a3f32082554)
 
 # Week 10 (March 11-March 17)
