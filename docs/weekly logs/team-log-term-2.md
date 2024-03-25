@@ -138,3 +138,19 @@ This was a rather slow week for the group, spending the majority of our time pla
 
 <b>Test Report</b>
 <img width="980" alt="Screenshot 2024-03-17 at 9 14 33 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/9ec2e494-74da-4b23-94ee-a1a8c3cfb6d6">
+
+----------------------------------------------------
+<h1>Week 11</h1>
+<b>List of Tasks</b>
+<img width="1099" alt="Screenshot 2024-03-25 at 1 02 31 AM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/8b889867-2aa6-4979-8673-3a23142057e3">
+
+This week, the group made great progress, completing work on the savedContent feature, the ability to delete your account, and making progress on showing user content in the profile page. By the end of next week, our group is scheduled to be completed most if not all major features, leaving only minor features and adjustments still to be made!
+
+<b>Kanban Board</b>
+<img width="1077" alt="Screenshot 2024-03-25 at 1 02 14 AM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/10fd17ea-2cc0-4b1a-aa83-4dd204eb3c3b">
+
+<b>Burn Up Chart</b>
+<img width="921" alt="Screenshot 2024-03-25 at 1 02 44 AM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/fc34f72b-440f-443a-ae2d-44baba1bf1b3">
+
+<b>Test Report</b>
+<img width="520" alt="Screenshot 2024-03-25 at 12 58 14 AM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/1376c985-6198-44c0-8a1a-d3ecff7ced6f">
