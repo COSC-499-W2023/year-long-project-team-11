@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./css/login.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const username = "";
   const [password, setPassword] = useState("");
-  const userID = "";
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -63,41 +61,42 @@ export default function Login() {
     localStorage.setItem("access_token", data.access);
     localStorage.setItem("refresh_token", data.refresh);
 
-    // Fetch the username using Axios
-    axios.get("http://localhost:8000/", {
-      headers: {
-          'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
-      }
-    })
-    .then(response => {
-        var values = function(x) {
-          return Object.keys(x).map(function(k){return x[k]})
-        }
-        var result = response.data.filter(function(x) {
-          return values(x).indexOf(localStorage.getItem('email')) > -1
-        })
-        console.log(result[0].username);
-        username = result[0].username;
-        userID = result[0].id;
-    })
-    .catch(error => {
-        if (error.code === "ERR_BAD_REQUEST") {
-          // User is not logged in
-          window.location.href = "/Login";
-        } else {
-          console.error("Error fetching user data:", error);
-        }
-    });
-
     // Set localStorage status
     localStorage.setItem("email", email)
-    localStorage.setItem("username", username);
-    localStorage.setItem("userID", userID);
     localStorage.setItem("loggedIn", true)
-      
+    
+    // Fetch the username using Axios
+    fetchUserData();
+
     // Finally
-    window.location.href = "/Prompt";
+    // window.location.href = "/Prompt";
+    navigate('/Prompt');
   };
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/currentuser/', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      console.log(data.username);
+      console.log(data.id);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("userID", data.id);
+    } catch (error) {
+      console.error('Error fetching user data: ', error);
+    }
+  }
 
   return (
     <div>
