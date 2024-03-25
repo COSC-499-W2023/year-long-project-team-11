@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./css/login.css";
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 export default function UserProfile() {
 
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
       // Fetch the username using Axios
@@ -42,7 +43,7 @@ export default function UserProfile() {
       })
       .then(response => {
         alert("Account deleted successfully.");
-        window.location.href = "/Login";
+        navigate("/Login");
       })
       .catch(error => {
         console.error("Error deleting account:", error);

@@ -97,3 +97,17 @@ def saveOutput(request):
 class AppSaveList(APIView):
     queryset= AppSave.objects.all()
     serializer_class= AppSaveForm
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_account(request):
+    user = request.user
+    try:
+        # Perform any additional checks if necessary (e.g., requiring a password confirmation)
+        
+        user.delete()
+        return Response({'message': 'Account deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
