@@ -30,6 +30,10 @@ export default function UserProfile() {
             console.error("Error fetching user data:", error);
           }
       });
+
+      console.log(localStorage.getItem('access_token'));
+      console.log(localStorage.getItem('username'));
+      console.log(localStorage.getItem('userID'));
     }, []);
 
     return (

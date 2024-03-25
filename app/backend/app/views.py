@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -10,7 +11,7 @@ from django.http import JsonResponse
 from app.models import AppUser
 from .serializers import UserSerializer
 from .serializers import AppSave
-from .serializers import AppSaveForm
+from .serializers import AppSaveSerializer
 from .serializers import AppCommentSerializer
 from .models import AppComment
 import os
@@ -34,6 +35,12 @@ def getData(request, user_id=None):
     users = AppUser.objects.all()
     serializer = UserSerializer(users, many = True)
     # person = {'username': 'John', 'email': 'johnny@gmail.com'}
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def currentUser(request):
+    serializer = UserSerializer(request.user)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -85,7 +92,7 @@ class LogoutView(APIView):
 @api_view(['POST'])
 def saveOutput(request):
     try:
-        serializer = AppSaveForm(data=request.data)
+        serializer = AppSaveSerializer(data=request.data)
         if serializer.is_valid():
             saved_instance = serializer.save()
             return JsonResponse({"message": "Output saved successfully", "postid": saved_instance.id}, status=200)
@@ -93,7 +100,23 @@ def saveOutput(request):
             return JsonResponse(serializer.errors, status=400)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+    
+@api_view(['GET'])
+def getPost(request, id):
+    try:
+        post = AppSave.objects.get(pk=id)
+        serializer = AppSaveSerializer(post)
+        return Response(serializer.data)
+    except AppSave.DoesNotExist:
+        return Response({'error': 'Post not found'}, status=404)
 
-class AppSaveList(APIView):
-    queryset= AppSave.objects.all()
-    serializer_class= AppSaveForm
+@api_view(['GET'])
+def listSavedContent(request):
+    saved_content = AppSave.objects.all().order_by('-timestamp')
+    paginator = Paginator(saved_content, 10)
+    
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    serializer = AppSaveSerializer(page_obj, many=True)
+    return JsonResponse({'posts': serializer.data, 'hasNext': page_obj.has_next()})
