@@ -32,6 +32,25 @@ export default function UserProfile() {
       });
     }, []);
 
+  // Deletion Function
+  const handleDeleteAccount = () => {
+    if(window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      axios.delete("http://localhost:8000/deleteAccount", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+        },
+      })
+      .then(response => {
+        alert("Account deleted successfully.");
+        window.location.href = "/Login";
+      })
+      .catch(error => {
+        console.error("Error deleting account:", error);
+        alert("Failed to delete account.");
+      });
+    }
+  };
+
     return (
       <div>
       {/* Nav Bar */}
@@ -70,6 +89,12 @@ export default function UserProfile() {
             <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
               <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} />
                   <p className="text-[#19747E] font-bold text-2xl">{userData.username}</p>
+
+              {/* Add Delete Account Link */}
+              <span className="text-[#19747E] cursor-pointer hover:text-red-600" onClick={handleDeleteAccount}>
+                Delete Account
+              </span>
+
             </div>
 
               {/* Right Column */}
