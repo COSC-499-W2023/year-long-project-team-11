@@ -1,4 +1,8 @@
 # ===== TERM 2 =====
+# Week 11 (March 18-March 24)
+This week I worked on adding the delete user/account on the delete-user branch. The functionality of it should be done. I am just missing the backend endpoint for delete account. This was pretty difficult since I need to access the axios and add a new deleteAccount endpoint for localhost:8000. Hopefully I'll be able to find out how to access it for next week.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/f32baa4f-6efd-4666-913d-8a3f32082554)
+
 # Week 10 (March 11-March 17)
 This week I worked on adding the profile picture for the user profile, and I am planning on adding the profile picture for the nav bar too. I am working on the profile-picture branch. However, I did a lot of error fixing that I was unable to fix during this week. The website somehow lags whenever I use the incorrect password on logging in or on sign up causing me unable to go on other pages. It might be due to the automatic logout code. The freezing bug also happens in user profile.  have code made in UserProfile.js and added a new css file for the change image UI, and I saw it work before the bugs happened. I Hopefully for next week I am able to finish the profile picture.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/4fa572a9-3de5-417c-8834-e1041c407372)
