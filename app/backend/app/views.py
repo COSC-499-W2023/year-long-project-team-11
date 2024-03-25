@@ -99,7 +99,6 @@ class AppSaveList(APIView):
     serializer_class= AppSaveForm
 
 @api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
 def delete_account(request):
     user = request.user
     try:

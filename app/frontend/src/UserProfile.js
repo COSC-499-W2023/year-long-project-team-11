@@ -35,15 +35,15 @@ export default function UserProfile() {
 
   // Deletion Function
   const handleDeleteAccount = () => {
-    if(window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-      axios.delete("http://localhost:8000/deleteAccount", {
+    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      axios.delete("http://localhost:8000/delete_account/", {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
         },
       })
       .then(response => {
         alert("Account deleted successfully.");
-        navigate("/Login");
+        navigate("/login"); // Navigate to login or home page after deletion
       })
       .catch(error => {
         console.error("Error deleting account:", error);
