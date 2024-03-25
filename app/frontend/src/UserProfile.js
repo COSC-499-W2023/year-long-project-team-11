@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Post from "./components/Post";
 import "./css/login.css";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -6,36 +7,67 @@ export default function UserProfile() {
 
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasNext, setHasNext] = useState(false);
 
   useEffect(() => {
-      // Fetch the username using Axios
-      axios.get("http://localhost:8000/", {
-        headers: {
-            'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
+    fetch(`http://localhost:8000/savedcontent/?page=${currentPage}`)
+    .then(response => {
+        var values = function(x) {
+          return Object.keys(x).map(function(k){return x[k]})
         }
+        var result = response.data.filter(function(x) {
+          // return values(x).indexOf(localStorage.getItem('email')) > -1
+          return values(x)
+        })
+        setPosts(result[0]);
+        setHasNext(result[1]);
       })
-      .then(response => {
-          var values = function(x) {
-            return Object.keys(x).map(function(k){return x[k]})
-          }
-          var result = response.data.filter(function(x) {
-            return values(x).indexOf(localStorage.getItem('email')) > -1
-          })
-          setUserData(result[0]);
-      })
-      .catch(error => {
-          if (error.code === "ERR_BAD_REQUEST") {
-            // User is not logged in
-            window.location.href = "/Login";
-          } else {
-            console.error("Error fetching user data:", error);
-          }
-      });
+      .catch((error) => console.error('Error fetching data: ', error));
+  }, [currentPage])
 
-      console.log(localStorage.getItem('access_token'));
-      console.log(localStorage.getItem('username'));
-      console.log(localStorage.getItem('userID'));
-    }, []);
+  const handleNext = () => {
+    if (hasNext) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  // useEffect(() => {
+  //     // Fetch the username using Axios
+  //     axios.get("http://localhost:8000/", {
+  //       headers: {
+  //           'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
+  //       }
+  //     })
+      // .then(response => {
+      //     var values = function(x) {
+      //       return Object.keys(x).map(function(k){return x[k]})
+      //     }
+      //     var result = response.data.filter(function(x) {
+      //       return values(x).indexOf(localStorage.getItem('email')) > -1
+      //     })
+      //     setUserData(result[0]);
+      // })
+  //     .catch(error => {
+  //         if (error.code === "ERR_BAD_REQUEST") {
+  //           // User is not logged in
+  //           window.location.href = "/Login";
+  //         } else {
+  //           console.error("Error fetching user data:", error);
+  //         }
+  //     });
+
+    //   console.log(localStorage.getItem('access_token'));
+    //   console.log(localStorage.getItem('username'));
+    //   console.log(localStorage.getItem('userID'));
+    // }, []);
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  }
 
   // Deletion Function
   const handleDeleteAccount = () => {
@@ -88,12 +120,12 @@ export default function UserProfile() {
       <div className="h-screen grid place-items-center">
         <div className="rounded-lg w-500 h-500 px-[100px] py-[30px] bg-[#E2E2E2] border-[3px] border-black" 
         id="user-profile-box">
-          <div className="flex">
+          <div className="items-center justify-center flex">
 
               {/* Left Column  */}
             <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
               <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} />
-                  <p className="text-[#19747E] font-bold text-2xl">{userData.username}</p>
+                  <p className="text-[#19747E] font-bold text-2xl">{localStorage.getItem("username")}</p>
 
               {/* Add Delete Account Link */}
               <span className="text-[#19747E] cursor-pointer hover:text-red-600" onClick={handleDeleteAccount}>
@@ -104,26 +136,28 @@ export default function UserProfile() {
 
               {/* Right Column */}
             <div className="grid place-items-center w-[70%] p-4 " id="right-box">
-                  <p className="text-[#19747E] font-bold text-2xl">{userData.username}'s Public Materials</p>
+                  <p className="text-[#19747E] font-bold text-2xl">{localStorage.getItem("username")}'s Public Materials</p>
 
                   <div className="flex">
 
-                      <div className=" bg-gray-200 w-1/2 p-2 m-2 rounded-lg">
-                          {/* Add content for the first column */}
-                          <p className="text-gray-800 bg-white px-2 mb-3 rounded-lg font-bold" id="title">Column Title</p>
-
-                          <p className="text-gray-700 bg-white  px-2 py-1 rounded-lg text-sm mb-2" id="tag">Tag 1</p>
-                          <p className="text-gray-700 bg-white  px-2 py-1 rounded-lg text-sm mb-2" id="tag">Tag 2</p>
-
-                      </div>
-
-                      <div className=" bg-gray-200 w-1/2 p-2 m-2 rounded-lg">
-                          {/* Add content for the second column */}
-                          <p className="text-gray-800 bg-white px-2 mb-3 rounded-lg font-bold"  id="title">Column Title</p>
-
-                          <p className="text-gray-700 bg-white  px-2 py-1 rounded-lg text-sm mb-2" id="tag">Tag 1</p>
-
-                      </div>
+                  {posts.length === 0 ? 
+          <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
+            {/* Content goes here */}
+            <h1> No Saved Files </h1>
+          </div>
+          :
+          <div className="flex flex-col items-center justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {posts.map((post) => (
+                <Post key={post.id} filename={post.filepath} title={post.title} tags={post.tag} postID={post.id} timestamp={post.timestamp} posterID={post.userid} posterUsername={post.username} />
+              ))}
+            </div>
+            <div>
+              {currentPage !== 1 && <button className="mx-1" onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>}
+              {hasNext && <button className="mx-1" onClick={handleNext} disabled={!hasNext}>Next</button>}
+            </div>
+          </div>
+        }
 
                   </div>
 
