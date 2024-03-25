@@ -1,56 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import Comment from './components/Comment';
+import { useParams } from 'react-router-dom';
 
 const Output = () => {
+  const { postId } = useParams();
   const [filename, setFilename] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
-  const [postId, setPostId] = useState(0);
   const [comment, setComment] = useState("");
   const [docs, setDocs] = useState([]);
   const [comments, setComments] = useState([]);
 
-  // If user is logged in
-  // if (localStorage.getItem('access_token')) {
-  //   setTimeout(function() {
-  //     document.getElementById('login-option').style.display = 'none'; //Will hide
-  //     document.getElementById('signup-option').style.display = 'none';
-  //   },20);
-  // } else {
-  //   setTimeout(function() {
-  //     document.getElementById('profile-option').style.display = 'none';
-  //     document.getElementById('logout-option').style.display = 'none';
-  //   },20);
-  // }
-
-  const location = useLocation();
-  const data = location.state;
-
   useEffect(() => {
-    if (data) {
-      console.log(data)
-      const filename = data.filename;
+    fetchPostData(postId);
+    fetchComments(postId);
+  }, [postId])
+
+  const fetchPostData = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8000/posts/${id}/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      const filename = data.filepath;
       setFilename(filename);
       let base = filename.substring(0, filename.lastIndexOf('.'));
       let previewFilename = base + ".pdf";
       setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
       setTitle(data.title);
       setTags(data.tags);
-      setPostId(data.postid);
-    }
-  }, [data]);
 
-  useEffect(() => {
-    console.log(postId);
-    if (true) {
-      fetch(`http://localhost:8000/comments/${postId}/`)
-        .then((response) => response.json())
-        .then((data) => { setComments(data); console.log(data) })
-        .catch((error) => console.log(error));
+    } catch (error) {
+      console.error("Could not fetch the post data:", error);
     }
-  }, [postId])
+  }
+
+  const fetchComments = async (id) => {
+    fetch(`http://localhost:8000/comments/${id}/`)
+      .then((response) => response.json())
+      .then((data) => { setComments(data); console.log(data) })
+      .catch((error) => console.log(error));
+  }
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -149,7 +151,8 @@ const Output = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
+
 
 export default Output;

@@ -40,10 +40,12 @@ class UserLoginSerializer(serializers.Serializer):
             raise ValidationError('User not found')
         return user
 
-class AppSaveForm(serializers.ModelSerializer):    
+class AppSaveSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='userid.username', read_only=True)
+    
     class Meta:
         model = AppSave
-        fields = ('id', 'userid', 'tag', 'title', 'filepath', 'timestamp')
+        fields = ('id', 'userid', 'username', 'tag', 'title', 'filepath', 'timestamp')
 
 class AppCommentSerializer(serializers.ModelSerializer):
     class Meta:
