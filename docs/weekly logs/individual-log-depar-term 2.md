@@ -34,7 +34,10 @@ This week was peer testing week. In order to be prepared for it we all merged an
 This week we have put our prior milestones onhold and focused on completing core features that were raised after our peer testing. I am working on sending a forget password to email. I am currently researching on how I can do it and created a basic setup on forgetpassword branch. I hope to get more done next week.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/cf497a30-d71a-457e-8aa9-50a3d35be326)
 
-#Individual Log Week 11
+# Individual Log Week 11
 This week we worked on completing our individual tasks to finish by the end of the month. In the middle of working on creating this I found an easier way to implementation by using the Django's templates so I am retracing my steps and redoing it. I also had some issues in my localmachine where the website is always logged in and I am currently working on fixing it too. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/41561d6e-aeec-42b0-859c-d95d15149ee8)
 
+# Individual Log Week 12 
+I have currently done basic setup with the template in my local machine along with the SMTP setup. There were bug fixes and setup issues that delayed me. After testing I will upload it to development and to master before this upcoming Tuesday so we are on track with features. 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/aacb72c2-f9b0-4f70-bb60-bef6c60f3f51)
