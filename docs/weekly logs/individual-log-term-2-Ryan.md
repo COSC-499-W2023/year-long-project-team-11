@@ -57,3 +57,7 @@ This week was a rather slow one for me in regards to project (coding) progress, 
 I didn't get as much done this week as I had hoped, but I did manage to make some progress on implementing the ability to view your posts on your profile page. Still incomplete though so not much else to say.
 
 <img width="1066" alt="Screenshot 2024-03-25 at 12 02 30 AM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/55710308-08da-47e7-9e42-b8cfe034ba31">
+
+**Week 12**
+This week was productive, but not super exciting. I completed "populate user profile" feature, making it so that your profile only displays your own posts. Not much more to say beyond that. Next week, I'll be focusing primarily on bug-fixes as well as minor features.
+<img width="1071" alt="Screenshot 2024-03-31 at 11 23 00 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/62026c48-befb-4214-963f-2b627924d713">

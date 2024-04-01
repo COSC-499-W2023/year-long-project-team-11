@@ -1,4 +1,8 @@
 # ===== TERM 2 =====
+# Week 12 (March 25-March 31)
+This week I was not able to do as much coding work since I had to finish up major assignments from other classes. However, I was researching more on how to do my feature, especially trying to add the image option to work seamlessly. It is taking me more time than I thought as using css file to make the profile picture might give more clutter to the frontend folder. I will probably try to implement tailwind into making the profile picture UI, but given the length of the researching I did just to add a nice looking profile picture, I might take longer for it.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/69cdeaff-5471-4d3e-84f3-08e31d257fa2)
+
 # Week 11 (March 18-March 24)
 This week I worked on adding the delete user/account on the delete-user branch. The functionality of it should be done. Added a views.py delete account view, added url route, and made axios call from frontend. Hopefully I'll be able to finish the profile picture
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/f32baa4f-6efd-4666-913d-8a3f32082554)
