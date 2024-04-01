@@ -10,19 +10,17 @@ export default function UserProfile() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNext, setHasNext] = useState(false);
+  const userID = localStorage.getItem("userID");
 
   useEffect(() => {
     fetch(`http://localhost:8000/savedcontent/?page=${currentPage}`)
-    .then(response => {
-        var values = function(x) {
-          return Object.keys(x).map(function(k){return x[k]})
-        }
-        var result = response.data.filter(function(x) {
-          // return values(x).indexOf(localStorage.getItem('email')) > -1
-          return values(x)
-        })
-        setPosts(result[0]);
-        setHasNext(result[1]);
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data.posts.filter(function(post) {
+          return post.userid == userID;
+        }))
+        setHasNext(data.hasNext);
+        console.log(data);
       })
       .catch((error) => console.error('Error fetching data: ', error));
   }, [currentPage])
