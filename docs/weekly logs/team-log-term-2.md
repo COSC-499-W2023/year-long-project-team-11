@@ -154,3 +154,19 @@ This week, the group made great progress, completing work on the savedContent fe
 
 <b>Test Report</b>
 <img width="520" alt="Screenshot 2024-03-25 at 12 58 14 AM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/1376c985-6198-44c0-8a1a-d3ecff7ced6f">
+
+----------------------------------------------------
+<h1>Week 12</h1>
+<b>List of Tasks</b>
+<img width="1102" alt="Screenshot 2024-03-31 at 11 32 05 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/7c283235-5a5c-4aa4-9493-1a551a6d9c86">
+
+This week, the team made a disappointingly little amount of progress, failing to reach our task goal with only the "Populate User Profile" feature being completed. The group members that failed to meet our deadline will need to work extra hard this upcoming week to ensure that the project is fully completed in time to present to the client.
+
+<b>Kanban Board</b>
+<img width="1086" alt="Screenshot 2024-03-31 at 11 31 38 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/1b609541-d5fa-4a96-aebb-1749343abf45">
+
+<b>Burn Up Chart</b>
+<img width="878" alt="Screenshot 2024-03-31 at 11 31 27 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/1fc6f3d8-c957-41fe-a2fa-c71c973f18f4">
+
+<b>Test Report</b>
+<img width="782" alt="Screenshot 2024-03-31 at 11 33 05 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/469c2a07-6a5e-4a97-8c85-6ae28c94f449">
