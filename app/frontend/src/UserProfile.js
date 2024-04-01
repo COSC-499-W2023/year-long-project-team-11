@@ -31,36 +31,6 @@ export default function UserProfile() {
     }
   };
 
-  // useEffect(() => {
-  //     // Fetch the username using Axios
-  //     axios.get("http://localhost:8000/", {
-  //       headers: {
-  //           'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
-  //       }
-  //     })
-      // .then(response => {
-      //     var values = function(x) {
-      //       return Object.keys(x).map(function(k){return x[k]})
-      //     }
-      //     var result = response.data.filter(function(x) {
-      //       return values(x).indexOf(localStorage.getItem('email')) > -1
-      //     })
-      //     setUserData(result[0]);
-      // })
-  //     .catch(error => {
-  //         if (error.code === "ERR_BAD_REQUEST") {
-  //           // User is not logged in
-  //           window.location.href = "/Login";
-  //         } else {
-  //           console.error("Error fetching user data:", error);
-  //         }
-  //     });
-
-    //   console.log(localStorage.getItem('access_token'));
-    //   console.log(localStorage.getItem('username'));
-    //   console.log(localStorage.getItem('userID'));
-    // }, []);
-
   const handlePrevious = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
