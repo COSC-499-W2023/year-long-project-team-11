@@ -36,7 +36,7 @@ export default function Regenerate() {
       setFilename(data.filename);
       let base = data.filename.substring(0, data.filename.lastIndexOf('.'));
       let previewFilename = base + ".pdf";
-      setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
+      setDocs([{ uri: `http://localhost:8000/api/files/${previewFilename}/` }]);
       setDocumentText(data.documentText);
       setFontType(data.fontType);
       setFontColor(data.fontColor);
@@ -48,7 +48,7 @@ export default function Regenerate() {
   useEffect(() => {
     let base = filename.substring(0, filename.lastIndexOf('.'));
     let previewFilename = base + ".pdf";
-    setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
+    setDocs([{ uri: `http://localhost:8000/api/files/${previewFilename}/` }]);
   }, [filename])
 
   const handleSubmit = (e) => {
@@ -65,8 +65,9 @@ export default function Regenerate() {
     formData.append("fontColor", fontColor);
     formData.append("backgroundColor", backgroundColor);
     formData.append("ctx", context)
+    formData.append("username", localStorage.getItem("username"));
 
-    fetch("http://localhost:8000/api/regenerate/", {
+    fetch("http://localhost:8000/api/regenerate_presentation/", {
       method: "POST",
       headers: {
         "X-CSRFToken": csrfToken,
