@@ -1,36 +1,37 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework import status
-from django.http import JsonResponse
 from app.models import AppUser
+from app.models import AppSaveText
 from .serializers import UserSerializer
+from .serializers import AppSaveTextSerizalizer
 from .serializers import AppSave
 from .serializers import AppSaveForm
-from .serializers import AppCommentSerializer
-from .models import AppComment
+from django.urls import reverse
+from rest_framework.response import Response
 import os
 import sys
-
+#For Password reset
+from django.contrib.auth.tokens import default_token_generator
+from django.urls import reverse
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import send_mail
+from django.http import HttpResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.utils.encoding import force_str
+#
 # Create your views here.
 @api_view(['GET'])
 # @authentication_classes([SessionAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
-def getData(request, user_id=None):
+def getData(request):
     print("In the get(GET) method\n", file=sys.stderr)
-    
-    if user_id is not None:
-        try:
-            user = AppUser.objects.get(id=user_id)
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
-        except AppUser.DoesNotExist:
-            return Response({'error': 'User not found'}, status=404)
-        
     users = AppUser.objects.all()
     serializer = UserSerializer(users, many = True)
     # person = {'username': 'John', 'email': 'johnny@gmail.com'}
@@ -44,20 +45,6 @@ def addUser(request):
         serializer.save()
     else:
          print(serializer.errors, file=sys.stderr)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def addComment(request):
-    serializer = AppCommentSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['GET'])
-def getComment(request, postid):
-    comments = AppComment.objects.filter(postid=postid)
-    serializer = AppCommentSerializer(comments, many=True)
     return Response(serializer.data)
 
 # permission_classes = (IsAuthenticated)
@@ -82,13 +69,12 @@ class LogoutView(APIView):
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
 def saveOutput(request):
     try:
-        serializer = AppSaveForm(data=request.data)
+        serializer = AppSaveTextSerizalizer(data=request.data)
         if serializer.is_valid():
-            saved_instance = serializer.save()
-            return JsonResponse({"message": "Output saved successfully", "postid": saved_instance.id}, status=200)
+            serializer.save()
+            return JsonResponse({"message": "Output saved successfully"}, status=200)
         else:
             return JsonResponse(serializer.errors, status=400)
     except Exception as e:
@@ -97,3 +83,36 @@ def saveOutput(request):
 class AppSaveList(APIView):
     queryset= AppSave.objects.all()
     serializer_class= AppSaveForm
+
+class SendPasswordResetEmailView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        user = AppUser.objects.filter(email=email).first()
+        if user:
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+
+            reset_url = f'http://localhost:3000/ResetPassword/{uidb64}'
+            send_mail( 
+                'Password Reset Request',
+                f'Please follow the link to reset your password: {reset_url}',
+                'from@example.com',
+                [email],
+                fail_silently=False,
+            )
+            return Response({'success': 'We have sent you a link to reset your password'}, status=status.HTTP_200_OK)
+        return Response({'error': 'User with this email does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+class ResetPasswordView(APIView):
+    def post(self, request):
+        #userid = request.data.get('uidb64')
+        userid = request.data.get('userid')
+        password = request.data.get('password')
+        try:
+            uid = force_str(urlsafe_base64_decode(userid))
+            user = AppUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, AppUser.DoesNotExist):
+            return Response({'error': 'Invalid user or user does not exist.'}, status=status.HTTP_404_NOT_FOUND)
+        user.set_password(password)
+        user.save()
+        return Response({'success': 'Password has been reset successfully.'}, status=status.HTTP_200_OK)
+   
