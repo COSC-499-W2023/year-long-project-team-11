@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 export default function ForgetPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
+  if (localStorage.getItem('loggedIn') == 'true') {
+    window.location.href = "/Prompt";
+  }
+  // const navigate= useNavigate();
+  // const passemail= () => {
+  //  navigate('/ResetPassword',{state: {email: email}});
+  // };
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/password_reset/', { email });
+      console.log('Email:', email);
+      const response = await axios.post('http://localhost:8000/forgetpassword/', { email: email });
       setMessage('If an account with that email exists, we have sent a password reset link.');
     } catch (error) {
       console.error('Failed to reset password', error);

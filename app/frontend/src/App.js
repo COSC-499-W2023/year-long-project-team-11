@@ -11,7 +11,7 @@ import Output from "./Output";
 import Regenerate from './Regenerate';
 import SavedContent from './SavedContent';
 import ForgetPassword from './ForgetPassword';
-
+import ResetPassword from './ResetPassword';
 function App() {
   return (
     <div className='App'>
@@ -28,6 +28,7 @@ function App() {
         <Route path='/Regenerate' element={<Regenerate />} />
         <Route path='/SavedContent' element={<SavedContent/>}/>
         <Route path='/ForgetPassword' element={<ForgetPassword/>}/>
+        <Route path='/ResetPassword/:userid' element={<ResetPassword/>}/>
       </Routes>
     </div>
   );
