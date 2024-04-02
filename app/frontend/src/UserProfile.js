@@ -43,12 +43,32 @@ export default function UserProfile() {
       reader.onloadend = () => {
         // Set the preview image to the file's data URL
         setProfileImage(reader.result);
+        const base64String = reader.result;
+        //send string to backend
+        uploadImage(base64String);
       };
   
       if (file) {
         reader.readAsDataURL(file);
       }
     };
+
+    const uploadImage = (base64String) => {
+      axios.put('http://localhost:8000/uploadprofileimage/', { userSymbol: base64String }, {
+        headers: {
+          'Content-Type': 'application/json'
+      }
+      })
+        .then(response => {
+          // Handle the successful response here
+          console.log('Image uploaded successfully:', response.data);
+        })
+        .catch(error => {
+          // Handle the error here
+          console.log('Error uploading the image:', error);
+        });
+    };
+    
 
     return (
       <div>

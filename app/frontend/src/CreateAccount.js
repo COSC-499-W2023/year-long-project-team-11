@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
 
 export default function CreateAccount() {
@@ -14,12 +13,6 @@ export default function CreateAccount() {
     password: "",
     confirmPassword: "",
   });
-  const csrfToken = Cookies.get("csrftoken");
-
-  // See if user is logged in
-  if (localStorage.getItem('loggedIn') == 'true') {
-    window.location.href = "/Prompt";
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,6 +104,7 @@ export default function CreateAccount() {
       confirmPassword: "",
     }));
 
+    // ====================== ADD FUNCTIONALITY HERE ======================
     const user = {
       email: email,
       username: username,
@@ -119,73 +113,45 @@ export default function CreateAccount() {
 
     // Create the POST requuest
     console.log("Stuck on post!");
-    // var responseCode = 200;
-    // axios
-    //   .post("http://localhost:8000/add/", {
-    //     email: email,
-    //     username: username,
-    //     password: password,
-    //   })
-    //   .catch((err) => {
-    //     responseCode = err.response.status;
-    //     return err;
-    //   });
-
-    // if (responseCode !== 200) {
-    //   alert("Field is invalid!");
-    //   return;
-    // }
-    
-    // console.log("Successfully created an account: " + email);
-    // window.location.href = "/Login";
-
-    // Fetch API method
-    fetch("http://localhost:8000/add/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        } else {
-          return response.json();
-        }
+    var responseCode = 200;
+    axios
+      .post("http://localhost:8000/add/", { //use this (8000 is get. remove add)
+        email: email,
+        username: username,  //receive
+        password: password,
       })
-      .then(data => {
-        console.log("Successfully created an account: ", data);
-        window.location.href = "/Login";
-      })
-      .catch(error => {
-        return error;
+      .catch((err) => {
+        responseCode = err.response.status;
+        return err;
       });
+
+    if (responseCode != 200) {
+      alert("Field is invalid!");
+      return;
+    } else {
+      alert("Success!");
+    }
+    console.log("Successfully created an account: " + email);
   };
 
   return (
     <div>
       {/* Nav Bar */}
       <nav class="bg-[#E2E2E2]">
-          <div class="flex justify-between mr-5 ml-2 py-2">
+          <div class="flex justify-between mr-5 ml-5 py-2">
               {/* General Area (Left side) */}
               <div class="flex items-center space-x-1">
-                  {/* <div class="font-bold">(Logo) EduSynth</div> */}
-                  <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
+                  <div class="font-bold">(Logo) EduSynth</div>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
               </div>
 
-              <div>
-                <p className="text-[#44566B] py-3 px-3">{localStorage.getItem("username")}</p>
-              </div>
-
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Profile">Profile</a>
                   <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-                  <a hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
                   <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/SignUp">Sign Up</a>
               </div>
           </div>

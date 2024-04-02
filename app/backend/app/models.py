@@ -29,6 +29,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length = 50, unique = True, validators=[validate_email])
     username = models.CharField(max_length = 50)
     password = models.TextField(max_length = 50)
+    userSymbol = models.BinaryField(null=True, blank=True, editable=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = AppUserManager()

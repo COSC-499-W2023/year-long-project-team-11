@@ -11,4 +11,5 @@ urlpatterns = [
     path('appsaves/', views.AppSaveList.as_view(), name='save_app'),
     path("addcomment/", views.addComment, name='add comment' ),
     path("comments/<int:postid>/", views.getComment, name='getComment'),
+    path("uploadprofileimage/", views.uploadUserImage, name='add profile picture'),
 ]

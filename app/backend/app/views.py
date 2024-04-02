@@ -16,6 +16,10 @@ from .models import AppComment
 import os
 import sys
 
+import base64
+from django.core.files.base import ContentFile
+from django.http import JsonResponse
+
 # Create your views here.
 @api_view(['GET'])
 # @authentication_classes([SessionAuthentication, BasicAuthentication])
@@ -93,6 +97,23 @@ def saveOutput(request):
             return JsonResponse(serializer.errors, status=400)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+
+@api_view(['PUT'])
+def uploadUserImage(request):
+    # if not request.user.is_authenticated:
+    #     return Response({'error': 'Authentication required'}, status=401)
+    user = request.user
+    data = request.data.get('userSymbol')
+    if data:
+        # Assuming `userSymbol` is a model field for storing images
+        format, imgstr = data.split(';base64,')
+        ext = format.split('/')[-1]
+        image = ContentFile(base64.b64decode(imgstr), name=f'user_{user.pk}.{ext}')
+        user.userSymbol.save(name=f'user_{user.pk}.{ext}', content=image, save=True)
+        return Response({'message': 'Image uploaded successfully'})
+    return Response({'error': 'No image provided'}, status=400)
+
+
 
 class AppSaveList(APIView):
     queryset= AppSave.objects.all()
