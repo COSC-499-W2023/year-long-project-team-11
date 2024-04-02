@@ -3,11 +3,12 @@ import "./css/login.css";
 // import "./css/profile-picture.css";
 import axios, { AxiosError } from "axios";
 import { Link } from "react-router-dom";
+import defaultImage from './img/symbol-user.png';
 
 export default function UserProfile() {
 
   const [userData, setUserData] = useState({});
-  const [profileImage, setProfileImage] = useState(userData.userSymbol || './img/symbol-user.png');
+  const [profileImage, setProfileImage] = useState(userData.userSymbol || defaultImage);
 
   useEffect(() => {
       // Fetch the username using Axios
