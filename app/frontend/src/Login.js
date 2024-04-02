@@ -7,13 +7,22 @@ import { Link } from "react-router-dom";
 export default function Login() {
 
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [userData, setUserData] = useState({});
-
-  localStorage.clear();
+  const [resetpasswordlink, setresetpasswordlink]= useState('');
+  useEffect(() => {
+    axios.get('/api/config/urls')
+        .then(response => {
+          setresetpasswordlink(response.data.reset_password_url);
+        })
+        .catch(error => console.log(error));
+}, []);
+  // See if user is logged in
+  if (localStorage.getItem('loggedIn') == 'true') {
+    window.location.href = "/Prompt";
+  }
 
   const validateEmail = (email) => {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -60,45 +69,21 @@ export default function Login() {
       alert("Username or password is incorrect!");
       return;
     }
-
+    
     // Initialize the access & refresh token in localstorage.
     localStorage.clear();
-
     localStorage.setItem("access_token", data.access);
     localStorage.setItem("refresh_token", data.refresh);
 
-    // Fetch the username using Axios
-    axios.get("http://localhost:8000/", {
-      headers: {
-          'Authorization': 'Bearer '.concat(localStorage.getItem('access_token'))
-      }
-    })
-    .then(response => {
-        var values = function(x) {
-          return Object.keys(x).map(function(k){return x[k]})
-        }
-        var result = response.data.filter(function(x) {
-          return values(x).indexOf(localStorage.getItem('email')) > -1
-        })
-        localStorage.setItem("username", result[0].username)
-        localStorage.setItem("userID", result[0].id);
-    })
-    .catch(error => {
-        if (error.code === "ERR_BAD_REQUEST") {
-          // User is not logged in
-          window.location.href = "/Login";
-        } else {
-          console.error("Error fetching user data:", error);
-        }
-    });
-
-    // Set email
+    // Set username
+    localStorage.setItem("username", email)
     localStorage.setItem("email", email)
 
     // Set status
     localStorage.setItem("loggedIn", true)
-      
-    // Finally
+
+    axios.defaults.headers.common["Authorization"] = "Bearer ${data['access']}";
+
     window.location.href = "/Prompt";
   };
 
@@ -106,28 +91,28 @@ export default function Login() {
     <div>
       {/* Nav Bar */}
       <nav class="bg-[#E2E2E2]">
-        <div class="flex justify-between mr-5 ml-2 py-2">
-          {/* General Area (Left side) */}
-          <div class="flex items-center space-x-1">
-            {/* <div class="font-bold">(Logo) EduSynth</div> */}
-            <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
-            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
-            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
-            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
-          </div>
+          <div class="flex justify-between mr-5 ml-2 py-2">
+              {/* General Area (Left side) */}
+              <div class="flex items-center space-x-1">
+                  {/* <div class="font-bold">(Logo) EduSynth</div> */}
+                  <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
+                  <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
+              </div>
 
-          <div>
-            <p className="text-[#44566B] py-3 px-3">{localStorage.getItem("username")}</p>
-          </div>
+              <div>
+                <p className="text-[#44566B] py-3 px-3">{localStorage.getItem("username")}</p>
+              </div>
 
-          {/* User Area (Right side) */}
-          <div class="flex items-center space-x-1">
-            <a id='profile-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-            <a id='login-option' className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Login">Log In</a>
-            <a id='logout-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-            <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+              {/* User Area (Right side) */}
+              <div class="flex items-center space-x-1">
+                  <a id='profile-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
+                  <a id='login-option' className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Login">Log In</a>
+                  <a id='logout-option' hidden className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
+                  <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+              </div>
           </div>
-        </div>
       </nav>
 
       {/* Content */}
@@ -200,9 +185,9 @@ export default function Login() {
               </button>
               {/* Remember me */}
               <p className="pt-[5px]">
-                <a className="text-[#19747E]" href="#">
-                  Forgot Your Password?
-                </a>
+                <Link to="/ForgetPassword">
+                Forgot Your Password?
+                </Link> 
               </p>
             </form>
           </div>
