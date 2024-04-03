@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import MoonLoader from "react-spinners/MoonLoader";
 import ConfirmModal from "./components/ConfirmModal";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import axios, { AxiosError } from "axios";
 
 export default function Regenerate() {
   const [outputString, setOutputString] = useState("<test></test>");
@@ -37,7 +36,7 @@ export default function Regenerate() {
       setFilename(data.filename);
       let base = data.filename.substring(0, data.filename.lastIndexOf('.'));
       let previewFilename = base + ".pdf";
-      setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
+      setDocs([{ uri: `http://localhost:8000/api/files/${previewFilename}/` }]);
       setDocumentText(data.documentText);
       setFontType(data.fontType);
       setFontColor(data.fontColor);
@@ -49,7 +48,7 @@ export default function Regenerate() {
   useEffect(() => {
     let base = filename.substring(0, filename.lastIndexOf('.'));
     let previewFilename = base + ".pdf";
-    setDocs([{ uri: `http://localhost:8000/api/presentations/${previewFilename}/` }]);
+    setDocs([{ uri: `http://localhost:8000/api/files/${previewFilename}/` }]);
   }, [filename])
 
   const handleSubmit = (e) => {
@@ -66,8 +65,9 @@ export default function Regenerate() {
     formData.append("fontColor", fontColor);
     formData.append("backgroundColor", backgroundColor);
     formData.append("ctx", context)
+    formData.append("username", localStorage.getItem("username"));
 
-    fetch("http://localhost:8000/api/regenerate/", {
+    fetch("http://localhost:8000/api/regenerate_presentation/", {
       method: "POST",
       headers: {
         "X-CSRFToken": csrfToken,
@@ -119,7 +119,7 @@ export default function Regenerate() {
       .then(response => response.json())
       .then(data => {
         console.log("Saved post: ", data);
-        navigate('/Output', { state: { output: outputString, filename: filename, title: title, tags: tags, postid: data.postid } });
+        navigate(`/post/${data.postid}`);
       })
       .catch((error) => {
         console.error("Error: ", error);
@@ -143,12 +143,7 @@ export default function Regenerate() {
               {/* General Area (Left side) */}
               <div class="flex items-center space-x-1">
                 {/* <div class="font-bold">(Logo) EduSynth</div> */}
-                <img
-                  alt="Edusynth Logo"
-                  src={require("./img/logo/logo-landscape.png")}
-                  height={60}
-                  width={100}
-                />
+                <a href="/Prompt"><img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} /></a>
                 <a
                   className="text-[#44566B] py-3 px-3 hover:text-black"
                   href="/Prompt"

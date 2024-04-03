@@ -47,3 +47,17 @@ This week was a bit of a scramble with the peer review and midterms in other cou
 I also helped a number of other group members resolve various issues with their features, but we don't get marks for that so no real point mentioning it.
 
 <img width="1062" alt="Screenshot 2024-03-10 at 11 23 34 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/4a01a9ec-d182-49cd-ab47-abea7de230db">
+
+**Week 10**
+This week was a rather slow one for me in regards to project (coding) progress, focusing on FINALLY wrapping up the last of my midterms in other courses. At the beginning of the week I had the team meet up to discuss current progress, and we compiled all our feedback from peer reviews into a list of new featrues for each of us to work on, with my tasks being updating the user profile page to include saved content, and updating the nav bar to be more consistent with other websites (i.e. having the logo be a link to home, having your username be displayed instead of your email, etc.). For what little time I had this week I focused my efforts on augmenting the navBar with the changes listed above, though some very odd errors have popped up regarding setting the user's name which I am currently looking into.
+
+<img width="1065" alt="Screenshot 2024-03-17 at 9 03 48 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/d4a97360-2b45-4063-90c2-0db8aa605f8a">
+
+**Week 11**
+I didn't get as much done this week as I had hoped, but I did manage to make some progress on implementing the ability to view your posts on your profile page. Still incomplete though so not much else to say.
+
+<img width="1066" alt="Screenshot 2024-03-25 at 12 02 30 AM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/55710308-08da-47e7-9e42-b8cfe034ba31">
+
+**Week 12**
+This week was productive, but not super exciting. I completed "populate user profile" feature, making it so that your profile only displays your own posts. Not much more to say beyond that. Next week, I'll be focusing primarily on bug-fixes as well as minor features.
+<img width="1071" alt="Screenshot 2024-03-31 at 11 23 00 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/62026c48-befb-4214-963f-2b627924d713">

@@ -1,4 +1,16 @@
 # ===== TERM 2 =====
+# Week 12 (March 25-March 31)
+This week I was not able to do as much coding work since I had to finish up major assignments from other classes. However, I was researching more on how to do my feature, especially trying to add the image option to work seamlessly. It is taking me more time than I thought as using css file to make the profile picture might give more clutter to the frontend folder. I will probably try to implement tailwind into making the profile picture UI, but given the length of the researching I did just to add a nice looking profile picture, I might take longer for it.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/69cdeaff-5471-4d3e-84f3-08e31d257fa2)
+
+# Week 11 (March 18-March 24)
+This week I worked on adding the delete user/account on the delete-user branch. The functionality of it should be done. Added a views.py delete account view, added url route, and made axios call from frontend. Hopefully I'll be able to finish the profile picture
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/f32baa4f-6efd-4666-913d-8a3f32082554)
+
+# Week 10 (March 11-March 17)
+This week I worked on adding the profile picture for the user profile, and I am planning on adding the profile picture for the nav bar too. I am working on the profile-picture branch. However, I did a lot of error fixing that I was unable to fix during this week. The website somehow lags whenever I use the incorrect password on logging in or on sign up causing me unable to go on other pages. It might be due to the automatic logout code. The freezing bug also happens in user profile.  have code made in UserProfile.js and added a new css file for the change image UI, and I saw it work before the bugs happened. I Hopefully for next week I am able to finish the profile picture.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/4fa572a9-3de5-417c-8834-e1041c407372)
+
 # Week 9 (March 4-March 10)
 This week we had the second peer review, I reviewed pretty much all the options from 1-4 and learned from different peers on how they did their code and how I can work on ours better. For this week I finished up adding the file types for prompt, and then added pptx to be able to be uploaded into the prompt.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/2141e585-4b0f-4d6c-b784-04e02d4f1065)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
@@ -19,17 +19,17 @@ export default function Prompt() {
   const csrfToken = Cookies.get("csrftoken");
 
   // If user is logged in
-  if (localStorage.getItem('access_token')) {
-    setTimeout(function() {
-      document.getElementById('login-option').style.display = 'none'; //Will hide
-      document.getElementById('signup-option').style.display = 'none';
-    },20);
-  } else {
-    setTimeout(function() {
-      document.getElementById('profile-option').style.display = 'none';
-      document.getElementById('logout-option').style.display = 'none';
-    },20);
-  }
+  // if (localStorage.getItem('access_token')) {
+  //   setTimeout(function() {
+  //     document.getElementById('login-option').style.display = 'none'; //Will hide
+  //     document.getElementById('signup-option').style.display = 'none';
+  //   },20);
+  // } else {
+  //   setTimeout(function() {
+  //     document.getElementById('profile-option').style.display = 'none';
+  //     document.getElementById('logout-option').style.display = 'none';
+  //   },20);
+  // }
 
   const getColorCode = (color) => {
     switch(color) {
@@ -64,8 +64,9 @@ export default function Prompt() {
     formData.append("backgroundColor", backgroundColor);
     formData.append("fontColor", fontColor);
     formData.append("fontType", fontType);
+    formData.append("username", localStorage.getItem("username"));
 
-    fetch("http://localhost:8000/api/", {
+    fetch("http://localhost:8000/api/generate_presentation/", {
       method: "POST",
       headers: {
         "X-CSRFToken": csrfToken,
@@ -74,12 +75,10 @@ export default function Prompt() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setOutput(data.response);
         setFilename(data.filename);
         navigate('/Regenerate', { state : { output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
-        // navigate('/SavedContent', { state: { output: data.response, filename: data.filename } });
-        console.log(filename);
-        console.log(data.response);
       })
       .catch((error) => {
         console.error("Error: ", error);
@@ -87,23 +86,6 @@ export default function Prompt() {
       .finally(() => {
         setIsLoading(false);
       })
-  };
-  const handleSave= () =>{
-    fetch("http://localhost:8000/save_output/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": csrfToken,
-        },
-        body: JSON.stringify({ output: output }),
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log("Save response:", data);
-    })
-    .catch((error) => {
-        console.error("Error saving:", error);
-    });
   };
 
   return (
@@ -123,7 +105,7 @@ export default function Prompt() {
                 {/* General Area (Left side) */}
                 <div class="flex items-center space-x-1">
                     {/* <div class="font-bold">(Logo) EduSynth</div> */}
-                    <img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} />
+                    <a href="/Prompt"><img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} /></a>
                     <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/Prompt">A.I. Page</a>
                     <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
                     <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
@@ -146,13 +128,6 @@ export default function Prompt() {
         {/* Content */}
         <div className="h-screen grid place-items-center">
           <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
-            {output.length !== 0 && (
-              <div className="my-[10px]">
-                <p>{output}</p>
-                <a href={`http://localhost:8000/api/presentations/${filename}`}>Download</a>
-                <button onClick={handleSave} className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2" type="submit">Save</button>
-              </div>
-            )}
             <form onSubmit={handleSubmit}>
               <div>
                 <h2 className="text-center font-bold text-2xl">Generate a Presentation</h2>

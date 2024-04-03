@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios, { AxiosError } from "axios";
 
 export default function Comment({ comment }) {
   const [poster, setPoster] = useState("");
@@ -23,7 +22,7 @@ export default function Comment({ comment }) {
       .catch(error => {
         console.error('Error fetching user:', error);
       });
-  }, []);
+  }, [comment.userid]);
 
   return (
     <div className='border border-black px-2 py-2 my-2 text-left w-fit'>

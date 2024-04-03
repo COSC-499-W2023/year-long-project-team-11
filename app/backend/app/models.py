@@ -38,7 +38,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
 class AppSave(models.Model):
     id = models.AutoField(primary_key= True)
-    userid = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    userid = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='saved_content')
     tag = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     filepath = models.CharField(max_length=255)

@@ -39,3 +39,16 @@ Made a new branch and started to work upon the commenting feature and have the c
 This week we had the testing where we got our project peer reviewed and got valuable feedback regarding it.
 I made swome commits for the adding comment feature and pair programmed bugs with the database to connect the tables effectively as well.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/5faa3b18-9d0e-49b9-80ac-75cdacddd2e6)
+
+# Week 10 
+This week I was taked with improving upon the tutorial page and fixing bugs.
+I also decided to add a few new optimization changes such as tooltips to improve accessbility of the site as well.
+I didnt do much coding this week but worked upon finding out how to deal with the issues and the bugs and will start implementing needed code next week.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/da009ab1-4276-4e01-92ce-fdc9e2e5b052)
+
+# Week 12
+This week I worked upon implementing a newer feature and made the changes into a new branch called it searchbar-functions.
+I worked upon these and the link to that will be here https://github.com/COSC-499-W2023/year-long-project-team-11/commit/26253c688abdbbcf5e274e541559da483ee2c82d
+as well as I have been working on other bug fixes that need to be addressed to ensure the app is responsive.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/004e0232-4b6b-4c8b-9ea9-6baeb516bab4)
+
