@@ -7,11 +7,10 @@ import CreateAccount from './CreateAccount';
 import Prompt from './Prompt';
 import Tutorial from './Tutorial';
 import UserProfile from './UserProfile';
-import Output from "./Output"; 
 import Regenerate from './Regenerate';
 import SavedContent from './SavedContent';
-import ForgetPassword from './ForgetPassword';
-import ResetPassword from './ResetPassword';
+import Output from './Output';
+
 function App() {
   return (
     <div className='App'>
@@ -24,9 +23,9 @@ function App() {
         <Route path='/Prompt' element={<Prompt />} />
         <Route path='/Tutorial' element={<Tutorial />} />
         <Route path='/UserProfile' element={<UserProfile />} />
-        <Route path='/Output' element={<Output/>} />
         <Route path='/Regenerate' element={<Regenerate />} />
-        <Route path='/SavedContent' element={<SavedContent/>}/>
+        <Route path='/SavedContent' element={<SavedContent />} />
+        <Route path='/post/:postId' element={<Output />} />
         <Route path='/ForgetPassword' element={<ForgetPassword/>}/>
         <Route path='/ResetPassword/:userid' element={<ResetPassword/>}/>
       </Routes>
