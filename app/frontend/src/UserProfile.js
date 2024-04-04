@@ -13,7 +13,7 @@ export default function UserProfile() {
   const userID = localStorage.getItem("userID");
 
   useEffect(() => {
-    fetch(`http://localhost:8000/savedcontent/?page=${currentPage}`)
+    fetch(`http://localhost:8000/savedcontent/?page=${currentPage}/`)
       .then((response) => response.json())
       .then((data) => {
         setPosts(data.posts.filter(function(post) {
