@@ -10,6 +10,7 @@ import UserProfile from './UserProfile';
 import Regenerate from './Regenerate';
 import SavedContent from './SavedContent';
 import Output from './Output';
+import TestDocPreview from './TestDocPreview';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/Regenerate' element={<Regenerate />} />
         <Route path='/SavedContent' element={<SavedContent />} />
         <Route path='/post/:postId' element={<Output />} />
+        <Route path='/test' element={<TestDocPreview />} />
       </Routes>
     </div>
   );

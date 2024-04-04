@@ -126,7 +126,7 @@ const Output = () => {
           </div>
           <div className="flex justify-between items-center">
             <div className='buttons flex flex-row'>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => navigate(`http://localhost:8000/api/files/${filename}?download=true`)}>Download</button>
+              <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/files/${filename}?download=true`}>Download</button>
               <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
             </div>
           </div>
