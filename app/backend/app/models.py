@@ -29,16 +29,13 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length = 50, unique = True, validators=[validate_email])
     username = models.CharField(max_length = 50)
     password = models.TextField(max_length = 50)
-    userSymbol = models.BinaryField(null=True, blank=True, editable=True)
+    userSymbol = models.ImageField(upload_to='user_symbols/', null=True, blank=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = AppUserManager()
     def __str__(self):
         return self.username
-
-class AppUser(models.Model):
-    # Other fields...
-    userSymbol = models.ImageField(upload_to='user_symbols/')
+    
 
 class AppSave(models.Model):
     id = models.AutoField(primary_key= True)
