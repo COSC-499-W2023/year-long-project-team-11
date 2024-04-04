@@ -1,6 +1,6 @@
 import './App.css';
 import Logout from './Logout';
-import Login from './Login'
+import Login from './Login';
 import Landing from './Landing';
 import { Routes, Route } from "react-router-dom";
 import CreateAccount from './CreateAccount';
@@ -10,6 +10,8 @@ import UserProfile from './UserProfile';
 import Regenerate from './Regenerate';
 import SavedContent from './SavedContent';
 import Output from './Output';
+import ForgetPassword from './ForgetPassword'; 
+import ResetPassword from './ResetPassword'; 
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path='/Regenerate' element={<Regenerate />} />
         <Route path='/SavedContent' element={<SavedContent />} />
         <Route path='/post/:postId' element={<Output />} />
+        <Route path='/ForgetPassword' element={<ForgetPassword/>}/>
+        <Route path='/ResetPassword/:userid' element={<ResetPassword/>}/>
       </Routes>
     </div>
   );

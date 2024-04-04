@@ -16,10 +16,18 @@ from .serializers import AppCommentSerializer
 from .models import AppComment
 import os
 import sys
+from django.contrib.auth.tokens import default_token_generator
+from django.urls import reverse
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import send_mail
+from django.http import HttpResponse
+from rest_framework.response import Response
+from rest_framework import status
+from django.utils.encoding import force_str
 
 # Create your views here.
 @api_view(['GET'])
-# @authentication_classes([SessionAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def getData(request, user_id=None):
     print("In the get(GET) method\n", file=sys.stderr)
@@ -34,7 +42,6 @@ def getData(request, user_id=None):
         
     users = AppUser.objects.all()
     serializer = UserSerializer(users, many = True)
-    # person = {'username': 'John', 'email': 'johnny@gmail.com'}
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -45,7 +52,6 @@ def currentUser(request):
 
 @api_view(['POST'])
 def addUser(request):
-    print("In the add(POST) method\n", file=sys.stderr)
     serializer = UserSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
@@ -67,11 +73,6 @@ def getComment(request, postid):
     serializer = AppCommentSerializer(comments, many=True)
     return Response(serializer.data)
 
-# permission_classes = (IsAuthenticated)
-# @api_view(['GET'])
-# def HomeView(request):
-#     content = {'message': 'Welcome to the JWT Authentication page using React Js and Django!'}
-#     return Response(content)
 class HomeView(APIView):
     permission_classes = (IsAuthenticated, )
     def get(self, request):
@@ -125,11 +126,43 @@ def listSavedContent(request):
 def delete_account(request):
     user = request.user
     try:
-        # Perform any additional checks if necessary (e.g., requiring a password confirmation)
-        
         user.delete()
         return Response({'message': 'Account deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
-    except User.DoesNotExist:
+    except AppUser.DoesNotExist:
         return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+class SendPasswordResetEmailView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        user = AppUser.objects.filter(email=email).first()
+        if user:
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            reset_url = f'http://localhost:3000/ResetPassword/{uidb64}'
+            send_mail( 
+                'Password Reset Request',
+                f'Please follow the link to reset your password: {reset_url}',
+                'from@example.com',
+                [email],
+                fail_silently=False,
+            )
+            return Response({'success': 'We have sent you a link to reset your password'}, status=status.HTTP_200_OK)
+        return Response({'error': 'User with this email does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+class ResetPasswordView(APIView):
+    def post(self, request): 
+        userid = request.data.get('userid')
+        password = request.data.get('password')
+        try:
+            uid = force_str(urlsafe_base64_decode(userid))
+            user = AppUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, AppUser.DoesNotExist):
+            user = None
+        
+        if user:
+            user.set_password(password)
+            user.save()
+            return Response({'success': 'Password has been reset successfully.'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Invalid user or user does not exist.'}, status=status.HTTP_404_NOT_FOUND)
