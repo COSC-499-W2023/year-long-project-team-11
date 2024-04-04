@@ -27,6 +27,7 @@ class AppUserManager(BaseUserManager):
 class AppUser(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key = True)
     email = models.EmailField(max_length = 50, unique = True, validators=[validate_email])
+    userSymbol = models.ImageField(upload_to='user_profile_picture/', null=True, blank=True)
     username = models.CharField(max_length = 50)
     password = models.TextField(max_length = 50)
     USERNAME_FIELD = 'email'

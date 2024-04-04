@@ -14,8 +14,14 @@ from .serializers import AppSave
 from .serializers import AppSaveSerializer
 from .serializers import AppCommentSerializer
 from .models import AppComment
+from django.core.files.base import ContentFile
+from .models import AppUser  # Import your user model
+from django.contrib.auth.decorators import login_required
+import base64
 import os
 import sys
+
+
 
 # Create your views here.
 @api_view(['GET'])
@@ -133,3 +139,21 @@ def delete_account(request):
         return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+@login_required
+def uploadUserImage(request):
+    user = request.user  # Get the current user
+    data = request.data.get('userSymbol')  # Assuming the image is sent as base64
+    
+    if data:
+        format, imgstr = data.split(';base64,')  # Split the data to get base64 string
+        ext = format.split('/')[-1]  # Extract the file extension
+        image_data = base64.b64decode(imgstr)  # Decode the base64 string
+
+        filename = f'user_{user.pk}.{ext}'  # Create a filename for the image
+        user.userSymbol.save(name=filename, content=ContentFile(image_data, name=filename))  # Save the image to the userSymbol field
+
+        return JsonResponse({'message': 'Image uploaded successfully'}, status=200)
+    else:
+        return JsonResponse({'error': 'No image provided'}, status=400)
