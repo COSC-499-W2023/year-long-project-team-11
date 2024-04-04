@@ -36,6 +36,9 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
 
+class AppUser(models.Model):
+    # Other fields...
+    userSymbol = models.ImageField(upload_to='user_symbols/')
 
 class AppSave(models.Model):
     id = models.AutoField(primary_key= True)
@@ -44,6 +47,7 @@ class AppSave(models.Model):
     title = models.CharField(max_length=255)
     filepath = models.CharField(max_length=255)
     timestamp = models.DateTimeField(auto_now_add=True)
+    
 
 class AppComment(models.Model):
     id = models.AutoField(primary_key = True)

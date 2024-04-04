@@ -100,16 +100,22 @@ def saveOutput(request):
 
 @api_view(['PUT'])
 def uploadUserImage(request):
-    # if not request.user.is_authenticated:
-    #     return Response({'error': 'Authentication required'}, status=401)
     user = request.user
     data = request.data.get('userSymbol')
     if data:
-        # Assuming `userSymbol` is a model field for storing images
         format, imgstr = data.split(';base64,')
         ext = format.split('/')[-1]
-        image = ContentFile(base64.b64decode(imgstr), name=f'user_{user.pk}.{ext}')
-        user.userSymbol.save(name=f'user_{user.pk}.{ext}', content=image, save=True)
+        image_data = base64.b64decode(imgstr)
+        # The name for the image file.
+        filename = f'user_{user.pk}.{ext}'
+        
+        if hasattr(user, 'userSymbol') and user.userSymbol:
+            # If userSymbol is an initialized ImageField, this will work:
+            user.userSymbol.save(name=filename, content=ContentFile(image_data, name=filename))
+        else:
+            # If userSymbol was None or not an ImageField, this indicates a problem with your model setup.
+            return Response({'error': 'User symbol field is not correctly initialized.'}, status=400)
+
         return Response({'message': 'Image uploaded successfully'})
     return Response({'error': 'No image provided'}, status=400)
 
