@@ -3,6 +3,7 @@ import Post from "./components/Post";
 import "./css/login.css";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import defaultUserSymbol from "./img/symbol-user.png";
 export default function UserProfile() {
 
   const [userData, setUserData] = useState({});
@@ -10,6 +11,7 @@ export default function UserProfile() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNext, setHasNext] = useState(false);
+  const [profileImage, setProfileImage] = useState(defaultUserSymbol); // State for the profile image
   const userID = localStorage.getItem("userID");
 
   useEffect(() => {
@@ -36,6 +38,36 @@ export default function UserProfile() {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   }
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Update the profile image preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfileImage(reader.result);
+        // Optionally, call the uploadImage function here to automatically upload after selection
+        // uploadImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const uploadImage = (imageBase64) => {
+    axios.put('http://localhost:8000/uploadprofileimage/', { userSymbol: imageBase64 }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      },
+    })
+    .then(response => {
+      console.log('Image uploaded successfully:', response.data);
+      // Update user profile or state as necessary
+    })
+    .catch(error => {
+      console.error('Error uploading the image:', error);
+    });
+  };
 
   // Deletion Function
   const handleDeleteAccount = () => {
@@ -91,10 +123,13 @@ export default function UserProfile() {
           <div className="items-center justify-center flex">
 
               {/* Left Column  */}
-            <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
-              <img alt="User Symbol" className="grid place-items-center" src={require("./img/symbol-user.png")} height={140} width={100} />
-                  <p className="text-[#19747E] font-bold text-2xl">{localStorage.getItem("username")}</p>
-
+              <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
+                <label htmlFor="image-upload" className="cursor-pointer">
+                  <img src={profileImage} alt="User Symbol" height={140} width={100} />
+                </label>
+                <input id="image-upload" type="file" onChange={handleImageChange} style={{display: 'none'}}/>
+                <button onClick={() => uploadImage(profileImage)}>Upload Image</button>
+                <p className="text-[#19747E] font-bold text-2xl">{localStorage.getItem("username")}</p>
               {/* Add Delete Account Link */}
               <span className="text-[#19747E] cursor-pointer hover:text-red-600" onClick={handleDeleteAccount}>
                 Delete Account
