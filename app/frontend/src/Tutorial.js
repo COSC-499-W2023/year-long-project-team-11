@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import tutorialImage1 from './img-tutorial/tutorialimg1.png';
-import tutorialImage2 from './img-tutorial/tutorialimg2.png';
+import tutorialImage1 from './img-tutorial/tutorial.gif';
+
 
 const Tutorial = () => {
   // If user is logged in
@@ -78,7 +78,6 @@ const Tutorial = () => {
           {choice === 'convert existing material' && (
             <div className="grid place-items-center">
               <h2 className="font-bold text-1xl pt-[50px]">How to Convert Existing Material</h2>
-              <img src={tutorialImage2} alt="styling options" /> 
               <p>
                 Step 1: Enter a context of the study materials you are uploading.<br />
                 Step 2: Choose the target grade level.<br />
