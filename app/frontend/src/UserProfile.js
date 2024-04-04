@@ -56,8 +56,9 @@ export default function UserProfile() {
     const uploadImage = (base64String) => {
       axios.put('http://localhost:8000/uploadprofileimage/', { userSymbol: base64String }, {
         headers: {
-          'Content-Type': 'application/json'
-      }
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        },
       })
         .then(response => {
           // Handle the successful response here
