@@ -139,7 +139,8 @@ class SendPasswordResetEmailView(APIView):
         user = AppUser.objects.filter(email=email).first()
         if user:
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-            reset_url = f'http://localhost:3000/ResetPassword/{uidb64}'
+            token = default_token_generator.make_token(user)
+            reset_url = f'http://localhost:3000/ResetPassword/{uidb64}/{token}'
             send_mail( 
                 'Password Reset Request',
                 f'Please follow the link to reset your password: {reset_url}',
@@ -152,17 +153,17 @@ class SendPasswordResetEmailView(APIView):
 
 class ResetPasswordView(APIView):
     def post(self, request): 
+        
         userid = request.data.get('userid')
         password = request.data.get('password')
+        tokenid= request.data.get('tokenid')
         try:
             uid = force_str(urlsafe_base64_decode(userid))
             user = AppUser.objects.get(pk=uid)
         except (TypeError, ValueError, OverflowError, AppUser.DoesNotExist):
-            user = None
-        
-        if user:
-            user.set_password(password)
-            user.save()
-            return Response({'success': 'Password has been reset successfully.'}, status=status.HTTP_200_OK)
-        else:
             return Response({'error': 'Invalid user or user does not exist.'}, status=status.HTTP_404_NOT_FOUND)
+        if not default_token_generator.check_token(user, tokenid):
+            return Response({'error': 'Invalid token or token has expired.'}, status=status.HTTP_400_BAD_REQUEST)
+        user.set_password(password)
+        user.save()
+        return Response({'success': 'Password has been reset successfully.'}, status=status.HTTP_200_OK)
