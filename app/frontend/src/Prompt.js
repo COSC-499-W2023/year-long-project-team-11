@@ -202,19 +202,19 @@ export default function Prompt() {
                   </div>
 
                   <div className="flex relative">
-                  <div className="py-4 border-b-[1px] border-slate-400">
-                    <p className="py-1">Give some context about the materials you are uploading: </p>
-                    <input
-                      className="border border-black rounded-md min-w-[500px] px-2"
-                      type="text"
-                      placeholder="Where are the materials from? (e.g. a university physics course)"
-                      value={context}
-                      onChange={(e) => setContext(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="absolute right-10 top-2 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="context" data-tooltip-content="Giving the AI the context allows it to better understand your materials, and give you better results." data-tooltip-place="top">i</div>
-                  <Tooltip id="context" />
+                    <div className="py-4 border-b-[1px] border-slate-400">
+                      <p className="py-1">Give some context about the materials you are uploading: </p>
+                      <input
+                        className="border border-black rounded-md min-w-[500px] px-2"
+                        type="text"
+                        placeholder="Where are the materials from? (e.g. a university physics course)"
+                        value={context}
+                        onChange={(e) => setContext(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="absolute right-10 top-2 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="context" data-tooltip-content="Giving the AI the context allows it to better understand your materials, and give you better results." data-tooltip-place="top">i</div>
+                    <Tooltip id="context" />
                   </div>
 
                   <div className="py-4 border-b-[1px] border-slate-400">
@@ -356,16 +356,20 @@ export default function Prompt() {
                     </div>
                   </div>
 
-                  <div className="py-4 border-b-[1px] border-slate-400">
-                    <p className="py-1">Give some context about the materials you are uploading: </p>
-                    <input
-                      className="border border-black rounded-md min-w-[500px] px-2"
-                      type="text"
-                      placeholder="(e.g. a university computer science course)"
-                      value={context}
-                      onChange={(e) => setContext(e.target.value)}
-                      required
-                    />
+                  <div className="flex relative">
+                    <div className="py-4 border-b-[1px] border-slate-400">
+                      <p className="py-1">Give some context about the materials you are uploading: </p>
+                      <input
+                        className="border border-black rounded-md min-w-[500px] px-2"
+                        type="text"
+                        placeholder="Where are the materials from? (e.g. a university physics course)"
+                        value={context}
+                        onChange={(e) => setContext(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="absolute right-10 top-2 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="context" data-tooltip-content="Giving the AI the context allows it to better understand your materials, and give you better results." data-tooltip-place="top">i</div>
+                    <Tooltip id="context" />
                   </div>
 
                   <div className="py-4 border-b-[1px] border-slate-400">
