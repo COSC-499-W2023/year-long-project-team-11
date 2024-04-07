@@ -8,7 +8,7 @@ export default function ResetPassword() {
 //   const location= useLocation();
 //   const email= location.state?.email;
   //const [email,setEmail]= useState('');
-  const { userid } = useParams();
+  const { userid, tokenid } = useParams();
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -25,7 +25,8 @@ export default function ResetPassword() {
     try {
       await axios.post('http://localhost:8000/resetpassword/', {
         userid: userid,
-        password: newPassword 
+        password: newPassword,
+        tokenid: tokenid,
     });
       navigate('/Login');
     } catch (err) {
