@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import Comment from './components/Comment';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Output = () => {
   const { postId } = useParams();
@@ -11,7 +11,7 @@ const Output = () => {
   const [comment, setComment] = useState("");
   const [docs, setDocs] = useState([]);
   const [comments, setComments] = useState([]);
-  const navigate = useNavigate();
+  const [copyButtonText, setCopyButtonText] = useState("Copy Link");
 
   useEffect(() => {
     fetchPostData(postId);
@@ -86,6 +86,20 @@ const Output = () => {
     setComments((prevComments) => [...prevComments, newComment]);
   };
 
+  const copyLink = () => {
+    const currentUrl = window.location.href;
+
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      setCopyButtonText("Link copied!");
+
+      setTimeout(() => {
+        setCopyButtonText("Copy Link");
+      }, 1000);
+    }).catch(err => {
+      console.error("Failed to copy link: ", err);
+    }); 
+  };
+
   return (
     <div>
       {/* Nav Bar */}
@@ -115,7 +129,7 @@ const Output = () => {
       </nav>
 
       {/* Content */}
-      <div className="savedcontent flex flex-col items-center justify-center min-h-screen">
+      <div className="savedcontent flex flex-col items-center justify-center min-h-screen py-4">
         <div className="max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold mb-4">{title}</h1>
           <p className="text-lg mb-4">{tags}</p>
@@ -126,8 +140,8 @@ const Output = () => {
           </div>
           <div className="flex justify-between items-center">
             <div className='buttons flex flex-row'>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => navigate(`http://localhost:8000/api/files/${filename}?download=true`)}>Download</button>
-              <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
+              <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/files/${filename}?download=true`}>Download</button>
+              <button onClick={copyLink} className="px-4 py-2 bg-gray-500 text-white rounded-md">{copyButtonText}</button>
             </div>
           </div>
           <div>

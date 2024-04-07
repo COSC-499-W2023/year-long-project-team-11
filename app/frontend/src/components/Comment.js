@@ -25,9 +25,9 @@ export default function Comment({ comment }) {
   }, [comment.userid]);
 
   return (
-    <div className='border border-black px-2 py-2 my-2 text-left w-fit'>
-      <p>{poster}</p>
+    <div className='border border-black px-2 py-2 my-2 text-left w-full rounded-lg'>
       <p>{comment.comment}</p>
+      <p className='text-xs'>Submitted by {poster}</p>
     </div>
   )
 }

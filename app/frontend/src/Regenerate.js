@@ -17,9 +17,10 @@ export default function Regenerate() {
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [context, setContext] = useState("");
   const [title, setTitle] = useState("");
-  const [tags, setTags] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [docs, setDocs] = useState([]);
+  const [generationType, setGenerationType] = useState("present");
+  const [questionType, setQuestionType] = useState("choice");
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
 
@@ -42,6 +43,8 @@ export default function Regenerate() {
       setFontColor(data.fontColor);
       setBackgroundColor(data.backgroundColor);
       setContext(data.context);
+      setGenerationType(data.type);
+      setQuestionType(data.questionType);
     }
   }, [data]);
 
@@ -52,6 +55,15 @@ export default function Regenerate() {
   }, [filename])
 
   const handleSubmit = (e) => {
+    if (generationType === "present") {
+      handleSubmitPresentation(e);
+    }
+    if (generationType === "quiz") {
+      handleSubmitQuiz(e);
+    }
+  }
+  
+  const handleSubmitPresentation = (e) => {
     e.preventDefault();
 
     setIsLoading(true);
@@ -77,7 +89,6 @@ export default function Regenerate() {
       .then((response) => response.json())
       .then((data) => {
         setOutputString(data.response);
-        setContext(data.context);
         setFilename(data.filename);
         setDocumentText(data.file_text);
         setFontType(data.style.fonttype);
@@ -95,11 +106,47 @@ export default function Regenerate() {
       })
   }
 
+  const handleSubmitQuiz = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append("documentText", documentText);
+    formData.append("prompt", prompt);
+    formData.append("filename", filename);
+    formData.append("originalString", outputString);
+    formData.append("questionType", questionType);
+    formData.append("ctx", context);
+
+    fetch("http://localhost:8000/api/regenerate_quiz/", {
+      method: "POST", 
+      headers: {
+        "X-CSRFToken": csrfToken,
+      },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setOutputString(data.response);
+        setFilename(data.filename);
+        setDocumentText(data.file_text);
+
+        setPrompt("");
+        setShowForm(false);
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+
   const handleSavePost = (e) => {
     e.preventDefault();
 
     const post = {
-      tag: tags,
+      tag: "-",
       title: title,
       filepath: filename,
       userid: localStorage.getItem("userID"),
@@ -201,7 +248,7 @@ export default function Regenerate() {
           </nav>
 
           {/* Content */}
-          <div className="savedcontent flex flex-col items-center justify-center min-h-screen">
+          <div className="savedcontent flex flex-col items-center justify-center min-h-screen py-4">
             <div className="max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
               <h1 className="text-4xl font-bold mb-4">Preview</h1>
               <div className="my-8">
@@ -261,7 +308,7 @@ export default function Regenerate() {
                   </div>
                   <button
                     type="button"
-                    className="bg-[#19747E] text-white rounded hover:bg-[#316268] p-1 mx-2"
+                    className="bg-gray-500 hover:bg-gray-700 text-white rounded p-1 mx-2"
                     onClick={() => setShowForm(!showForm)}
                   >
                     Cancel
@@ -272,30 +319,23 @@ export default function Regenerate() {
                 <form onSubmit={handleSavePost}>
                   <div className="p-2">
                     <div>
-                      <h1 className="mb-2 text-2xl">Save</h1>
-                      <p>Title</p>
+                      <h1 className="mb-2 text-3xl">Confirm and Save</h1>
+                      <p className="text-xl pt-4 pb-2">Title</p>
                       <input
                         className="border border-black rounded-md"
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                      />
-                      <p>Tags</p>
-                      <input
-                        className="border border-black rounded-md"
-                        type="text"
-                        value={tags}
-                        onChange={(e) => setTags(e.target.value)}
+                        required
                       />
                     </div>
                     <button
                       type="submit"
                       className="bg-[#19747E] text-white rounded hover:bg-[#316268] p-1 mt-2 mx-2"
                     >
-                      Submit
+                      Confirm
                     </button>
                   </div>
-                  
                 </form>
               </ConfirmModal>
             </div>

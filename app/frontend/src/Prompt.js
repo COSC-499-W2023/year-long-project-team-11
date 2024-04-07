@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
+import { Tooltip } from "react-tooltip";
 
 export default function Prompt() {
-  const [targetGrade, setTargetGrade] = useState("");
+  const [targetGrade, setTargetGrade] = useState("none");
   const [file, setFile] = useState(null);
   const [context, setContext] = useState("");
   const [prompt, setPrompt] = useState("");
-  const [output, setOutput] = useState("");
-  const [filename, setFilename] = useState("");
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [fontColor, setFontColor] = useState("black");
   const [fontType, setFontType] = useState("Arial");
   const [showStyleOptions, setShowStyleOptions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [questionType, setQuestionType] = useState("choice");
+  const [formType, setFormType] = useState("present");
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
 
@@ -30,6 +31,15 @@ export default function Prompt() {
   //     document.getElementById('logout-option').style.display = 'none';
   //   },20);
   // }
+
+  const toggleFormType = () => {
+    if (formType === "present") {
+      setFormType("quiz");
+    }
+    if (formType === "quiz") {
+      setFormType("present");
+    }
+   }
 
   const getColorCode = (color) => {
     switch(color) {
@@ -76,9 +86,8 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setOutput(data.response);
-        setFilename(data.filename);
-        navigate('/Regenerate', { state : { output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
+        // console.log(data.response);
+        navigate('/Regenerate', { state : { type: formType, output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
       })
       .catch((error) => {
         console.error("Error: ", error);
@@ -87,6 +96,34 @@ export default function Prompt() {
         setIsLoading(false);
       })
   };
+
+  const handleQuizSubmit = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("prompt", prompt);
+    formData.append("ctx", context);
+    formData.append("targetGrade", targetGrade);
+    formData.append("questionType", questionType);
+    formData.append("username", localStorage.getItem("username"));
+
+    fetch("http://localhost:8000/api/generate_quiz/", {
+      method: 'POST',
+      headers: {
+        "X-CSRFToken": csrfToken,
+      },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // console.log(data.response);
+        navigate('/Regenerate', { state : { type: formType, output: data.response, filename: data.filename, documentText: data.file_text, questionType: questionType } })
+      })
+  }
 
   return (
     <div>
@@ -128,142 +165,236 @@ export default function Prompt() {
         {/* Content */}
         <div className="h-screen grid place-items-center">
           <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
-            <form onSubmit={handleSubmit}>
-              <div>
-                <h2 className="text-center font-bold text-2xl">Generate a Presentation</h2>
-                <div className="py-4 border-b-[1px] border-slate-400">
-                  <p className="py-1">Upload the materials you would like to use as a base</p>
-                  <input
-                    type="file"
-                    onChange={(e) => setFile(e.target.files[0])}
-                    accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation"
-                    required
-                  />
-                </div>
+            <div className="flex justify-between">
+              {formType === "present" && (<><h2 className="text-center font-bold text-2xl">Generate a Presentation</h2><button onClick={toggleFormType} className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2">Generate Quiz</button></>)}
+              {formType === "quiz" && (<><h2 className="text-center font-bold text-2xl">Generate a Quiz</h2><button onClick={toggleFormType} className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2">Generate Presentation</button></>)}
+            </div>
+            {formType === "present" && (
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <div className="py-4 border-b-[1px] border-slate-400">
+                    <p className="py-1">Upload the materials you would like to use as a base</p>
+                    <input
+                      type="file"
+                      onChange={(e) => setFile(e.target.files[0])}
+                      accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                      required
+                    />
+                  </div>
 
-                <div className="py-4 border-b-[1px] border-slate-400">
-                  <select
-                    id="targetGrade"
-                    value={targetGrade}
-                    onChange={(e) => setTargetGrade(e.target.value)}
-                    className="bg-white border border-black rounded-sm p-1"
-                    required
-                  >
-                    <option value="" hidden>
-                      Target Grade Level
-                    </option>
-                    {[...Array(12).keys()].map((grade) => (
-                      <option key={grade + 1} value={grade + 1}>
-                        Grade {grade + 1}
+                  <div className="py-4 border-b-[1px] border-slate-400">
+                    <select
+                      id="targetGrade"
+                      value={targetGrade}
+                      onChange={(e) => setTargetGrade(e.target.value)}
+                      className="bg-white border border-black rounded-sm p-1"
+                      required
+                    >
+                      <option value="" hidden>
+                        Target Grade Level
                       </option>
-                    ))}
-                  </select>
-                </div>
+                      {[...Array(12).keys()].map((grade) => (
+                        <option key={grade + 1} value={grade + 1}>
+                          Grade {grade + 1}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                <div className="py-4 border-b-[1px] border-slate-400">
-                  <p className="py-1">Give some context about the file you are uploading: </p>
-                  <input
-                    className="border border-black rounded-md min-w-[500px] px-2"
-                    type="text"
-                    placeholder="(e.g. a university computer science course)"
-                    value={context}
-                    onChange={(e) => setContext(e.target.value)}
-                    required
-                  />
-                </div>
+                  <div className="flex relative">
+                    <div className="py-4 border-b-[1px] border-slate-400">
+                      <p className="py-1">Give some context about the materials you are uploading: </p>
+                      <input
+                        className="border border-black rounded-md min-w-[500px] px-2"
+                        type="text"
+                        placeholder="Where are the materials from? (e.g. a university physics course)"
+                        value={context}
+                        onChange={(e) => setContext(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="absolute right-10 top-2 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="context" data-tooltip-content="Giving the AI the context allows it to better understand your materials, and give you better results." data-tooltip-place="top">i</div>
+                    <Tooltip id="context" />
+                  </div>
 
-                <div className="py-4 border-b-[1px] border-slate-400">
-                  <p className="py-1">(Optional) Enter any specific requests</p>
-                  <input
-                    className="border border-black rounded-md min-w-[500px] px-2"
-                    type="text"
-                    placeholder="Any further requests?"
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                  />
-                </div>
-                      
-                <div className="py-4">
-                  <button
-                    onClick={() => setShowStyleOptions(!showStyleOptions)}
-                    className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2"
-                    type="button"
+                  <div className="py-4 border-b-[1px] border-slate-400">
+                    <p className="py-1">(Optional) Enter any specific requests</p>
+                    <input
+                      className="border border-black rounded-md min-w-[500px] px-2"
+                      type="text"
+                      placeholder="Any further requests?"
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                    />
+                  </div>
+                        
+                  <div className="py-4">
+                    <button
+                      onClick={() => setShowStyleOptions(!showStyleOptions)}
+                      className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2"
+                      type="button"
+                    >
+                      {showStyleOptions ? "Hide Style Options" : "Show Style Options"}
+                    </button>
+                  </div>
+                  
+                  <div
+                    style={{
+                      maxHeight: showStyleOptions ? "500px" : "0",
+                      overflow: 'hidden',
+                      transition: 'max-height 0.2s ease-out',
+                    }} 
+                    className="origin-top bg-neutral-300 rounded-lg"
                   >
-                    {showStyleOptions ? "Hide Style Options" : "Show Style Options"}
-                  </button>
-                </div>
-                
-                <div
-                  style={{
-                    maxHeight: showStyleOptions ? "500px" : "0",
-                    overflow: 'hidden',
-                    transition: 'max-height 0.2s ease-out',
-                  }} 
-                  className="origin-top bg-neutral-300 rounded-lg"
-                >
-                  <div className="py-2">
-                    <label htmlFor="backgroundColor" className="px-2">Background Color:</label>
-                    <select
-                      id="backgroundColor"
-                      value={backgroundColor}
-                      onChange={(e) => setBackgroundColor(e.target.value)}
-                      className="bg-white border border-black rounded-sm p-1"
-                    >
-                      <option value="white">White</option>
-                      <option value="black">Black</option>
-                      <option value="grey">Grey</option>
-                      <option value="cream">Cream</option>
-                      <option value="lightblue">Light Blue</option>
-                    </select>
-                    <div
-                      style={{backgroundColor: getColorCode(backgroundColor)}} 
-                      className="align-middle w-[20px] h-[20px] inline-block ml-[10px] border border-black"></div>
+                    <div className="py-2">
+                      <label htmlFor="backgroundColor" className="px-2">Background Color:</label>
+                      <select
+                        id="backgroundColor"
+                        value={backgroundColor}
+                        onChange={(e) => setBackgroundColor(e.target.value)}
+                        className="bg-white border border-black rounded-sm p-1"
+                      >
+                        <option value="white">White</option>
+                        <option value="black">Black</option>
+                        <option value="grey">Grey</option>
+                        <option value="cream">Cream</option>
+                        <option value="lightblue">Light Blue</option>
+                      </select>
+                      <div
+                        style={{backgroundColor: getColorCode(backgroundColor)}} 
+                        className="align-middle w-[20px] h-[20px] inline-block ml-[10px] border border-black"></div>
+                    </div>
+
+                    <div className="py-2">
+                      <label htmlFor="fontColor" className="px-2">Font Color:</label>
+                      <select
+                        id="fontColor"
+                        value={fontColor}
+                        onChange={(e) => setFontColor(e.target.value)}
+                        className="bg-white border border-black rounded-sm p-1"
+                      >
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                      </select>
+                      <div
+                        style={{backgroundColor: getColorCode(fontColor)}} 
+                        className="align-middle w-[20px] h-[20px] inline-block ml-[10px] border border-black"></div>
+                    </div>
+
+                    <div className="py-2">
+                      <label htmlFor="fontType" className="px-2">Font Type:</label>
+                      <select
+                        id="fontType"
+                        value={fontType}
+                        onChange={(e) => setFontType(e.target.value)}
+                        className="bg-white border border-black rounded-sm p-1 w-auto"
+                      >
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="Courier">Courier</option>
+                        <option value="Georgia">Georgia</option>
+                      </select>
+                    </div>
                   </div>
 
-                  <div className="py-2">
-                    <label htmlFor="fontColor" className="px-2">Font Color:</label>
-                    <select
-                      id="fontColor"
-                      value={fontColor}
-                      onChange={(e) => setFontColor(e.target.value)}
-                      className="bg-white border border-black rounded-sm p-1"
+                  <div className="mt-[20px]">
+                    <button
+                      className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2"
+                      type="submit"
+                      disabled={isLoading}
                     >
-                      <option value="black">Black</option>
-                      <option value="white">White</option>
-                    </select>
-                    <div
-                      style={{backgroundColor: getColorCode(fontColor)}} 
-                      className="align-middle w-[20px] h-[20px] inline-block ml-[10px] border border-black"></div>
-                  </div>
-
-                  <div className="py-2">
-                    <label htmlFor="fontType" className="px-2">Font Type:</label>
-                    <select
-                      id="fontType"
-                      value={fontType}
-                      onChange={(e) => setFontType(e.target.value)}
-                      className="bg-white border border-black rounded-sm p-1 w-auto"
-                    >
-                      <option value="Arial">Arial</option>
-                      <option value="Times New Roman">Times New Roman</option>
-                      <option value="Helvetica">Helvetica</option>
-                      <option value="Courier">Courier</option>
-                      <option value="Georgia">Georgia</option>
-                    </select>
+                      Submit
+                    </button>
                   </div>
                 </div>
+              </form>
+            )}
+            {formType === "quiz" && (
+              <form onSubmit={handleQuizSubmit}>
+                <div>
+                  <div className="py-4 border-b-[1px] border-slate-400">
+                    <p className="py-1">Upload the materials you would like to make a quiz for</p>
+                    <input
+                      type="file"
+                      onChange={(e) => setFile(e.target.files[0])}
+                      accept="application/pdf, text/plain, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                      required
+                    />
+                  </div>
 
-                <div className="mt-[20px]">
-                  <button
-                    className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2"
-                    type="submit"
-                    disabled={isLoading}
-                  >
-                    Prompt
-                  </button>
+                  <div className="flex justify-between py-4 border-b-[1px] border-slate-400">
+                    <div>
+                      <p className="py-1">Question Types</p>
+                      <select
+                        id="questionType"
+                        value={questionType}
+                        onChange={(e) => setQuestionType(e.target.value)}
+                        className="bg-white border border-black rounded-sm p-1"
+                      >
+                        <option value="choice">Multiple Choice</option>
+                        <option value="short">Short Answer</option>
+                        <option value="both">Both</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <p className="py-1">(Optional) Target Grade Level</p>
+                      <select
+                        id="targetGrade"
+                        value={targetGrade}
+                        onChange={(e) => setTargetGrade(e.target.value)}
+                        className="bg-white border border-black rounded-sm p-1"
+                      >
+                        <option value="none">None</option>
+                        {[...Array(12).keys()].map((grade) => (
+                          <option key={grade + 1} value={grade + 1}>
+                            Grade {grade + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex relative">
+                    <div className="py-4 border-b-[1px] border-slate-400">
+                      <p className="py-1">Give some context about the materials you are uploading: </p>
+                      <input
+                        className="border border-black rounded-md min-w-[500px] px-2"
+                        type="text"
+                        placeholder="Where are the materials from? (e.g. a university physics course)"
+                        value={context}
+                        onChange={(e) => setContext(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="absolute right-10 top-2 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="context" data-tooltip-content="Giving the AI the context allows it to better understand your materials, and give you better results." data-tooltip-place="top">i</div>
+                    <Tooltip id="context" />
+                  </div>
+
+                  <div className="py-4 border-b-[1px] border-slate-400">
+                    <p className="py-1">(Optional) Enter any specific requests</p>
+                    <input
+                      className="border border-black rounded-md min-w-[500px] px-2"
+                      type="text"
+                      placeholder="Any further requests?"
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                    />
+                  </div>
+                        
+                  <div className="mt-[20px]">
+                    <button
+                      className="bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] p-2"
+                      type="submit"
+                      disabled={isLoading}
+                    >
+                      Submit
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            )}
           </div>
         </div>
       </div>
