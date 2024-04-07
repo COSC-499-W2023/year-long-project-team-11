@@ -198,7 +198,9 @@ export default function Login() {
               {/* Remember me */}
               <p className="pt-[5px]">
                 <Link to="/ForgetPassword">
-                Forgot Your Password?
+                  <div className="text-[#44566B] underline">
+                    Forgot Your Password?
+                  </div>
                 </Link> 
               </p>    
             </form>
@@ -208,9 +210,9 @@ export default function Login() {
           <p>
             Don't have an account?&#160;
             <Link to={"/SignUp"}>
-              <a className="text-[#44566B] underline" href="#">
+              <div className="text-[#44566B] underline">
                 Create an account
-              </a>
+              </div>
             </Link>
           </p>
         </div>

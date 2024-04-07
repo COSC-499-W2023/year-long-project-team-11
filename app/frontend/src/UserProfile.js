@@ -5,7 +5,6 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 export default function UserProfile() {
 
-  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,17 +12,18 @@ export default function UserProfile() {
   const userID = localStorage.getItem("userID");
 
   useEffect(() => {
+    console.log(localStorage.getItem("username"));
     fetch(`http://localhost:8000/savedcontent/?page=${currentPage}/`)
       .then((response) => response.json())
       .then((data) => {
         setPosts(data.posts.filter(function(post) {
-          return post.userid == userID;
+          return post.userid === userID;
         }))
         setHasNext(data.hasNext);
         console.log(data);
       })
       .catch((error) => console.error('Error fetching data: ', error));
-  }, [currentPage])
+  }, [currentPage, userID])
 
   const handleNext = () => {
     if (hasNext) {

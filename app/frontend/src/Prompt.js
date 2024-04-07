@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
+import { Tooltip } from "react-tooltip";
 
 export default function Prompt() {
   const [targetGrade, setTargetGrade] = useState("none");
   const [file, setFile] = useState(null);
   const [context, setContext] = useState("");
   const [prompt, setPrompt] = useState("");
-  const [output, setOutput] = useState("");
-  const [filename, setFilename] = useState("");
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [fontColor, setFontColor] = useState("black");
   const [fontType, setFontType] = useState("Arial");
@@ -87,8 +86,7 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setOutput(data.response);
-        setFilename(data.filename);
+        // console.log(data.response);
         navigate('/Regenerate', { state : { type: formType, output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
       })
       .catch((error) => {
@@ -122,8 +120,7 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setOutput(data.response);
-        setFilename(data.filename);
+        // console.log(data.response);
         navigate('/Regenerate', { state : { type: formType, output: data.response, filename: data.filename, documentText: data.file_text, questionType: questionType } })
       })
   }
@@ -204,16 +201,20 @@ export default function Prompt() {
                     </select>
                   </div>
 
+                  <div className="flex relative">
                   <div className="py-4 border-b-[1px] border-slate-400">
-                    <p className="py-1">Give some context about the file you are uploading: </p>
+                    <p className="py-1">Give some context about the materials you are uploading: </p>
                     <input
                       className="border border-black rounded-md min-w-[500px] px-2"
                       type="text"
-                      placeholder="(e.g. a university computer science course)"
+                      placeholder="Where are the materials from? (e.g. a university physics course)"
                       value={context}
                       onChange={(e) => setContext(e.target.value)}
                       required
                     />
+                  </div>
+                  <div className="absolute right-10 top-2 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="context" data-tooltip-content="Giving the AI the context allows it to better understand your materials, and give you better results." data-tooltip-place="top">i</div>
+                  <Tooltip id="context" />
                   </div>
 
                   <div className="py-4 border-b-[1px] border-slate-400">
@@ -303,7 +304,7 @@ export default function Prompt() {
                       type="submit"
                       disabled={isLoading}
                     >
-                      Prompt
+                      Submit
                     </button>
                   </div>
                 </div>
@@ -384,7 +385,7 @@ export default function Prompt() {
                       type="submit"
                       disabled={isLoading}
                     >
-                      Prompt
+                      Submit
                     </button>
                   </div>
                 </div>

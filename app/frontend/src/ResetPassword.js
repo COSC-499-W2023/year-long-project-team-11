@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate} from 'react-router-dom';
-import {useLocation} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 export default function ResetPassword() {
   const navigate = useNavigate();
+
 //   const location= useLocation();
 //   const email= location.state?.email;
   //const [email,setEmail]= useState('');
+
   const { userid } = useParams();
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  if (localStorage.getItem('loggedIn') == 'true') {
+  
+  if (localStorage.getItem('loggedIn') === true) {
     window.location.href = "/Prompt";
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
