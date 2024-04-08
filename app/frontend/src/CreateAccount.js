@@ -221,20 +221,22 @@ export default function CreateAccount() {
             />
 
             {/* Password */}
-            <div className="pt-5 w-[100%] relative flex items-center">
-              <p className="text-sm text-red-500 flex-1">&nbsp;{errors.password}</p>
-              <input
-                className="py-[5px] bg-white text-center rounded-lg w-full"
-                type="password"
-                name="password"
-                placeholder="Password"
-                maxLength={100}
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <a className="absolute right-0 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="password" data-tooltip-content="Password must be at least 6 characters long, and contain at least 1 number and 1 symbol each." data-tooltip-place="top">i</a>
-              <Tooltip id="password" />
+            <div className="w-[100%]">
+              <p className="pb-[5px] text-sm text-red-500 flex-1">&nbsp;{errors.password}</p>
+              <div className="relative flex items-center">
+                <input
+                  className="py-[5px] bg-white text-center rounded-lg w-full"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  maxLength={100}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <a className="absolute right-0 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="password" data-tooltip-content="Password must be at least 6 characters long, and contain at least 1 number and 1 symbol each." data-tooltip-place="top">i</a>
+                <Tooltip id="password" />
+              </div>
             </div>
 
             {/* Confirm Password */}
