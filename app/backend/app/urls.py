@@ -16,4 +16,6 @@ urlpatterns = [
     path("posts/<int:id>/", views.getPost, name='getPost'),
     path('delete_account/', views.delete_account, name='delete_account'),
     path("uploadprofilepicture/", views.uploadUserImage, name='add profile picture'),
+    path('forgetpassword/', views.SendPasswordResetEmailView.as_view(), name='forgetpassword'),
+    path('resetpassword/', views.ResetPasswordView.as_view(), name='resetpassword'),
 ]

@@ -20,6 +20,8 @@ export default function Regenerate() {
   const [tags, setTags] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [docs, setDocs] = useState([]);
+  const [generationType, setGenerationType] = useState("present");
+  const [questionType, setQuestionType] = useState("choice");
   const navigate = useNavigate();
   const csrfToken = Cookies.get("csrftoken");
 
@@ -42,6 +44,8 @@ export default function Regenerate() {
       setFontColor(data.fontColor);
       setBackgroundColor(data.backgroundColor);
       setContext(data.context);
+      setGenerationType(data.type);
+      setQuestionType(data.questionType);
     }
   }, [data]);
 
@@ -52,6 +56,15 @@ export default function Regenerate() {
   }, [filename])
 
   const handleSubmit = (e) => {
+    if (generationType === "present") {
+      handleSubmitPresentation(e);
+    }
+    if (generationType === "quiz") {
+      handleSubmitQuiz(e);
+    }
+  }
+  
+  const handleSubmitPresentation = (e) => {
     e.preventDefault();
 
     setIsLoading(true);
@@ -77,12 +90,47 @@ export default function Regenerate() {
       .then((response) => response.json())
       .then((data) => {
         setOutputString(data.response);
-        setContext(data.context);
         setFilename(data.filename);
         setDocumentText(data.file_text);
         setFontType(data.style.fonttype);
         setFontColor(data.style.fontcolor);
         setBackgroundColor(data.style.bg);
+
+        setPrompt("");
+        setShowForm(false);
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+
+  const handleSubmitQuiz = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append("documentText", documentText);
+    formData.append("prompt", prompt);
+    formData.append("filename", filename);
+    formData.append("originalString", outputString);
+    formData.append("questionType", questionType);
+    formData.append("ctx", context);
+
+    fetch("http://localhost:8000/api/regenerate_quiz/", {
+      method: "POST", 
+      headers: {
+        "X-CSRFToken": csrfToken,
+      },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setOutputString(data.response);
+        setFilename(data.filename);
+        setDocumentText(data.file_text);
 
         setPrompt("");
         setShowForm(false);
@@ -126,6 +174,7 @@ export default function Regenerate() {
       });
   }
 
+  const isLoggedIn = localStorage.getItem('access_token') ? true : false;
   return (
     <div>
       {isLoading ? (
@@ -172,30 +221,10 @@ export default function Regenerate() {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/UserProfile"
-                >
-                  Profile
-                </a>
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/Login"
-                >
-                  Log In
-                </a>
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/Logout"
-                >
-                  Log Out
-                </a>
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/SignUp"
-                >
-                  Sign Up
-                </a>
+                {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>}
+                {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>}
+                {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>}
+                {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>}
               </div>
             </div>
           </nav>
