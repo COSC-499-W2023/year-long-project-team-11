@@ -174,6 +174,7 @@ export default function Regenerate() {
       });
   }
 
+  const isLoggedIn = localStorage.getItem('access_token') ? true : false;
   return (
     <div>
       {isLoading ? (
@@ -220,30 +221,10 @@ export default function Regenerate() {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/UserProfile"
-                >
-                  Profile
-                </a>
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/Login"
-                >
-                  Log In
-                </a>
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/Logout"
-                >
-                  Log Out
-                </a>
-                <a
-                  className="text-[#44566B] py-3 px-3 hover:text-black"
-                  href="/SignUp"
-                >
-                  Sign Up
-                </a>
+                {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>}
+                {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>}
+                {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>}
+                {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>}
               </div>
             </div>
           </nav>
