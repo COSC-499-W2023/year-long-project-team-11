@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import Comment from './components/Comment';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Output = () => {
   const { postId } = useParams();
@@ -11,7 +11,6 @@ const Output = () => {
   const [comment, setComment] = useState("");
   const [docs, setDocs] = useState([]);
   const [comments, setComments] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPostData(postId);

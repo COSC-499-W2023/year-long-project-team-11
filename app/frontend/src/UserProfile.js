@@ -6,12 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import defaultUserSymbol from "./img/symbol-user.png";
 export default function UserProfile() {
 
-  const [userData, setUserData] = useState({});
-  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNext, setHasNext] = useState(false);
   const [profileImage, setProfileImage] = useState(defaultUserSymbol); // State for the profile image
+  const navigate = useNavigate();
   const userID = localStorage.getItem("userID");
 
   useEffect(() => {
@@ -19,13 +18,13 @@ export default function UserProfile() {
       .then((response) => response.json())
       .then((data) => {
         setPosts(data.posts.filter(function(post) {
-          return post.userid == userID;
+          return post.userid === userID;
         }))
         setHasNext(data.hasNext);
         console.log(data);
       })
       .catch((error) => console.error('Error fetching data: ', error));
-  }, [currentPage])
+  }, [currentPage, userID])
 
   useEffect(() => {
     axios.get('http://localhost:8000/currentuser/', {
@@ -38,12 +37,11 @@ export default function UserProfile() {
         if(response.data.userSymbol_url !== null)
           setProfileImage(`http://localhost:8000${response.data.userSymbol_url}`);
         console.log(profileImage);
-        console.log(userData.userSymbol_url);
     })
     .catch(error => {
         console.error('Error fetching user data:', error);
     });
-}, []); // Empty dependency array means this effect runs once on component mount
+}, [profileImage]); // Empty dependency array means this effect runs once on component mount
 
 
   const handleNext = () => {
