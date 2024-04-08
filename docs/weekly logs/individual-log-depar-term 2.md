@@ -41,3 +41,7 @@ This week we worked on completing our individual tasks to finish by the end of t
 # Individual Log Week 12 
 I have currently done basic setup with the template in my local machine along with the SMTP setup. There were bug fixes and setup issues that delayed me. After testing I will upload it to development and to master before this upcoming Tuesday so we are on track with features. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/aacb72c2-f9b0-4f70-bb60-bef6c60f3f51)
+# Individual Log Week 13
+This week is mostly focused on finishing video report. I also did a little coding where I am adding token authentication to the forget password
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/90084005/8057e5b2-204e-42bc-aa3e-d6041e1f63cd)
