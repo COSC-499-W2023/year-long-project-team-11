@@ -52,3 +52,10 @@ I worked upon these and the link to that will be here https://github.com/COSC-49
 as well as I have been working on other bug fixes that need to be addressed to ensure the app is responsive.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/004e0232-4b6b-4c8b-9ea9-6baeb516bab4)
 
+# Week 13
+This is the final week for submission of the project with the document and the video so I have spent time working on bug fixes.
+In addition to adding a few more small minor changes to improve functionality of the website.
+I have learnt a lot of new techniques to analyse and understand a system for an application as well as learning to create a document similar to industry level.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/95616247/3cacc1c4-fa93-4c0a-893b-39472372c03a)
+
+
