@@ -197,10 +197,10 @@ export default function Login() {
               </button>
               {/* Remember me */}
               <p className="pt-[5px]">
-                <a className="text-[#19747E]" href="#">
-                  Forgot Your Password?
-                </a>
-              </p>
+                <Link to="/ForgetPassword">
+                Forgot Your Password?
+                </Link> 
+              </p>    
             </form>
           </div>
 

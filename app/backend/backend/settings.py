@@ -31,7 +31,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_PORT= 587
+#EMAIL_FROM= 'jackfrost123ice@gmail.com'
+EMAIL_HOST_USER= 'jackfrost123ice@gmail.com'
+EMAIL_HOST_PASSWORD= 'gtfandyheqgpvqiz'
+EMAIL_USE_TLS= True
+EMAIL_USE_SSL= False 
 # Application definition
 
 INSTALLED_APPS = [
@@ -75,7 +82,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
      'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
      'ROTATE_REFRESH_TOKENS': True,
      'BLACKLIST_AFTER_ROTATION': True
@@ -167,3 +174,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

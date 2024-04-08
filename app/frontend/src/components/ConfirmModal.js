@@ -10,7 +10,7 @@ export default function ConfirmModal({ isOpen, closeModal, children }) {
                 {children}
                 <button
                     type="button"
-                    className="bg-[#19747E] text-white rounded hover:bg-[#316268] p-1 mx-2"
+                    className="bg-gray-500 hover:bg-gray-700 text-white rounded p-1 mx-2"
                     onClick={closeModal}
                   >
                     Cancel
