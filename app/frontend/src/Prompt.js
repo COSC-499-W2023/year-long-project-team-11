@@ -8,8 +8,6 @@ export default function Prompt() {
   const [file, setFile] = useState(null);
   const [context, setContext] = useState("");
   const [prompt, setPrompt] = useState("");
-  const [output, setOutput] = useState("");
-  const [filename, setFilename] = useState("");
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [fontColor, setFontColor] = useState("black");
   const [fontType, setFontType] = useState("Arial");
@@ -74,8 +72,7 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setOutput(data.response);
-        setFilename(data.filename);
+        // console.log(data.response);
         navigate('/Regenerate', { state : { type: formType, output: data.response, filename: data.filename, documentText: data.file_text, fontColor: data.style.fontcolor, fontType: data.style.fonttype, backgroundColor: data.style.bg } });
       })
       .catch((error) => {
@@ -109,8 +106,7 @@ export default function Prompt() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setOutput(data.response);
-        setFilename(data.filename);
+        console.log(data.response);
         navigate('/Regenerate', { state : { type: formType, output: data.response, filename: data.filename, documentText: data.file_text, questionType: questionType } })
       })
   }
