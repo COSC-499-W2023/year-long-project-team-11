@@ -61,3 +61,7 @@ I didn't get as much done this week as I had hoped, but I did manage to make som
 **Week 12**
 This week was productive, but not super exciting. I completed "populate user profile" feature, making it so that your profile only displays your own posts. Not much more to say beyond that. Next week, I'll be focusing primarily on bug-fixes as well as minor features.
 <img width="1071" alt="Screenshot 2024-03-31 at 11 23 00 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/62026c48-befb-4214-963f-2b627924d713">
+
+**Week 13**
+This week I made some minor adjustments adn hotfixes to overall code, but the majority of my time was spent writing and finalizing my project report.
+<img width="1064" alt="Screenshot 2024-04-07 at 11 47 50 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/270e21c8-58fd-434d-bfdf-ccc0b1820af0">
