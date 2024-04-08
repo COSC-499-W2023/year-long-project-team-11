@@ -140,19 +140,41 @@ def delete_account(request):
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+# @api_view(['PUT'])
+# @login_required
+# def uploadUserImage(request):
+#     user = request.user  # Get the current user
+#     data = request.data.get('userSymbol')  # Assuming the image is sent as base64
+    
+#     if data:
+#         format, imgstr = data.split(';base64,')  # Split the data to get base64 string
+#         ext = format.split('/')[-1]  # Extract the file extension
+#         image_data = base64.b64decode(imgstr)  # Decode the base64 string
+
+#         filename = f'user_{user.pk}.{ext}'  # Create a filename for the image
+#         user.userSymbol.save(name=filename, content=ContentFile(image_data, name=filename))  # Save the image to the userSymbol field
+
+#         return JsonResponse({'message': 'Image uploaded successfully'}, status=200)
+#     else:
+#         return JsonResponse({'error': 'No image provided'}, status=400)
+
 @api_view(['PUT'])
-@login_required
+@permission_classes([IsAuthenticated])
 def uploadUserImage(request):
     user = request.user  # Get the current user
     data = request.data.get('userSymbol')  # Assuming the image is sent as base64
     
     if data:
+        # Delete the old image if it exists
+        if user.userSymbol and hasattr(user.userSymbol, 'url'):
+            user.userSymbol.delete(save=False)  # Delete the file associated with the previous image, don't save model yet
+        
         format, imgstr = data.split(';base64,')  # Split the data to get base64 string
         ext = format.split('/')[-1]  # Extract the file extension
         image_data = base64.b64decode(imgstr)  # Decode the base64 string
 
         filename = f'user_{user.pk}.{ext}'  # Create a filename for the image
-        user.userSymbol.save(name=filename, content=ContentFile(image_data, name=filename))  # Save the image to the userSymbol field
+        user.userSymbol.save(name=filename, content=ContentFile(image_data, name=filename))  # Save the new image to the userSymbol field
 
         return JsonResponse({'message': 'Image uploaded successfully'}, status=200)
     else:

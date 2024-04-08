@@ -27,6 +27,25 @@ export default function UserProfile() {
       .catch((error) => console.error('Error fetching data: ', error));
   }, [currentPage])
 
+  useEffect(() => {
+    axios.get('http://localhost:8000/currentuser/', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        },
+    })
+    .then(response => {
+        console.log(response.data);
+        if(response.data.userSymbol_url !== null)
+          setProfileImage(`http://localhost:8000${response.data.userSymbol_url}`);
+        console.log(profileImage);
+        console.log(userData.userSymbol_url);
+    })
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+    });
+}, []); // Empty dependency array means this effect runs once on component mount
+
+
   const handleNext = () => {
     if (hasNext) {
       setCurrentPage((prevPage) => prevPage + 1);
@@ -69,6 +88,7 @@ export default function UserProfile() {
     });
   };
 
+
   // Deletion Function
   const handleDeleteAccount = () => {
     if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
@@ -88,6 +108,7 @@ export default function UserProfile() {
     }
   };
 
+  
     return (
       <div>
       {/* Nav Bar */}

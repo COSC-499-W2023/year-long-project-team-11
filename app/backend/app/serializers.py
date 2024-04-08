@@ -8,9 +8,10 @@ from rest_framework.exceptions import ValidationError
 # AppUser = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
+    userSymbol_url = serializers.SerializerMethodField()
     class Meta:
         model = AppUser
-        fields = ('id', 'email', 'username', 'password')
+        fields = ('id', 'email', 'username', 'password', 'userSymbol_url')
         # fields = '__all__'
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -19,6 +20,10 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+    def get_userSymbol_url(self, obj):
+        if obj.userSymbol and hasattr(obj.userSymbol, 'url'):
+            return obj.userSymbol.url
+        return None
 
 # class UserRegisterSerializer(serializers.ModelSerializer):
 #     class Meta: 
