@@ -14,7 +14,8 @@ urlpatterns = [
     path("addcomment/", views.addComment, name='add comment' ),
     path("comments/<int:postid>/", views.getComment, name='getComment'),
     path("posts/<int:id>/", views.getPost, name='getPost'),
-    path('delete_account/', delete_account, name='delete_account'),
+    path('delete_account/', views.delete_account, name='delete_account'),
+    path("uploadprofilepicture/", views.uploadUserImage, name='add profile picture'),
     path('forgetpassword/', views.SendPasswordResetEmailView.as_view(), name='forgetpassword'),
     path('resetpassword/', views.ResetPasswordView.as_view(), name='resetpassword'),
 ]

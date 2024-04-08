@@ -14,6 +14,10 @@ from .serializers import AppSave
 from .serializers import AppSaveSerializer
 from .serializers import AppCommentSerializer
 from .models import AppComment
+from django.core.files.base import ContentFile
+from .models import AppUser  # Import your user model
+from django.contrib.auth.decorators import login_required
+import base64
 import os
 import sys
 from django.contrib.auth.tokens import default_token_generator
@@ -25,6 +29,8 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
 from django.utils.encoding import force_str
+
+
 
 # Create your views here.
 @api_view(['GET'])
@@ -133,6 +139,28 @@ def delete_account(request):
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def uploadUserImage(request):
+    user = request.user  # Get the current user
+    data = request.data.get('userSymbol')  # Assuming the image is sent as base64
+    
+    if data:
+        # Delete the old image if it exists
+        if user.userSymbol and hasattr(user.userSymbol, 'url'):
+            user.userSymbol.delete(save=False)  # Delete the file associated with the previous image, don't save model yet
+        
+        format, imgstr = data.split(';base64,')  # Split the data to get base64 string
+        ext = format.split('/')[-1]  # Extract the file extension
+        image_data = base64.b64decode(imgstr)  # Decode the base64 string
+
+        filename = f'user_{user.pk}.{ext}'  # Create a filename for the image
+        user.userSymbol.save(name=filename, content=ContentFile(image_data, name=filename))  # Save the new image to the userSymbol field
+
+        return JsonResponse({'message': 'Image uploaded successfully'}, status=200)
+    else:
+        return JsonResponse({'error': 'No image provided'}, status=400)
+
 class SendPasswordResetEmailView(APIView):
     def post(self, request):
         email = request.data.get('email')
@@ -166,3 +194,4 @@ class ResetPasswordView(APIView):
             return Response({'success': 'Password has been reset successfully.'}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid user or user does not exist.'}, status=status.HTTP_404_NOT_FOUND)
+
