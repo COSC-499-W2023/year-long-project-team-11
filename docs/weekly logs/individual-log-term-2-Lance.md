@@ -1,4 +1,8 @@
 # ===== TERM 2 =====
+# Week 13 (April 1-April 7)
+This week was the final submitting of the video and project. We had a ton of troubleshooting and small features to finish. My profile picture somehow took a collective of a week or two to actually finish which was very interesting and annoying. Didn't know how much time one little feature I thought was little would take. other than that, we got it all sorted out and i learned all sorts of things for troubleshooting and even just researching.
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/4c728e7d-3946-4298-90cb-4fdcc00a256c)
+
 # Week 12 (March 25-March 31)
 This week I was not able to do as much coding work since I had to finish up major assignments from other classes. However, I was researching more on how to do my feature, especially trying to add the image option to work seamlessly. It is taking me more time than I thought as using css file to make the profile picture might give more clutter to the frontend folder. I will probably try to implement tailwind into making the profile picture UI, but given the length of the researching I did just to add a nice looking profile picture, I might take longer for it.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/60246855/69cdeaff-5471-4d3e-84f3-08e31d257fa2)
