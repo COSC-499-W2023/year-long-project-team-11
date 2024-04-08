@@ -36,12 +36,12 @@ export default function UserProfile() {
         console.log(response.data);
         if(response.data.userSymbol_url !== null)
           setProfileImage(`http://localhost:8000${response.data.userSymbol_url}`);
-        console.log(profileImage);
+        // console.log(profileImage);
     })
     .catch(error => {
         console.error('Error fetching user data:', error);
     });
-}, [profileImage]); // Empty dependency array means this effect runs once on component mount
+}, [profileImage]);
 
 
   const handleNext = () => {
@@ -64,7 +64,7 @@ export default function UserProfile() {
       reader.onload = () => {
         setProfileImage(reader.result);
         // Optionally, call the uploadImage function here to automatically upload after selection
-        // uploadImage(reader.result);
+        uploadImage(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -147,7 +147,6 @@ export default function UserProfile() {
                   <img src={profileImage} alt="User Symbol" height={140} width={100} />
                 </label>
                 <input id="image-upload" type="file" onChange={handleImageChange} style={{display: 'none'}}/>
-                <button onClick={() => uploadImage(profileImage)}>Upload Image</button>
                 <p className="text-[#19747E] font-bold text-2xl">{localStorage.getItem("username")}</p>
               {/* Add Delete Account Link */}
               <span className="text-[#19747E] cursor-pointer hover:text-red-600" onClick={handleDeleteAccount}>

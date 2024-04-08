@@ -11,6 +11,7 @@ const Output = () => {
   const [comment, setComment] = useState("");
   const [docs, setDocs] = useState([]);
   const [comments, setComments] = useState([]);
+  const [copyButtonText, setCopyButtonText] = useState("Copy Link");
 
   useEffect(() => {
     fetchPostData(postId);
@@ -85,6 +86,20 @@ const Output = () => {
     setComments((prevComments) => [...prevComments, newComment]);
   };
 
+  const copyLink = () => {
+    const currentUrl = window.location.href;
+
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      setCopyButtonText("Link copied!");
+
+      setTimeout(() => {
+        setCopyButtonText("Copy Link");
+      }, 1000);
+    }).catch(err => {
+      console.error("Failed to copy link: ", err);
+    }); 
+  };
+
   const isLoggedIn = localStorage.getItem('access_token') ? true : false;
   return (
     <div>
@@ -127,7 +142,7 @@ const Output = () => {
           <div className="flex justify-between items-center">
             <div className='buttons flex flex-row'>
               <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4" onClick={() => window.location.href = `http://localhost:8000/api/files/${filename}?download=true`}>Download</button>
-              <button className="px-4 py-2 bg-gray-500 text-white rounded-md">Share</button>
+              <button onClick={copyLink} className="px-4 py-2 bg-gray-500 text-white rounded-md">{copyButtonText}</button>
             </div>
           </div>
           <div>

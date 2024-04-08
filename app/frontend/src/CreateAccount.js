@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import axios from "axios";
 
 export default function CreateAccount() {
   const [username, setUsername] = useState("");
