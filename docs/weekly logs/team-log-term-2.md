@@ -170,3 +170,19 @@ This week, the team made a disappointingly little amount of progress, failing to
 
 <b>Test Report</b>
 <img width="782" alt="Screenshot 2024-03-31 at 11 33 05 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/469c2a07-6a5e-4a97-8c85-6ae28c94f449">
+
+----------------------------------------------------
+<h1>Week 13</h1>
+<b>List of Tasks</b>
+<img width="1109" alt="Screenshot 2024-04-08 at 4 39 32 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/fd507ee0-7dda-433d-ac7d-0d6bb947504f">
+
+This week, the team finalized the project, completing the profile picture, AI quiz generation, and forgot password features. The team also spent a large amount of time making bugfixes across the site as well, as well as writing up our individual project reports. With no more weeks left in class, the only plans left for the team is to continue searching for, and squashing bugs in preperation for the client presentation this coming Thursday.
+
+<b>Kanban Board</b>
+<img width="1077" alt="Screenshot 2024-04-08 at 4 39 14 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/50982876-d2d2-45eb-b8d0-0d8baf469998">
+
+<b>Burn Up Chart</b>
+<img width="958" alt="Screenshot 2024-04-08 at 4 39 47 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/f67373fa-f485-4bea-bfba-f4c84dfead66">
+
+<b>Test Report</b>
+<img width="1037" alt="Screenshot 2024-04-08 at 4 42 02 PM" src="https://github.com/COSC-499-W2023/year-long-project-team-11/assets/71360902/174bc0c0-05e1-4a3e-a381-1205d2a9d7c2">
