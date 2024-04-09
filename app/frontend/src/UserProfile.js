@@ -18,7 +18,7 @@ export default function UserProfile() {
       .then((response) => response.json())
       .then((data) => {
         setPosts(data.posts.filter(function(post) {
-          return post.userid === userID;
+          return post.userid == userID;
         }))
         setHasNext(data.hasNext);
         console.log(data);
@@ -162,23 +162,23 @@ export default function UserProfile() {
                   <div className="flex">
 
                   {posts.length === 0 ? 
-          <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
-            {/* Content goes here */}
-            <h1> No Saved Files </h1>
-          </div>
-          :
-          <div className="flex flex-col items-center justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {posts.map((post) => (
-                <Post key={post.id} filename={post.filepath} title={post.title} tags={post.tag} postID={post.id} timestamp={post.timestamp} posterID={post.userid} posterUsername={post.username} />
-              ))}
-            </div>
-            <div>
-              {currentPage !== 1 && <button className="mx-1" onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>}
-              {hasNext && <button className="mx-1" onClick={handleNext} disabled={!hasNext}>Next</button>}
-            </div>
-          </div>
-        }
+                    <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
+                      {/* Content goes here */}
+                      <h1> No Saved Files </h1>
+                    </div>
+                    :
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        {posts.map((post) => (
+                          <Post key={post.id} filename={post.filepath} title={post.title} tags={post.tag} postID={post.id} timestamp={post.timestamp} posterID={post.userid} posterUsername={post.username} />
+                        ))}
+                      </div>
+                      <div>
+                        {currentPage !== 1 && <button className="mx-1" onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>}
+                        {hasNext && <button className="mx-1" onClick={handleNext} disabled={!hasNext}>Next</button>}
+                      </div>
+                    </div>
+                  }
 
                   </div>
 
