@@ -178,17 +178,6 @@ export default function Login() {
               </div>
               <p className="text-sm text-red-500">&nbsp;{passwordError}</p>
               {/* Submission of form */}
-              <div className="py-[5px]">
-                <input
-                  type="checkbox"
-                  id="rememberme"
-                  name="rememberme"
-                  className="mr-1"
-                />
-                <label htmlFor="rememberme" className="text-black">
-                  Remember Me
-                </label>
-              </div>
               <button
                 className="grid place-items-center bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]"
                 type="submit"
