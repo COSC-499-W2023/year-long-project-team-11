@@ -41,7 +41,7 @@ export default function UserProfile() {
     .catch(error => {
         console.error('Error fetching user data:', error);
     });
-}, [profileImage]);
+}, []);
 
 
   const handleNext = () => {
