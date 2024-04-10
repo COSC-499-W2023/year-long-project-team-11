@@ -130,7 +130,7 @@ const Output = () => {
       </nav>
 
       {/* Content */}
-      <div className="savedcontent flex flex-col items-center justify-center min-h-screen">
+      <div className="savedcontent flex flex-col items-center justify-center min-h-screen py-4">
         <div className="max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold mb-4">{title}</h1>
           <p className="text-lg mb-4">{tags}</p>
