@@ -29,7 +29,7 @@ function App() {
         <Route path='/SavedContent' element={<SavedContent />} />
         <Route path='/post/:postId' element={<Output />} />
         <Route path='/ForgetPassword' element={<ForgetPassword/>}/>
-        <Route path='/ResetPassword/:userid' element={<ResetPassword/>}/>
+        <Route path='/ResetPassword/:userid/:tokenid' element={<ResetPassword/>}/>
       </Routes>
     </div>
   );
