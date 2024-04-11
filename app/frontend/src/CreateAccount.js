@@ -221,7 +221,7 @@ export default function CreateAccount() {
             />
 
             {/* Password */}
-            <div className="w-[100%]">
+            <div className="w-52">
               <p className="pb-[5px] text-sm text-red-500 flex-1 mr-1"><br/>{errors.password}</p>
               <div className="relative flex items-center">
                 <input
