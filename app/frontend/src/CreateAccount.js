@@ -195,7 +195,7 @@ export default function CreateAccount() {
           <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
           <form onSubmit={handleSubmit}>
             {/* Username */}
-            <p className="text-sm text-red-500">&nbsp;{errors.firstName}</p>
+            <p className="text-sm text-red-500 my-2 mr-1"> <br/>{errors.firstName}</p>
             <input
               className="py-[5px] bg-white text-center rounded-lg w-[100%]"
               type="text"
@@ -208,7 +208,7 @@ export default function CreateAccount() {
             />
 
             {/* Email */}
-            <p className="text-sm text-red-500">&nbsp;{errors.email}</p>
+            <p className="text-sm text-red-500 mr-1"><br/>{errors.email}</p>
             <input
               className="py-[5px] bg-white text-center rounded-lg w-[100%]"
               type="text"
@@ -222,7 +222,7 @@ export default function CreateAccount() {
 
             {/* Password */}
             <div className="w-[100%]">
-              <p className="pb-[5px] text-sm text-red-500 flex-1">&nbsp;{errors.password}</p>
+              <p className="pb-[5px] text-sm text-red-500 flex-1 mr-1"><br/>{errors.password}</p>
               <div className="relative flex items-center">
                 <input
                   className="py-[5px] bg-white text-center rounded-lg w-full"
@@ -240,7 +240,7 @@ export default function CreateAccount() {
             </div>
 
             {/* Confirm Password */}
-            <p className="text-sm text-red-500">&nbsp;{errors.confirmPassword}</p>
+            <p className="text-sm text-red-500 mr-1"><br/>{errors.confirmPassword}</p>
             <input
               className="py-[5px] bg-white text-center rounded-lg w-[100%]"
               type="password"
@@ -255,9 +255,9 @@ export default function CreateAccount() {
             <p className="text-sm pt-[2px] pb-[20px]">
               Already have an account?&#160;
               <Link to={"/Login"}>
-                <a href="#" className="text-[#44566B] underline">
+                <div className="text-[#44566B] underline">
                   Sign In
-                </a>
+                </div>
               </Link>
             </p>
 
