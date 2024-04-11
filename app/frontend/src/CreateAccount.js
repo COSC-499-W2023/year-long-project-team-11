@@ -190,14 +190,14 @@ export default function CreateAccount() {
       </nav>
 
       {/* Content */}
-      <div className="h-screen grid place-items-center">
-        <div className="px-[100px] py-[30px] grid place-items-center rounded-lg border-[3px] border-black bg-[#E2E2E2] text-center">
-          <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
+      <div className="h-screen grid place-items-center border-3 border-black">
+      <div className="flex flex-col items-center min-w-[400px] px-6 py-6 space-y-4 p-6 rounded-lg border-3 border-black bg-[#E2E2E2]">          
+      <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
           <form onSubmit={handleSubmit}>
             {/* Username */}
-            <p className="text-sm text-red-500">&nbsp;{errors.firstName}</p>
+            <p className={`h-5 text-red-500 text-sm ${errors.username ? "visible" : "invisible"}`}>{errors.username}</p>
             <input
-              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+              className="py-2 px-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-center"
               type="text"
               name="username"
               placeholder="Username"
@@ -208,10 +208,9 @@ export default function CreateAccount() {
             />
 
             {/* Email */}
-            <p className="text-sm text-red-500">&nbsp;{errors.email}</p>
+            <p className={`h-5 text-red-500 text-sm ${errors.email ? "visible" : "invisible"}`}>{errors.email}</p>
             <input
-              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-              type="text"
+              className="py-2 px-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-center"              type="text"
               name="email"
               placeholder="Email"
               maxLength={100}
@@ -221,11 +220,10 @@ export default function CreateAccount() {
             />
 
             {/* Password */}
-            <div className="w-[100%]">
-              <p className="pb-[5px] text-sm text-red-500 flex-1">&nbsp;{errors.password}</p>
-              <div className="relative flex items-center">
+            <p className={`h-5 text-red-500 flex-1 text-sm ${errors.password ? "visible" : "invisible"}`}>{errors.password}</p>
+              <div className="relative w-full">
                 <input
-                  className="py-[5px] bg-white text-center rounded-lg w-full"
+                  className="py-2 px-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-center"                  
                   type="password"
                   name="password"
                   placeholder="Password"
@@ -234,16 +232,17 @@ export default function CreateAccount() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <a className="absolute right-0 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="password" data-tooltip-content="Password must be at least 6 characters long, and contain at least 1 number and 1 symbol each." data-tooltip-place="top">i</a>
-                <Tooltip id="password" />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <a className="absolute right-0 mr-[-2.5rem] flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="password" data-tooltip-content="Password must be at least 6 characters long, and contain at least 1 number and 1 symbol each." data-tooltip-place="top">i</a>
+                    <Tooltip id="password" />
+                  </div>
               </div>
-            </div>
+   
 
             {/* Confirm Password */}
-            <p className="text-sm text-red-500">&nbsp;{errors.confirmPassword}</p>
+            <p className={`h-5 text-red-500 text-sm ${errors.confirmPassword ? "visible" : "invisible"}`}>{errors.confirmPassword}</p>
             <input
-              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
-              type="password"
+              className="py-2 px-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-center"              type="password"
               name="confirmPassword"
               placeholder="Confirm Password"
               maxLength={100}

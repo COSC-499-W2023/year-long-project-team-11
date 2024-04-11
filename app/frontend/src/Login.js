@@ -184,7 +184,7 @@ export default function Login() {
               >
                 Sign In
               </button>
-              {/* Remember me */}
+
               <p className="pt-[5px]">
                 <Link to="/ForgetPassword">
                 Forgot Your Password?
