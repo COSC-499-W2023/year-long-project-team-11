@@ -15,7 +15,7 @@ export default function Post({ filename, title, tags, postID, timestamp, posterI
   }
 
   return (
-    <div className='rounded-lg m-2 px-[1.5rem] py-[0.5rem] bg-[#E2E2E2] border-[3px] border-black text-left w-80 max-w-md h-auto'>
+    <div className='rounded-lg m-2 px-[1.5rem] py-[0.5rem] bg-[#E2E2E2] border-[3px] border-black text-left w-64 max-w-md h-auto'>
       <div onClick={handleClick} className='cursor-pointer text-xl font-sans font-bold overflow-hidden h-12 leading-6'>
         {title}
       </div>
