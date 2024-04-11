@@ -70,7 +70,7 @@ export default function CreateAccount() {
     if (!hasNumber.test(password)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: "Password must contain at least one number and symbol",
+        password: "PW needs one number & symbol",
       }));
       return;
     }
@@ -85,7 +85,7 @@ export default function CreateAccount() {
     if (!hasSymbol.test(password)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: "Password must contain at least one number and symbol",
+        password: "PW needs one number & symbol",
       }));
       return;
     }
@@ -195,7 +195,7 @@ export default function CreateAccount() {
           <h2 className="font-bold text-2xl pb-[10px]">Sign Up</h2>
           <form onSubmit={handleSubmit}>
             {/* Username */}
-            <p className="text-sm text-red-500 my-2 mr-1"> <br/>{errors.firstName}</p>
+            <p className={`h-5 text-red-500 text-sm whitespace-normal ${errors.firstName ? "visible" : "invisible"}`}>{errors.firstName}</p>
             <input
               className="py-[5px] bg-white text-center rounded-lg w-[100%]"
               type="text"
@@ -208,7 +208,7 @@ export default function CreateAccount() {
             />
 
             {/* Email */}
-            <p className="text-sm text-red-500 mr-1"><br/>{errors.email}</p>
+            <p className={`h-5 text-red-500 text-sm whitespace-normal ${errors.email ? "visible" : "invisible"}`}>{errors.email}</p>
             <input
               className="py-[5px] bg-white text-center rounded-lg w-[100%]"
               type="text"
@@ -221,9 +221,9 @@ export default function CreateAccount() {
             />
 
             {/* Password */}
-            <div className="w-52">
-              <p className="pb-[5px] text-sm text-red-500 flex-1 mr-1"><br/>{errors.password}</p>
-              <div className="relative flex items-center">
+            <div className="w-52 md:w-52">
+            <p className={`h-5 text-red-500 text-sm whitespace-normal ${errors.password ? "visible" : "invisible"}`}>{errors.password}</p>
+              <div className="relative flex items-center mb-2">
                 <input
                   className="py-[5px] bg-white text-center rounded-lg w-full"
                   type="password"
@@ -240,9 +240,9 @@ export default function CreateAccount() {
             </div>
 
             {/* Confirm Password */}
-            <p className="text-sm text-red-500 mr-1"><br/>{errors.confirmPassword}</p>
+            <p className={`h-5 text-red-500 text-sm whitespace-normal ${errors.confirmPassword ? "visible" : "invisible"}`}>{errors.confirmPassword}</p>
             <input
-              className="py-[5px] bg-white text-center rounded-lg w-[100%]"
+              className="py-[4px] bg-white text-center rounded-lg w-[100%]"
               type="password"
               name="confirmPassword"
               placeholder="Confirm Password"
