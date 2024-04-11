@@ -18,10 +18,7 @@ export default function ResetPassword() {
 //   const location= useLocation();
 //   const email= location.state?.email;
   //const [email,setEmail]= useState('');
-  const { userid } = useParams();
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+
 
   if (localStorage.getItem('loggedIn') === 'true') {
     window.location.href = "/Prompt";
