@@ -62,8 +62,8 @@ export default function SavedContent() {
             <h1> No Saved Files </h1>
           </div>
           :
-          <div className="flex flex-col items-center justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="flex flex-col items-center justify-center overflow-y-scroll">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {posts.map((post) => (
                 <Post key={post.id} filename={post.filepath} title={post.title} tags={post.tag} postID={post.id} timestamp={post.timestamp} posterID={post.userid} posterUsername={post.username} />
               ))}
