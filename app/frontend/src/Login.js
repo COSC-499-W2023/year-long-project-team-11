@@ -160,7 +160,7 @@ export default function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <p className="text-sm text-red-500">&nbsp;{emailError}</p>
+              <p className="text-sm text-red-500 my-2">{emailError}</p>
               {/* Password */}
               <div className="py-[5px]">
                 <input
@@ -176,7 +176,7 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <p className="text-sm text-red-500">&nbsp;{passwordError}</p>
+              <p className="text-sm text-red-500 my-2">{passwordError}</p>
               {/* Submission of form */}
               <button
                 className="grid place-items-center bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]"
