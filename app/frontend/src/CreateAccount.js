@@ -255,9 +255,9 @@ export default function CreateAccount() {
             <p className="text-sm pt-[2px] pb-[20px]">
               Already have an account?&#160;
               <Link to={"/Login"}>
-                <div className="text-[#44566B] underline">
+                <a href="#" className="text-[#44566B] underline">
                   Sign In
-                </div>
+                </a>
               </Link>
             </p>
 

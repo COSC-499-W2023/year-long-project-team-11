@@ -178,17 +178,6 @@ export default function Login() {
               </div>
               <p className="text-sm text-red-500">&nbsp;{passwordError}</p>
               {/* Submission of form */}
-              <div className="py-[5px]">
-                <input
-                  type="checkbox"
-                  id="rememberme"
-                  name="rememberme"
-                  className="mr-1"
-                />
-                <label htmlFor="rememberme" className="text-black">
-                  Remember Me
-                </label>
-              </div>
               <button
                 className="grid place-items-center bg-[#19747E] text-white py-1 rounded hover:bg-[#316268] w-[100%]"
                 type="submit"
@@ -198,9 +187,7 @@ export default function Login() {
               {/* Remember me */}
               <p className="pt-[5px]">
                 <Link to="/ForgetPassword">
-                  <div className="text-[#44566B] underline">
-                    Forgot Your Password?
-                  </div>
+                Forgot Your Password?
                 </Link> 
               </p>    
             </form>
@@ -210,9 +197,9 @@ export default function Login() {
           <p>
             Don't have an account?&#160;
             <Link to={"/SignUp"}>
-              <div className="text-[#44566B] underline">
+              <a className="text-[#44566B] underline" href="#">
                 Create an account
-              </div>
+              </a>
             </Link>
           </p>
         </div>

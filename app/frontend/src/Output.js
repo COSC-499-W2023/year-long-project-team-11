@@ -24,7 +24,7 @@ const Output = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+          // 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         },
       });
 
@@ -100,6 +100,7 @@ const Output = () => {
     }); 
   };
 
+  const isLoggedIn = localStorage.getItem('access_token') ? true : false;
   return (
     <div>
       {/* Nav Bar */}
@@ -110,7 +111,7 @@ const Output = () => {
             {/* <div class="font-bold">(Logo) EduSynth</div> */}
             <a href="/Prompt"><img alt="Edusynth Logo" src={require("./img/logo/logo-landscape.png")} height={60} width={100} /></a>
             <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Prompt">A.I. Page</a>
-            <a className="bg-[#316268] text-white py-3 px-3 rounded hover:bg-[#3e7a82]" href="/SavedContent">Saved Content</a>
+            <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SavedContent">Saved Content</a>
             <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Tutorial">Tutorial</a>
           </div>
 
@@ -120,10 +121,10 @@ const Output = () => {
 
           {/* User Area (Right side) */}
           <div class="flex items-center space-x-1">
-            <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-            <a id='login-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-            <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-            <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+            {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>}
+            {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>}
+            {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>}
+            {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>}
           </div>
         </div>
       </nav>

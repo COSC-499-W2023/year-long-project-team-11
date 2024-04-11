@@ -2,20 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
 export default function ForgetPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
-
-  if (localStorage.getItem('loggedIn') === true) {
-    navigate("/Prompt");
+  if (localStorage.getItem('loggedIn') == 'true') {
+    window.location.href = "/Prompt";
   }
-
+  // const navigate= useNavigate();
   // const passemail= () => {
   //  navigate('/ResetPassword',{state: {email: email}});
   // };
-
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {

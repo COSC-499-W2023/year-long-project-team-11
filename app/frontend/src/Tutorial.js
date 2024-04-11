@@ -3,19 +3,6 @@ import tutorialImage1 from './img-tutorial/tutorial.gif';
 
 
 const Tutorial = () => {
-  // If user is logged in
-  if (localStorage.getItem('access_token')) {
-    setTimeout(function() {
-      document.getElementById('login-option').style.display = 'none'; //Will hide
-      document.getElementById('signup-option').style.display = 'none';
-    },20);
-  } else {
-    setTimeout(function() {
-      document.getElementById('profile-option').style.display = 'none';
-      document.getElementById('logout-option').style.display = 'none';
-    },20);
-  }
-
   // State to keep track of the user's choice
   const [choice, setChoice] = useState('');
 
@@ -26,8 +13,7 @@ const Tutorial = () => {
     alert(`You have chosen to ${choice}`);
   };
 
-  
-
+  const isLoggedIn = localStorage.getItem('access_token') ? true : false;
   return (
     <div>
       {/* Nav Bar */}
@@ -48,10 +34,10 @@ const Tutorial = () => {
 
               {/* User Area (Right side) */}
               <div class="flex items-center space-x-1">
-                  <a id='profile-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>
-                  <a id='login-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>
-                  <a id='logout-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>
-                  <a id='signup-option' className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>
+                    {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/UserProfile">Profile</a>}
+                    {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Login">Log In</a>}
+                    {isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/Logout">Log Out</a>}
+                    {!isLoggedIn && <a className="text-[#44566B] py-3 px-3 hover:text-black" href="/SignUp">Sign Up</a>}
               </div>
           </div>
       </nav>

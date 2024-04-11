@@ -1,3 +1,8 @@
+# Week 13 (April 1 - April 7)
+This week was focused on finishing any remaining features and bugfixes, I completed my feature of quiz generation early in the week, and then made numerous bug fixes in the code. The rest of the time was spent on writing the final report.  
+![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/07db11ea-5699-43af-86d5-8aa67e804e99)
+
+
 # Week 12 (March 25 - March 31)
 This week I worked on my feature of quiz generation. I was able to complete the backend endpoint for quiz generation, all that's left is to write the front-end for this feature. I wasn't able to finish that this week, and so that's why my feature is not merged yet, however, you can find my commit on the branch quizgeneration. 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-11/assets/41003728/c41a1050-115c-4b8b-8b1a-809aac19e5e8)
