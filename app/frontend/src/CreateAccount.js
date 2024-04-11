@@ -232,8 +232,8 @@ export default function CreateAccount() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                  <div className="absolute inset-y-0 right-0 flex items-right pr-3">
-                    <a className="absolute right-0 mr-[-2.5rem] flex items-right justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="password" data-tooltip-content="Password must be at least 6 characters long, and contain at least 1 number and 1 symbol each." data-tooltip-place="top">i</a>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <a className="flex items-center justify-center w-8 h-8 border-2 border-black rounded-full text-black font-bold no-underline hover:bg-gray-200" data-tooltip-id="password" data-tooltip-content="Password must be at least 6 characters long, and contain at least 1 number and 1 symbol each." data-tooltip-place="top">i</a>
                     <Tooltip id="password" />
                   </div>
               </div>
