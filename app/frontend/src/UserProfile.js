@@ -18,7 +18,7 @@ export default function UserProfile() {
       .then((response) => response.json())
       .then((data) => {
         setPosts(data.posts.filter(function(post) {
-          return post.userid === userID;
+          return post.userid == userID;
         }))
         setHasNext(data.hasNext);
         console.log(data);
@@ -41,7 +41,7 @@ export default function UserProfile() {
     .catch(error => {
         console.error('Error fetching user data:', error);
     });
-}, [profileImage]);
+}, []);
 
 
   const handleNext = () => {
@@ -137,14 +137,14 @@ export default function UserProfile() {
 
       {/* Content */}
       <div className="h-screen grid place-items-center">
-        <div className="rounded-lg w-500 h-500 px-[100px] py-[30px] bg-[#E2E2E2] border-[3px] border-black" 
+        <div className="rounded-lg px-[100px] py-[30px] bg-[#E2E2E2] border-[3px] border-black" 
         id="user-profile-box">
           <div className="items-center justify-center flex">
 
               {/* Left Column  */}
               <div className="w-[30%] p-4 flex flex-col items-center" id="left-box">
                 <label htmlFor="image-upload" className="cursor-pointer">
-                  <img src={profileImage} alt="User Symbol" height={140} width={100} />
+                  <img class="object-scale-down" src={profileImage} alt="User Symbol" height={140} width={100} />
                 </label>
                 <input id="image-upload" type="file" onChange={handleImageChange} style={{display: 'none'}}/>
                 <p className="text-[#19747E] font-bold text-2xl">{localStorage.getItem("username")}</p>
@@ -156,29 +156,29 @@ export default function UserProfile() {
             </div>
 
               {/* Right Column */}
-            <div className="grid place-items-center w-[70%] p-4 " id="right-box">
+            <div className="grid place-items-center w-[70%] h-60 p-4" id="right-box">
                   <p className="text-[#19747E] font-bold text-2xl">{localStorage.getItem("username")}'s Public Materials</p>
 
                   <div className="flex">
 
                   {posts.length === 0 ? 
-          <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
-            {/* Content goes here */}
-            <h1> No Saved Files </h1>
-          </div>
-          :
-          <div className="flex flex-col items-center justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {posts.map((post) => (
-                <Post key={post.id} filename={post.filepath} title={post.title} tags={post.tag} postID={post.id} timestamp={post.timestamp} posterID={post.userid} posterUsername={post.username} />
-              ))}
-            </div>
-            <div>
-              {currentPage !== 1 && <button className="mx-1" onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>}
-              {hasNext && <button className="mx-1" onClick={handleNext} disabled={!hasNext}>Next</button>}
-            </div>
-          </div>
-        }
+                    <div className="rounded-lg px-[50px] py-[30px] bg-[#E2E2E2] border-[3px] border-black text-left">
+                      {/* Content goes here */}
+                      <h1> No Saved Files </h1>
+                    </div>
+                    :
+                    <div className="grid place-items-center w-[100%] h-48 p-2 overflow-y-scroll">
+                      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
+                        {posts.map((post) => (
+                          <Post key={post.id} filename={post.filepath} title={post.title} tags={post.tag} postID={post.id} timestamp={post.timestamp} posterID={post.userid} posterUsername={post.username} />
+                        ))}
+                      </div>
+                      <div>
+                        {currentPage !== 1 && <button className="mx-1" onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>}
+                        {hasNext && <button className="mx-1" onClick={handleNext} disabled={!hasNext}>Next</button>}
+                      </div>
+                    </div>
+                  }
 
                   </div>
 
