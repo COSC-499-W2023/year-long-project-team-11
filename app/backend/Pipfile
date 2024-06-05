@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+openai = "*"
+python-dotenv = "*"
+pypdf2 = "*"
+langchain = "*"
+tiktoken = "*"
+faiss-cpu = "*"
+mysqlclient = {version="2.2.0"}
+djangorestframework-simplejwt = "*"
+python-pptx = "*"
+langchain-community = "*"
+langchain-openai = "*"
+python-docx = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

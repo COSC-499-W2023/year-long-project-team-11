@@ -1,0 +1,6 @@
+.env
+
+*.pptx
+
+__pycache__
+*.py[cod]
